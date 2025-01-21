@@ -1,0 +1,18 @@
+.mui-loading-button {
+    &__spinner-wrapper {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+    }
+
+    &__content-wrapper {
+        transition: .3s;
+    }
+
+    &.is-loading &__content-wrapper {
+        opacity: 0.5;
+    }
+}

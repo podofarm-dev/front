@@ -1,0 +1,28 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html * {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+html[lang="ko"] {
+    word-break: keep-all;
+    word-wrap: break-word;
+}
+
+html[lang="en"] {
+    word-break: normal;
+    word-wrap: break-word;
+}
+
+body {
+    overscroll-behavior: none;
+}

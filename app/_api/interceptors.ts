@@ -3,6 +3,8 @@ import type { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import { PATH } from '@/app/_constants/path';
 import { ACCESS_TOKEN_KEY, HTTP_STATUS_CODE } from '@/app/_constants/api';
 import { HTTPError } from '@/app/_api/HTTPError';
+import postNewToken from './user/postNewToken';
+import { axiosInstance } from './axiosInstance';
 
 export interface ErrorResponseData {
   statusCode?: number;
@@ -19,7 +21,7 @@ export const checkAndSetToken = (config: InternalAxiosRequestConfig) => {
   const authStorage = localStorage.getItem(ACCESS_TOKEN_KEY);
 
   if (!authStorage) {
-    window.location.href = PATH.LOGIN;
+    window.location.href = PATH.ROOT;
     throw new Error('Auth storage not found');
   }
 
@@ -28,7 +30,7 @@ export const checkAndSetToken = (config: InternalAxiosRequestConfig) => {
 
   // 토큰이 없으면 루트 페이지로 리다이렉트하고 에러 발생
   if (!accessToken) {
-    window.location.href = PATH.LOGIN;
+    window.location.href = PATH.ROOT;
     throw new Error('토큰이 유효하지 않습니다.');
   }
 
@@ -45,40 +47,56 @@ export const handleTokenError = async (error: AxiosError<ErrorResponseData>) => 
   // 응답이나 원본 요청이 없으면 에러 발생
   if (!error.response || !originalRequest) throw new Error('에러가 발생했습니다.');
 
-  /*
-    const { data, status } = error.response;
-  
-    // 엑세스 토큰이 만료된 경우
-    if (status === HTTP_STATUS_CODE.BAD_REQUEST && data.code === ERROR_CODE.EXPIRED_ACCESS_TOKEN) {
+  const { data, status } = error.response;
+
+  // 엑세스 토큰이 만료된 경우
+  if (status === HTTP_STATUS_CODE.UNAUTHORIZED || status === HTTP_STATUS_CODE.BAD_REQUEST) {
+    try {
       // 새로운 토큰을 요청
-      const { accessToken } = await postNewToken();
+      const newAccessToken = await postNewToken();
+
+      // 기존 localStorage 데이터 불러오기
+      const existingTokenData = JSON.parse(localStorage.getItem(ACCESS_TOKEN_KEY) as string);
+
+      // 새로운 access_token으로 업데이트
+      existingTokenData.state.access_token = newAccessToken;
+
       // 새 토큰으로 헤더 업데이트
-      originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+      originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+
       // localStorage에 새 토큰 저장
-      localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
-  
+      localStorage.setItem(ACCESS_TOKEN_KEY, JSON.stringify(existingTokenData));
+
       // 원래 요청을 새 토큰으로 재시도
       return axiosInstance(originalRequest);
-    }
-  
-    // 다양한 토큰 관련 에러 처리 (무효한 토큰, 만료된 리프레시 토큰 등)
-    if (
-      status === HTTP_STATUS_CODE.BAD_REQUEST &&
-      (data.code === ERROR_CODE.INVALID_ACCESS_TOKEN ||
-        data.code === ERROR_CODE.INVALID_REFRESH_TOKEN ||
-        data.code === ERROR_CODE.EXPIRED_REFRESH_TOKEN ||
-        data.code === ERROR_CODE.INVALID_TOKEN_VALIDATE ||
-        data.code === ERROR_CODE.NULL_REFRESH_TOKEN ||
-        data.code === ERROR_CODE.UNEXPECTED_TOKEN_ERROR ||
-        data.code === ERROR_CODE.UNAUTHORIZED ||
-        data.code === ERROR_CODE.INVALID_ACCESS_TOKEN)
-    ) {
-      // 토큰을 삭제하고 에러 발생
+    } catch (tokenError) {
+      console.error('토큰 갱신 중 에러 발생:', tokenError);
+
+      // 토큰 갱신 실패 시, 로컬 스토리지 정리 및 로그인 페이지로 이동
       localStorage.removeItem(ACCESS_TOKEN_KEY);
-  
-      throw new HTTPError(status, data.message, data.code);
+      window.location.href = PATH.ROOT;
+
+      throw tokenError;
     }
-    */
+  }
+
+  // // 다양한 토큰 관련 에러 처리 (무효한 토큰, 만료된 리프레시 토큰 등)
+  // if (
+  //   status === HTTP_STATUS_CODE.BAD_REQUEST &&
+  //   (data.code === ERROR_CODE.INVALID_ACCESS_TOKEN ||
+  //     data.code === ERROR_CODE.INVALID_REFRESH_TOKEN ||
+  //     data.code === ERROR_CODE.EXPIRED_REFRESH_TOKEN ||
+  //     data.code === ERROR_CODE.INVALID_TOKEN_VALIDATE ||
+  //     data.code === ERROR_CODE.NULL_REFRESH_TOKEN ||
+  //     data.code === ERROR_CODE.UNEXPECTED_TOKEN_ERROR ||
+  //     data.code === ERROR_CODE.UNAUTHORIZED ||
+  //     data.code === ERROR_CODE.INVALID_ACCESS_TOKEN)
+  // ) {
+  //   // 토큰을 삭제하고 에러 발생
+  //   localStorage.removeItem(ACCESS_TOKEN_KEY);
+
+  //   throw new HTTPError(status, data.message, data.code);
+  // }
 
   // 그 외의 에러는 그대로 전파
   throw error;

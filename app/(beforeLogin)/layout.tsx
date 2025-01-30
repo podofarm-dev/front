@@ -5,13 +5,8 @@ import Header from '@/app/_components/layout/Header';
 
 type Props = { children: ReactNode };
 
-const AfterLoginLayout = ({ children }: Props) => {
-  return (
-    <RQProvider>
-      <Header />
-      {children}
-    </RQProvider>
-  );
+const BeforeLoginLayout = ({ children }: Props) => {
+  return <>{children}</>;
 };
 
-export default AfterLoginLayout;
+export default BeforeLoginLayout;

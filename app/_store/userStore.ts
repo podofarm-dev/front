@@ -1,19 +1,6 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
-
-interface UserState {
-  userId: string;
-  studyId: string;
-  userNo: number;
-  userName: string;
-  userGoogleId: string;
-  userEmail: string;
-  userParticipant: string;
-  userLeader: 'Y' | 'N';
-  userSolvedProblem: number;
-  userTheme: string;
-  userDate: string;
-}
+import { UserState } from '@/app/_types/user';
 
 interface UserStatePatch {
   userId?: string;

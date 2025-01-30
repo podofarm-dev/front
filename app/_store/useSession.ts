@@ -3,12 +3,12 @@ import { createJSONStorage, persist } from 'zustand/middleware';
 
 interface SessionState {
   access_token: string;
-  expires_in: string;
+  memberId: string;
 }
 
 interface SessionStatePatch {
   access_token?: string;
-  expires_in?: string;
+  memberId?: string;
 }
 
 interface SessionStore extends SessionState {
@@ -19,7 +19,7 @@ interface SessionStore extends SessionState {
 
 const sessionInitData: SessionState = {
   access_token: '',
-  expires_in: '',
+  memberId: '',
 };
 
 const sessionStore = create<SessionStore>()(
@@ -36,7 +36,7 @@ const sessionStore = create<SessionStore>()(
       patchSessionInfo: (session: SessionStatePatch) => {
         set((state) => ({
           access_token: session?.access_token || state?.access_token,
-          expires_in: session?.expires_in || state?.expires_in,
+          expires_in: session?.memberId || state?.memberId,
         }));
       },
       clearSession: () => {

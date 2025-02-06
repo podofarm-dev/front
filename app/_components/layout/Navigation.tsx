@@ -7,9 +7,12 @@ const navigationItem = [
 
 const Navigation = () => {
   return (
-    <nav className="bg-primary">
-      {navigationItem.map((item) => (
-        <div>{item.title}</div>
+    <nav className="flex h-12 items-center gap-4 border-b border-bolder bg-primary px-8">
+      {navigationItem.map((item, index) => (
+        <div key={index} className="flex cursor-pointer flex-row gap-2">
+          <div>아이콘</div>
+          <div>{item.title}</div>
+        </div>
       ))}
     </nav>
   );

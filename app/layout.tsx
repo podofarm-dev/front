@@ -4,6 +4,7 @@ import localFont from 'next/font/local';
 import RQProvider from '@/app/_components/common/RQProvider';
 
 import './globals.css';
+import { Toaster } from '@/components/ui/toaster';
 
 const pretendard = localFont({
   src: './fonts/PretendardVariable.woff2',
@@ -25,7 +26,8 @@ export default function RootLayout({
   return (
     <html lang="kr" className={`${pretendard.variable}`}>
       <body className={`${pretendard.className} bg-secondary text-primary-foreground antialiased`}>
-        {children}
+        <RQProvider>{children}</RQProvider>
+        <Toaster />
       </body>
     </html>
   );

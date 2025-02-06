@@ -4,9 +4,10 @@ import { useRouter, useSearchParams } from 'next/navigation';
 
 import sessionStore from '@/app/_store/useSession';
 import userStore from '@/app/_store/userStore';
-import { useUserInfoQuery } from '@/app/_hooks/useUserInfoQuery';
+import { useUserInfoQuery } from '@/app/_hooks/api/useUserInfoQuery';
 import postAccessToken from '@/app/_api/user/postAccessToken';
 import { useEffect } from 'react';
+import { PATH } from '@/app/_constants/path';
 
 const SocialLoginPage = () => {
   const searchParams = useSearchParams();
@@ -56,6 +57,7 @@ const SocialLoginPage = () => {
         //   console.log('스터디 없음');
         //   // router.push('/study/search');
         // }
+        // router.push(PATH.DASHBOARD);
       } catch (error) {
         console.error('Error during login:', error);
         // router.push('/'); // 에러 발생 시 홈으로 리다이렉트

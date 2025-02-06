@@ -1,7 +1,11 @@
+'use client';
+
 import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
 import { PATH } from '@/app/_constants/path';
+import LogoutButton from '../_components/common/LogoutButton';
+import getTest from '../_api/user/getTest';
 
 export default function LandingPage() {
   return (
@@ -9,6 +13,11 @@ export default function LandingPage() {
       <Button>
         <Link href={PATH.LOGIN}>로그인</Link>
       </Button>
+      <Button onClick={() => getTest()}>테스트</Button>
+      <Button>
+        <Link href={PATH.DASHBOARD}>대시보드</Link>
+      </Button>
+      <LogoutButton isButton={true} />
     </div>
   );
 }

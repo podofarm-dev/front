@@ -10,6 +10,18 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 10px; /* 스크롤바 너비 */
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent; /* 스크롤 트랙 배경 */
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #9198a1;
+  }
 }
 
 @layer base {

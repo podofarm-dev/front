@@ -3,8 +3,8 @@ import type { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import { PATH } from '@/app/_constants/path';
 import { ACCESS_TOKEN_KEY, HTTP_STATUS_CODE } from '@/app/_constants/api';
 import { HTTPError } from '@/app/_api/HTTPError';
-import postNewToken from './user/postNewToken';
-import { axiosInstance } from './axiosInstance';
+import postNewToken from '@/app/_api/user/postNewToken';
+import { axiosInstance } from '@/app/_api/axiosInstance';
 
 export interface ErrorResponseData {
   statusCode?: number;
@@ -59,10 +59,10 @@ export const handleTokenError = async (error: AxiosError<ErrorResponseData>) => 
       const existingTokenData = JSON.parse(localStorage.getItem(ACCESS_TOKEN_KEY) as string);
 
       // 새로운 access_token으로 업데이트
-      existingTokenData.state.access_token = newAccessToken;
+      existingTokenData.state.access_token = newAccessToken.accessToken;
 
       // 새 토큰으로 헤더 업데이트
-      originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+      originalRequest.headers.Authorization = `Bearer ${newAccessToken.accessToken}`;
 
       // localStorage에 새 토큰 저장
       localStorage.setItem(ACCESS_TOKEN_KEY, JSON.stringify(existingTokenData));

@@ -1,8 +1,8 @@
-import StudyButton from '@/app/_components/common/StudyButton';
-import { StudyModal } from '@/app/_components/common/StudyModal';
 import { InfoIcon } from 'lucide-react';
 
-export default function DashboardPage() {
+import StudyButton from '@/app/_components/study/StudyButton';
+
+export default async function DashboardPage() {
   return (
     <div className="relative my-auto flex h-dvh flex-col">
       <div className="mr-8 mt-16 text-end">

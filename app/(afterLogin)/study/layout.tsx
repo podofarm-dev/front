@@ -8,7 +8,7 @@ const StudyIdLayout = ({ children }: Props) => {
   return (
     <>
       <Navigation />
-      {children}
+      <div className="mx-[120px] flex flex-col py-12">{children}</div>
     </>
   );
 };

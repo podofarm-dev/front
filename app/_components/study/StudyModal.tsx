@@ -67,8 +67,8 @@ export function StudyModal({ title, studyLabel, buttonLabel, onClose }: StudyMod
         {
           onSuccess: (response) => {
             const studyCode = response.code;
-            onClose();
             router.replace(PATH.STUDY_DASHBOARD(studyCode));
+            onClose();
           },
         },
       );
@@ -84,8 +84,8 @@ export function StudyModal({ title, studyLabel, buttonLabel, onClose }: StudyMod
         },
         {
           onSuccess: () => {
-            onClose();
             router.replace(PATH.STUDY_DASHBOARD(String(data.studyCode)));
+            onClose();
           },
         },
       );
@@ -111,7 +111,7 @@ export function StudyModal({ title, studyLabel, buttonLabel, onClose }: StudyMod
                   <Input
                     id="studyTitle"
                     placeholder={`${studyLabel}을 입력해 주세요`}
-                    className="col-span-3 border-secondary-foreground py-5"
+                    className="col-span-3 border-secondary-foreground py-5 focus:border-accent-foreground"
                     {...register('studyTitle')}
                   />
                   {errors.studyTitle && (
@@ -127,7 +127,7 @@ export function StudyModal({ title, studyLabel, buttonLabel, onClose }: StudyMod
                   <Input
                     id="studyCode"
                     placeholder={`${studyLabel}를 입력해 주세요`}
-                    className="col-span-3 border-secondary-foreground py-5"
+                    className="col-span-3 border-secondary-foreground py-5 focus:border-accent-foreground"
                     {...register('studyCode')}
                   />
                   {errors.studyCode && (
@@ -144,7 +144,7 @@ export function StudyModal({ title, studyLabel, buttonLabel, onClose }: StudyMod
                 id="password"
                 type="password"
                 placeholder="참여 비밀번호를 입력해 주세요."
-                className="col-span-3 border-secondary-foreground py-5"
+                className="col-span-3 border-secondary-foreground py-5 focus:border-accent-foreground"
                 {...register('password')}
               />
               {errors.password && <p className="text-sm text-red-500">{errors.password.message}</p>}

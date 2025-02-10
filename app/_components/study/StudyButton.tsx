@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import Arrow from '@/app/_svg/arrow.svg';
-import { StudyModal } from '@/app/_components/common/StudyModal';
+import { StudyModal } from '@/app/_components/study/StudyModal';
 
 const StudyButton = () => {
   const [openModal, setOpenModal] = useState<string | null>(null);
@@ -24,13 +24,13 @@ const StudyButton = () => {
         </DropdownMenuTrigger>
         <DropdownMenuContent className="items-center justify-center gap-6 border-bolder bg-accent py-6 text-primary-foreground">
           <DropdownMenuItem
-            className="cursor-pointer px-10 text-lg hover:bg-bolder"
+            className="cursor-pointer px-10 text-lg !text-primary-foreground hover:!bg-bolder"
             onClick={() => setOpenModal('create')}
           >
             스터디 생성하기
           </DropdownMenuItem>
           <DropdownMenuItem
-            className="cursor-pointer px-10 text-lg hover:bg-bolder"
+            className="cursor-pointer px-10 text-lg !text-primary-foreground hover:!bg-bolder"
             onClick={() => setOpenModal('join')}
           >
             스터디 참여하기

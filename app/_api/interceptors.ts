@@ -50,7 +50,13 @@ export const handleTokenError = async (error: AxiosError<ErrorResponseData>) => 
   const { data, status } = error.response;
 
   // 엑세스 토큰이 만료된 경우
-  if (status === HTTP_STATUS_CODE.UNAUTHORIZED || status === HTTP_STATUS_CODE.BAD_REQUEST) {
+  if (status === HTTP_STATUS_CODE.UNAUTHORIZED) {
+    if (typeof data === 'string' && data === 'Faill - Login Again') {
+      localStorage.removeItem(ACCESS_TOKEN_KEY);
+      window.location.href = PATH.ROOT;
+      throw new Error('재로그인 해주세요!');
+    }
+
     try {
       // 새로운 토큰을 요청
       const newAccessToken = await postNewToken();

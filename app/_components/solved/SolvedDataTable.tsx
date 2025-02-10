@@ -63,15 +63,16 @@ export function SolvedDataTable<TData, TValue>({
 
   return (
     <div>
-      <div>
+      <div className="mb-6 flex flex-row justify-between">
+        <span className="text-xl font-semibold">{data.length}문제</span>
         <DebouncedInput
           onChange={handleTitleFilterChange}
-          placeholder="Search"
+          placeholder="문제 제목을 입력해주세요"
           type="text"
           value={titleFilter}
+          className="w-full max-w-lg"
         />
       </div>
-      <span>{data.length}문제</span>
       <div>
         <Table>
           <TableHeader className="rounded bg-tertiary text-secondary-foreground">
@@ -121,9 +122,13 @@ export function SolvedDataTable<TData, TValue>({
               <TableRow>
                 <TableCell
                   colSpan={columns.length}
-                  className="h-24 text-center hover:bg-transparent"
+                  className="h-24 text-center text-secondary-foreground hover:bg-transparent"
                 >
-                  검색 결과가 없습니다
+                  <span>
+                    Sorry, We have no results.
+                    <br />
+                    Please try different keyword
+                  </span>
                 </TableCell>
               </TableRow>
             )}

@@ -1,14 +1,17 @@
+import { cn } from '@/lib/utils';
 import { useEffect, useState } from 'react';
 
 const DebouncedInput = ({
   value: initialValue,
   onChange,
   debounce = 500,
+  className,
   ...props
 }: {
   value: string;
   onChange: (value: string) => void;
   debounce?: number;
+  className?: string;
 } & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'>) => {
   const [value, setValue] = useState(initialValue);
 
@@ -27,7 +30,10 @@ const DebouncedInput = ({
       {...props}
       value={value}
       onChange={(e) => setValue(e.target.value)}
-      className="font-lg border-block rounded border border-secondary-foreground bg-transparent p-2 shadow"
+      className={cn(
+        `font-lg border-block cn rounded border border-secondary-foreground bg-transparent p-2 shadow`,
+        className,
+      )}
     />
   );
 };

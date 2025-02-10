@@ -78,16 +78,18 @@ export function ProblemDataTable<TData, TValue>({
 
   return (
     <div>
-      <div>
-        <DebouncedInput
-          onChange={handleTitleFilterChange}
-          placeholder="Search"
-          type="text"
-          value={titleFilter}
-        />
+      <div className="mb-6 flex flex-row justify-between">
+        <span className="text-xl font-semibold">{data.length}문제</span>
+        <div className="flex flex-row gap-6">
+          <DebouncedInput
+            onChange={handleTitleFilterChange}
+            placeholder="문제 제목을 입력해주세요"
+            type="text"
+            value={titleFilter}
+          />
+          <SolvedButton onChange={handleStatusFilterChange} value={statusFilter} />
+        </div>
       </div>
-      <span>{data.length}문제</span>
-      <SolvedButton onChange={handleStatusFilterChange} value={statusFilter} />
       <div>
         <Table>
           <TableHeader className="rounded bg-tertiary text-secondary-foreground">
@@ -137,9 +139,13 @@ export function ProblemDataTable<TData, TValue>({
               <TableRow>
                 <TableCell
                   colSpan={columns.length}
-                  className="h-24 text-center hover:bg-transparent"
+                  className="h-24 text-center text-secondary-foreground hover:bg-transparent"
                 >
-                  검색 결과가 없습니다
+                  <span>
+                    Sorry, We have no results.
+                    <br />
+                    Please try different keyword
+                  </span>
                 </TableCell>
               </TableRow>
             )}

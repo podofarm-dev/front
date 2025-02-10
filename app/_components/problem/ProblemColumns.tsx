@@ -26,7 +26,9 @@ export const columns: ColumnDef<Problem>[] = [
     meta: {
       filterVariant: 'select',
     },
-    size: 80,
+    size: 10,
+    minSize: 50,
+    maxSize: 100,
   },
   {
     accessorKey: 'number',
@@ -35,7 +37,9 @@ export const columns: ColumnDef<Problem>[] = [
       const number = row.getValue('number') as number;
       return <div className="text-center text-secondary-foreground">No.{number}</div>;
     },
-    size: 100,
+    size: 10,
+    minSize: 50,
+    maxSize: 100,
   },
   {
     accessorKey: 'title',
@@ -44,7 +48,9 @@ export const columns: ColumnDef<Problem>[] = [
       const title = row.getValue('title') as string;
       return <div className="text-center">{title}</div>;
     },
-    size: 300,
+    size: 50,
+    minSize: 200,
+    maxSize: 500,
   },
   {
     accessorKey: 'difficulty',
@@ -53,7 +59,9 @@ export const columns: ColumnDef<Problem>[] = [
       const difficulty = row.getValue('difficulty') as string;
       return <div className="text-center">{difficulty}</div>;
     },
-    size: 100,
+    size: 10,
+    minSize: 50,
+    maxSize: 100,
   },
   {
     accessorKey: 'solved',
@@ -62,6 +70,8 @@ export const columns: ColumnDef<Problem>[] = [
       const solved = row.getValue('solved') as string[];
       return <div className="text-center">{solved.join(', ')}</div>;
     },
-    size: 150,
+    size: 20,
+    minSize: 100,
+    maxSize: 200,
   },
 ];

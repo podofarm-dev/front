@@ -5,7 +5,10 @@ export const END_POINTS = {
   TOKEN_REFRESH: '/tokens/refresh',
   TEST: '/test',
   LOGOUT: '/logout',
-  USER_INFO: (memberId: string) => `/user/${memberId}/info`,
+  STUDY_CREATE: '/study',
+  STUDY_ENTER: '/study/enter-study',
+  USER_INFO: '/member/info',
+  PROFILE_UPLOAD: (memberId: string) => `/${memberId}/upload`,
 };
 
 export const NETWORK = {
@@ -26,3 +29,5 @@ export const HTTP_STATUS_CODE = {
 } as const;
 
 export const ACCESS_TOKEN_KEY = 'mildo-session';
+
+export const REFRESH_TOKEN_KEY = 'RefreshToken';

@@ -7,7 +7,8 @@ export const END_POINTS = {
   LOGOUT: '/logout',
   STUDY_CREATE: '/study',
   STUDY_ENTER: '/study/enter-study',
-  USER_INFO: (memberId: string) => `/user/${memberId}/info`,
+  USER_INFO: '/member/info',
+  PROFILE_UPLOAD: (memberId: string) => `/${memberId}/upload`,
 };
 
 export const NETWORK = {

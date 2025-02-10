@@ -11,7 +11,7 @@ interface UserCardProps {
 
 const UserCard = ({ name, src, memberId, solved }: UserCardProps) => {
   return (
-    <div className="flex max-w-48 flex-col items-start justify-center gap-6 rounded-lg border border-bolder px-6 py-8">
+    <div className="flex max-h-60 max-w-48 flex-col items-start justify-center gap-6 rounded-lg border border-bolder px-6 py-8">
       <div className="flex justify-between gap-6">
         <Avatar>
           <AvatarImage src={src} />

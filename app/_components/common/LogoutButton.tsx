@@ -29,7 +29,9 @@ const LogoutButton = ({ isButton }: LogoutButtonProps) => {
   return isButton ? (
     <Button onClick={logout}>로그아웃</Button>
   ) : (
-    <DropdownMenuItem className="cursor-pointer text-lg">로그아웃</DropdownMenuItem>
+    <DropdownMenuItem className="cursor-pointer px-10 text-lg !text-primary-foreground hover:!bg-bolder">
+      로그아웃
+    </DropdownMenuItem>
   );
 };
 

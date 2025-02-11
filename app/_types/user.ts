@@ -30,3 +30,8 @@ export interface UserSolvedData {
   imgUrl: string;
   solvedCount: number;
 }
+
+export interface UsernameRequestBody {
+  memberId: string;
+  name: string;
+}

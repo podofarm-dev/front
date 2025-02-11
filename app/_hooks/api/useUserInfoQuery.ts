@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios';
-import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 import getUserInfo from '@/app/_api/user/getUserInfo';
 import { UserData } from '@/app/_types/user';

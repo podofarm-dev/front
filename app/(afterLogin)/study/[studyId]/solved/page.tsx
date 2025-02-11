@@ -18,7 +18,7 @@ export default function SolvedPage() {
             src={'https://github.com/shadcn.png'}
             name="홍길동"
             memberId="GKPGDV"
-            solved="27"
+            solved={27}
           />
           <div className="flex flex-col">
             <UserSolvedList isUser={true} name="유저명" memberId="SDWDX" />

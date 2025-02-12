@@ -1,6 +1,6 @@
+import { toast } from 'react-toastify';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { toast } from '@/hooks/use-toast';
 import { patchProfileUpload } from '@/app/_api/user/patchProfileUpload';
 
 export const useProfileUploadMutation = () => {
@@ -10,9 +10,10 @@ export const useProfileUploadMutation = () => {
     mutationFn: patchProfileUpload,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['user'] });
+      toast.success('프로필 사진이 변경되었습니다');
     },
     onError: (error) => {
-      toast({ variant: 'destructive', title: error.message });
+      toast.warn(error.message);
     },
   });
 

@@ -6,7 +6,7 @@ interface UserCardProps {
   name: string;
   src: string;
   memberId: string;
-  solved: string;
+  solved: number;
 }
 
 const UserCard = ({ name, src, memberId, solved }: UserCardProps) => {

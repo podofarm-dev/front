@@ -1,3 +1,6 @@
+'use client';
+
+import DeleteButton from '@/app/_components/Setting/DeleteButton';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -8,8 +11,11 @@ import {
   SelectContent,
   SelectItem,
 } from '@/components/ui/select';
+import { useParams, useSearchParams } from 'next/navigation';
 
 const StudySetting = () => {
+  const { studyId } = useParams();
+
   return (
     <div className="flex flex-col gap-8">
       <span className="text-xl font-semibold">스터디 정보</span>
@@ -32,7 +38,7 @@ const StudySetting = () => {
             <Input
               id="email"
               type="email"
-              defaultValue={'GPD2X1'}
+              defaultValue={studyId}
               className="col-span-3 w-full border-bolder bg-bolder py-5 text-secondary-foreground"
               disabled
             />
@@ -59,7 +65,7 @@ const StudySetting = () => {
         <span className="text-base">
           한번 스터디를 삭제하면 다시 전으로 돌아갈 수 없습니다. 반드시 확인하세요.
         </span>
-        <Button className="my-8 max-w-28 bg-warning">스터디 삭제하기</Button>
+        <DeleteButton isUser={false} />
       </div>
     </div>
   );

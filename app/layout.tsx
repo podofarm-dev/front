@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
+import { ToastContainer } from 'react-toastify';
 
 import RQProvider from '@/app/_components/common/RQProvider';
 
 import './globals.css';
-import { Toaster } from '@/components/ui/toaster';
 
 const pretendard = localFont({
   src: './fonts/PretendardVariable.woff2',
@@ -27,7 +27,7 @@ export default function RootLayout({
     <html lang="kr" className={`${pretendard.variable}`}>
       <body className={`${pretendard.className} bg-secondary text-primary-foreground antialiased`}>
         <RQProvider>{children}</RQProvider>
-        <Toaster />
+        <ToastContainer position="top-center" />
       </body>
     </html>
   );

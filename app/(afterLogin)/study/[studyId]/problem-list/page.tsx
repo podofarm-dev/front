@@ -1,7 +1,8 @@
-import UserCard from '@/app/_components/common/UserCard';
-import ProblemList from '@/app/_components/problem/ProblemList';
+import { Suspense } from 'react';
 
-export default function ProblemListPage() {
+import ProblemListContent from '@/app/_components/problem/ProblemListContent';
+
+export default async function ProblemListPage() {
   return (
     <div className="flex flex-col">
       <div className="flex flex-col gap-2">
@@ -10,19 +11,9 @@ export default function ProblemListPage() {
           문제를 클릭하면 프로그래머스 페이지로 이동합니다
         </span>
       </div>
-      <div className="flex flex-row gap-6">
-        <div className="flex w-10/12">
-          <ProblemList />
-        </div>
-        <div className="flex w-2/12">
-          <UserCard
-            src={'https://github.com/shadcn.png'}
-            name="홍길동"
-            memberId="GKPGDV"
-            solved="27"
-          />
-        </div>
-      </div>
+      <Suspense fallback={<div>로딩중...</div>}>
+        <ProblemListContent />
+      </Suspense>
     </div>
   );
 }

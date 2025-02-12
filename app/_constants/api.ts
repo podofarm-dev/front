@@ -8,7 +8,9 @@ export const END_POINTS = {
   STUDY_CREATE: '/study',
   STUDY_ENTER: '/study/enter-study',
   USER_INFO: '/member/info',
+  DELETE_USER: (memberId: string) => `/${memberId}/info`,
   PROFILE_UPLOAD: (memberId: string) => `/${memberId}/upload`,
+  USER_SOLVED_COUNT: (memberId: string) => `/problem/${memberId}`,
 };
 
 export const NETWORK = {

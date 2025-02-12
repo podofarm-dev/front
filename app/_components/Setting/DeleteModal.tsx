@@ -14,6 +14,7 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { useDeleteUserMutation } from '@/app/_hooks/api/useDeleteUserMutation';
 import { useUserInfoQuery } from '@/app/_hooks/api/useUserInfoQuery';
+import { toast } from 'react-toastify';
 
 interface DeleteModalProps {
   title: string;
@@ -22,9 +23,9 @@ interface DeleteModalProps {
 }
 
 const DeleteModal = ({ title, label, onClose }: DeleteModalProps) => {
+  const [inputValue, setInputValue] = useState('');
   const { userInfoData } = useUserInfoQuery();
   const deleteUserMutation = useDeleteUserMutation();
-  const [inputValue, setInputValue] = useState('');
 
   const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -34,6 +35,10 @@ const DeleteModal = ({ title, label, onClose }: DeleteModalProps) => {
   const handleDelete = () => {
     if (!userInfoData?.memberId) {
       return;
+    }
+
+    if (inputValue !== '삭제합니다') {
+      return toast.warn('삭제합니다를 입력해주세요!');
     }
 
     if (label === '계정') {
@@ -61,7 +66,7 @@ const DeleteModal = ({ title, label, onClose }: DeleteModalProps) => {
                   <br /> 반드시 확인하세요.
                   <br />
                   <br />
-                  {label}을 삭제하기 희망하시면 아래 유저네임을 작성해주세요.
+                  {label}을 삭제하기 희망하시면 아래 "삭제합니다"를 작성해주세요.
                 </Label>
                 <Input
                   id="user"
@@ -78,7 +83,7 @@ const DeleteModal = ({ title, label, onClose }: DeleteModalProps) => {
                   <br /> 반드시 확인하세요.
                   <br />
                   <br />
-                  {label}그룹을 삭제하기 희망하시면 아래 {label}명을 작성해주세요.
+                  {label}그룹을 삭제하기 희망하시면 아래 "삭제합니다"를 작성해주세요.
                 </Label>
                 <Input
                   id="study"

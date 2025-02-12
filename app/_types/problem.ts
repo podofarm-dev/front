@@ -2,6 +2,15 @@ import { SOLVED_STATUS } from '@/app/_constants/status';
 
 export type StatusType = keyof typeof SOLVED_STATUS;
 
+export interface ProblemListData {
+  problemNo: number;
+  problemTitle: string;
+  problemLevel: string;
+  problemLink: string;
+  problemType?: string;
+  problemId: number;
+}
+
 export interface SolvedDetailData {
   studyId: string;
   memberId: string;

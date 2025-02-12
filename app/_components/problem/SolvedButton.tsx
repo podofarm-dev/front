@@ -1,5 +1,6 @@
 'use client';
 
+import { ChevronDown } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -7,7 +8,6 @@ import {
   DropdownMenuTrigger,
   DropdownMenuRadioGroup,
 } from '@/components/ui/dropdown-menu';
-import Arrow from '@/app/_svg/arrow.svg';
 import { SOLVED_STATUS } from '@/app/_constants/status';
 
 interface SolvedButtonProps {
@@ -18,21 +18,24 @@ interface SolvedButtonProps {
 const SolvedButton = ({ onChange, value }: SolvedButtonProps) => {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="rounded-lg bg-accent px-4 py-3">
+      <DropdownMenuTrigger className="rounded-lg bg-accent px-4 py-2">
         <div className="flex flex-row gap-1">
-          status <Arrow />
+          Status <ChevronDown />
         </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="items-center justify-center gap-6 border-bolder bg-accent px-10 py-6 text-primary-foreground">
+      <DropdownMenuContent className="items-center justify-center gap-6 border-bolder bg-accent py-6 text-primary-foreground">
         <DropdownMenuRadioGroup onValueChange={onChange} value={value}>
-          <DropdownMenuRadioItem className="cursor-pointer text-lg" value={SOLVED_STATUS.ALL}>
+          <DropdownMenuRadioItem className="cursor-pointer px-10 text-lg" value={SOLVED_STATUS.ALL}>
             전체 문제
           </DropdownMenuRadioItem>
-          <DropdownMenuRadioItem className="cursor-pointer text-lg" value={SOLVED_STATUS.COMPLETE}>
+          <DropdownMenuRadioItem
+            className="cursor-pointer px-10 text-lg"
+            value={SOLVED_STATUS.COMPLETE}
+          >
             푼 문제
           </DropdownMenuRadioItem>
           <DropdownMenuRadioItem
-            className="cursor-pointer text-lg"
+            className="cursor-pointer px-10 text-lg"
             value={SOLVED_STATUS.INCOMPLETE}
           >
             안 푼 문제

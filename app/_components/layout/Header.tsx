@@ -9,7 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import LogoutButton from '../common/LogoutButton';
+import LogoutButton from '@/app/_components/common/LogoutButton';
 import { useUserInfoQuery } from '@/app/_hooks/api/useUserInfoQuery';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 

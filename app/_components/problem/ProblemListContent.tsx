@@ -19,12 +19,14 @@ const ProblemListContent = () => {
         <ProblemList />
       </div>
       <div className="flex w-2/12">
-        <UserCard
-          src={userSolvedCountData?.imgUrl}
-          name={userSolvedCountData?.name}
-          memberId={userSolvedCountData?.memberId}
-          solved={userSolvedCountData?.solvedCount}
-        />
+        <div>
+          <UserCard
+            src={userSolvedCountData?.imgUrl}
+            name={userSolvedCountData?.name}
+            memberId={userSolvedCountData?.memberId}
+            solved={userSolvedCountData?.solvedCount}
+          />
+        </div>
       </div>
     </div>
   );

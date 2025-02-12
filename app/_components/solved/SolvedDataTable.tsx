@@ -63,7 +63,7 @@ export function SolvedDataTable<TData, TValue>({
 
   return (
     <div>
-      <div className="mb-6 flex flex-row justify-between">
+      <div className="mb-6 flex flex-row items-center justify-between gap-6">
         <span className="text-xl font-semibold">{data.length}문제</span>
         <DebouncedInput
           onChange={handleTitleFilterChange}

@@ -1,6 +1,6 @@
-import UserCard from '@/app/_components/common/UserCard';
-import SolvedList from '@/app/_components/solved/SolvedList';
-import UserSolvedList from '@/app/_components/solved/UserSolvedList';
+import { Suspense } from 'react';
+
+import SolvedContent from '@/app/_components/solved/SolvedContent';
 
 export default function SolvedPage() {
   return (
@@ -11,21 +11,9 @@ export default function SolvedPage() {
           문제를 클릭하면 프로그래머스 페이지로 이동합니다
         </span>
       </div>
-      <div className="flex flex-row gap-6">
-        <SolvedList />
-        <div className="flex flex-col gap-10">
-          <UserCard
-            src={'https://github.com/shadcn.png'}
-            name="홍길동"
-            memberId="GKPGDV"
-            solved={27}
-          />
-          <div className="flex flex-col">
-            <UserSolvedList isUser={true} name="유저명" memberId="SDWDX" />
-            <UserSolvedList name="유저명" memberId="SDWDX" />
-          </div>
-        </div>
-      </div>
+      <Suspense fallback={<div>로딩중...</div>}>
+        <SolvedContent />
+      </Suspense>
     </div>
   );
 }

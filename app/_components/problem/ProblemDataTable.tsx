@@ -78,17 +78,18 @@ export function ProblemDataTable<TData, TValue>({
 
   return (
     <div>
-      <div className="mb-6 flex flex-row justify-between">
-        <span className="text-xl font-semibold">{data.length}문제</span>
-        <div className="flex flex-row gap-6">
-          <DebouncedInput
-            onChange={handleTitleFilterChange}
-            placeholder="문제 제목을 입력해주세요"
-            type="text"
-            value={titleFilter}
-          />
+      <div className="mb-6 flex flex-row items-center justify-between gap-6">
+        <div className="flex flex-row items-center gap-6">
+          <span className="text-xl font-semibold">{data.length}문제</span>
           <SolvedButton onChange={handleStatusFilterChange} value={statusFilter} />
         </div>
+        <DebouncedInput
+          onChange={handleTitleFilterChange}
+          placeholder="문제 제목을 입력해주세요"
+          type="text"
+          value={titleFilter}
+          className="w-full max-w-lg"
+        />
       </div>
       <div>
         <Table>

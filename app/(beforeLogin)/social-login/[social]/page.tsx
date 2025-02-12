@@ -34,33 +34,27 @@ const SocialLoginPage = () => {
         const token = accessToken || '';
 
         if (!token) {
-          router.push('/');
+          router.push(PATH.ROOT);
         }
 
-        router.push('/');
-
         // 3. 사용자 정보 가져오기
-        // const { UserInfoData } = useUserInfoQuery(memberId);
+        const { userInfoData } = useUserInfoQuery();
 
-        // if (!!UserInfoData?.userId) {
-        //   userStore.setState({
-        //     ...UserInfoData,
-        //   });
-        // }
+        console.log('가져오기');
 
-        // // 4. Study ID 확인 및 리다이렉트
-        // const studyId = UserInfoData?.studyId || '';
-        // if (studyId) {
-        //   console.log('스터디 있음');
-        //   // router.push(`/study/${studyId}/dashboard`);
-        // } else {
-        //   console.log('스터디 없음');
-        //   // router.push('/study/search');
-        // }
-        // router.push(PATH.DASHBOARD);
+        // 4. Study ID 확인 및 리다이렉트
+        const studyId = userInfoData?.studyId || '';
+        if (studyId) {
+          console.log('스터디 있음');
+          router.replace(PATH.STUDY_DASHBOARD(studyId));
+        } else {
+          console.log('스터디 없음');
+          router.push(PATH.ROOT);
+        }
+        router.push(PATH.DASHBOARD);
       } catch (error) {
         console.error('Error during login:', error);
-        // router.push('/'); // 에러 발생 시 홈으로 리다이렉트
+        router.push(PATH.ROOT); // 에러 발생 시 홈으로 리다이렉트
       }
     };
 

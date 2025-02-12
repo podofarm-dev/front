@@ -21,7 +21,7 @@ export const columns: ColumnDef<Problem>[] = [
       const status = row.getValue('status') as boolean;
 
       // 일단 임시로 아이콘 설정
-      return <div className="flex justify-center">{status ? <Check /> : '❌'}</div>;
+      return <div className="flex justify-center">{status ? <Check /> : ''}</div>;
     },
     meta: {
       filterVariant: 'select',

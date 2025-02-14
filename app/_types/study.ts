@@ -19,14 +19,6 @@ export interface StudyEnterBody {
   password: string;
 }
 
-export interface StudyMemberDetail {
-  id: string;
-  name: string;
-  googleId: string;
-  solvedCount: number;
-  isLeader: boolean;
-}
-
 export interface StudyData {
   studyId: string;
   studyName: string;
@@ -36,6 +28,14 @@ export interface StudyData {
   memberDetails: StudyMemberDetail[];
 }
 
+export interface StudyMemberDetail {
+  id: string;
+  name: string;
+  googleId: string;
+  solvedCount: number;
+  isLeader: boolean;
+}
+
 export interface StudyMemberCount {
   memberCount: number;
 }
@@ -43,4 +43,38 @@ export interface StudyMemberCount {
 export interface StudyDays {
   remainingDays: number;
   elapsedDays: number;
+}
+
+export interface StudyMemberData {
+  studyId: string;
+  studyName: string;
+  lapsedDate: number;
+  memberCount: number;
+  memberDetails: StudyMemberListDetail[];
+}
+
+export interface StudyMemberListDetail {
+  id: string;
+  name: string;
+  imgUrl: string;
+  isLeader: boolean;
+}
+
+export interface StudyStatisticData {
+  data: StudyMemberGrassData[];
+}
+
+export interface StudyMemberGrassData {
+  memberId: string;
+  grass: MemberGrassData[];
+}
+
+export interface MemberGrassData {
+  date: number;
+  value: number;
+}
+
+export interface memberStatisticData {
+  memberDetail?: StudyMemberListDetail;
+  grass: MemberGrassData[];
 }

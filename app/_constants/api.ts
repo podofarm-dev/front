@@ -11,6 +11,9 @@ export const END_POINTS = {
   DELETE_USER: (memberId: string) => `/${memberId}/info`,
   PROFILE_UPLOAD: (memberId: string) => `/${memberId}/upload`,
   USER_SOLVED_COUNT: (memberId: string) => `/problem/${memberId}`,
+  STUDY_MEMBER_LIST: (studyId: string) => `/study/${studyId}/member-list`,
+  STUDY_STATISTIC: (studyId: string, yearMonth: string) =>
+    `/study/${studyId}/grass?yearMonth=${yearMonth}`,
 };
 
 export const NETWORK = {

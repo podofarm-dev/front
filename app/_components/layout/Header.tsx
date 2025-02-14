@@ -12,8 +12,12 @@ import {
 import LogoutButton from '@/app/_components/common/LogoutButton';
 import { useUserInfoQuery } from '@/app/_hooks/api/useUserInfoQuery';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { usePathname } from 'next/navigation';
+import { splitPathname } from '@/app/_utils/splitPathname';
 
 const Header = () => {
+  const pathname = usePathname();
+  const headerName = splitPathname(pathname);
   const { userInfoData } = useUserInfoQuery();
 
   return (
@@ -21,7 +25,7 @@ const Header = () => {
       <Link href={PATH.ROOT}>
         <div className="flex w-full items-center gap-2">
           <div>로고</div>
-          <span>대시보드</span>
+          <span>{headerName}</span>
         </div>
       </Link>
       <DropdownMenu>
@@ -31,10 +35,20 @@ const Header = () => {
             <AvatarFallback>{userInfoData?.name}</AvatarFallback>
           </Avatar>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="items-center justify-center gap-6 border-bolder bg-accent py-6 text-primary-foreground">
+        <DropdownMenuContent className="items-center justify-center border-bolder bg-accent py-6 text-primary-foreground">
           <DropdownMenuItem className="cursor-pointer px-10 text-lg !text-primary-foreground hover:!bg-bolder">
-            마이 프로필
+            <div className="flex items-center gap-3">
+              <Avatar>
+                <AvatarImage src={userInfoData?.imgUrl} />
+                <AvatarFallback>{userInfoData?.name}</AvatarFallback>
+              </Avatar>
+              <div className="flex flex-col">
+                <p className="text-sm">{userInfoData?.name}</p>
+                <p className="text-xs text-secondary-foreground">{userInfoData?.memberId}</p>
+              </div>
+            </div>
           </DropdownMenuItem>
+          <hr className="my-3 border-bolder" />
           <LogoutButton isButton={false} />
         </DropdownMenuContent>
       </DropdownMenu>

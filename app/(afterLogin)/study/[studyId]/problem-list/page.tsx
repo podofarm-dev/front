@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 
 import ProblemListContent from '@/app/_components/problem/ProblemListContent';
+import Loader from '@/app/_components/common/Loader';
 
 export default async function ProblemListPage() {
   return (
@@ -11,7 +12,7 @@ export default async function ProblemListPage() {
           문제를 클릭하면 프로그래머스 페이지로 이동합니다
         </span>
       </div>
-      <Suspense fallback={<div>로딩중...</div>}>
+      <Suspense fallback={<Loader />}>
         <ProblemListContent />
       </Suspense>
     </div>

@@ -7,7 +7,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import ImageUpload from '@/app/_components/Setting/ImageUpload';
-import { useUserInfoQuery } from '@/app/_hooks/api/useUserInfoQuery';
 import DeleteButton from '@/app/_components/Setting/DeleteButton';
 import { useUsernameMutation } from '@/app/_hooks/api/useUsernameMutation';
 import { useProfileUploadMutation } from '@/app/_hooks/api/useProfileUploadMutation';
@@ -17,20 +16,26 @@ interface FormValues {
   file?: File;
 }
 
-const UserSetting = () => {
-  const { userInfoData } = useUserInfoQuery();
+interface UserSettingProps {
+  memberId: string;
+  name: string;
+  email: string;
+  imgUrl: string;
+}
+
+const UserSetting = ({ memberId, name, email, imgUrl }: UserSettingProps) => {
   const usernameMutation = useUsernameMutation();
   const profileUploadMutation = useProfileUploadMutation();
   const { register, handleSubmit, setValue, watch } = useForm<FormValues>();
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
 
   const onSubmit = (data: FormValues) => {
-    if (!userInfoData?.memberId) {
+    if (!memberId) {
       return;
     }
 
-    if (data.name && userInfoData?.name !== data.name) {
-      usernameMutation.mutate({ data: { memberId: userInfoData?.memberId, name: data.name } });
+    if (data.name && name !== data.name) {
+      usernameMutation.mutate({ data: { memberId: memberId, name: data.name } });
     }
 
     if (data.file && uploadedImage !== data.file) {
@@ -38,7 +43,7 @@ const UserSetting = () => {
       formData.append('file', data.file);
 
       profileUploadMutation.mutate(
-        { memberId: userInfoData?.memberId, data: formData },
+        { memberId: memberId, data: formData },
         {
           onSuccess: () => {
             if (data.file) setUploadedImage(data.file);
@@ -60,7 +65,7 @@ const UserSetting = () => {
               </Label>
               <Input
                 id="username"
-                defaultValue={userInfoData?.name}
+                defaultValue={name}
                 className="col-span-3 w-full border-bolder py-5"
                 {...register('name')}
               />
@@ -72,7 +77,7 @@ const UserSetting = () => {
               <Input
                 id="email"
                 type="email"
-                defaultValue={userInfoData?.email}
+                defaultValue={email}
                 className="col-span-3 w-full border-bolder bg-bolder py-5 text-secondary-foreground"
                 disabled
               />
@@ -80,7 +85,7 @@ const UserSetting = () => {
             <Button className="my-8 max-w-28 border border-bolder bg-accent">변경사항 저장</Button>
           </div>
           <div className="flex w-2/12 items-center">
-            <ImageUpload imageUrl={userInfoData?.imgUrl} setValue={setValue} watch={watch} />
+            <ImageUpload imageUrl={imgUrl} setValue={setValue} watch={watch} />
           </div>
         </div>
       </form>

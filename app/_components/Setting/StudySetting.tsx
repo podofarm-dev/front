@@ -1,6 +1,7 @@
 'use client';
 
 import DeleteButton from '@/app/_components/Setting/DeleteButton';
+import { StudyMemberListDetail } from '@/app/_types/study';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -11,11 +12,15 @@ import {
   SelectContent,
   SelectItem,
 } from '@/components/ui/select';
-import { useParams, useSearchParams } from 'next/navigation';
 
-const StudySetting = () => {
-  const { studyId } = useParams();
+interface StudySettingProps {
+  username: string;
+  studyId: string;
+  studyName: string;
+  memberDetails: StudyMemberListDetail[];
+}
 
+const StudySetting = ({ username, studyId, studyName, memberDetails }: StudySettingProps) => {
   return (
     <div className="flex flex-col gap-8">
       <span className="text-xl font-semibold">스터디 정보</span>
@@ -27,7 +32,7 @@ const StudySetting = () => {
             </Label>
             <Input
               id="studyTitle"
-              defaultValue={'테스트'}
+              defaultValue={studyName}
               className="col-span-3 w-full border-bolder py-5"
             />
           </div>
@@ -47,12 +52,14 @@ const StudySetting = () => {
             <span className="text-base">스터디장 위임</span>
             <Select>
               <SelectTrigger className="w-full">
-                <SelectValue placeholder="팀원" />
+                <SelectValue placeholder={username} />
               </SelectTrigger>
               <SelectContent className="bg-tertiary text-primary-foreground">
-                <SelectItem value="light">Light</SelectItem>
-                <SelectItem value="dark">Dark</SelectItem>
-                <SelectItem value="system">System</SelectItem>
+                {memberDetails.map((item) => (
+                  <SelectItem key={item.id} value={item.name}>
+                    {item.name}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </div>

@@ -22,6 +22,7 @@ import {
 import DebouncedInput from '@/app/_components/common/DebouncedInput';
 import SolvedButton from '@/app/_components/problem/SolvedButton';
 import { SOLVED_STATUS } from '@/app/_constants/status';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface ProblemDataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -153,20 +154,13 @@ export function ProblemDataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-center gap-2">
+      <div className="my-10 flex items-center justify-center gap-6">
         <button
-          className="rounded border p-1"
-          onClick={() => table.setPageIndex(0)}
-          disabled={!table.getCanPreviousPage()}
-        >
-          {'<<'}
-        </button>
-        <button
-          className="rounded border p-1"
+          className="cursor-pointer"
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
         >
-          {'<'}
+          <ChevronLeft />
         </button>
         {Array.from({ length: table.getPageCount() }, (_, i) => i + 1).map((page) => {
           const { pageIndex } = table.getState().pagination;
@@ -174,8 +168,8 @@ export function ProblemDataTable<TData, TValue>({
           return (
             <button
               key={page}
-              className={`rounded border p-1 ${
-                pageIndex + 1 === page ? 'border-none' : ''
+              className={`text-md ${
+                pageIndex + 1 === page ? 'drop-shadow-[0_0_5px_rgba(255,255,255,0.6)]' : ''
               } ${isPageInRange ? '' : 'hidden'}`}
               onClick={() => table.setPageIndex(page - 1)}
             >
@@ -184,18 +178,11 @@ export function ProblemDataTable<TData, TValue>({
           );
         })}
         <button
-          className="rounded border p-1"
+          className="cursor-pointer"
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
         >
-          {'>'}
-        </button>
-        <button
-          className="rounded border p-1"
-          onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-          disabled={!table.getCanNextPage()}
-        >
-          {'>>'}
+          <ChevronRight />
         </button>
       </div>
     </div>

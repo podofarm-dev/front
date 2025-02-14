@@ -1,12 +1,13 @@
 'use client';
 
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
+
 import Home from '@/app/_svg/home.svg';
 import Algo from '@/app/_svg/algo.svg';
 import Setting from '@/app/_svg/setting.svg';
 import Solved from '@/app/_svg/solved.svg';
-import { useParams } from 'next/navigation';
 import { PATH } from '@/app/_constants/path';
-import Link from 'next/link';
 
 const navigationItem = [
   { icon: <Home />, href: PATH.STUDY_DASHBOARD, title: '대시보드' },

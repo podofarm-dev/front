@@ -1,9 +1,10 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
-import { Textarea } from '@/components/ui/textarea';
 import SolvedDescription from '@/app/_components/solved/SolvedDescription';
 import SolvedCode from '@/app/_components/solved/SolvedCode';
+import CommentContent from '@/app/_components/comment/CommentContent';
+import { Pencil } from 'lucide-react';
 
 export default function ProblemPage() {
   const codeDetail =
@@ -12,7 +13,7 @@ export default function ProblemPage() {
     'class Solution {\n    public long solution(int a, int b) {\n        int min = Math.min(a, b);\n        int max = Math.max(a, b);\n        long sum = 0;\n        for (int i = min; i <= max; i++) {\n            sum += i;\n        }\n        return sum;\n    }\n}';
 
   return (
-    <div className="flex flex-col gap-8 px-20 py-8">
+    <div className="flex flex-col gap-8 py-8">
       <div className="flex flex-row justify-between">
         <div className="flex flex-row gap-4">
           <div className="text-2xl font-semibold underline">[Level 1] 1차 다트게임 - 17688</div>
@@ -20,10 +21,7 @@ export default function ProblemPage() {
         </div>
         <div className="flex flex-row items-center gap-4">
           <div className="text-lg">걸린시간 : 2H 30M</div>
-          <Avatar className="h-6 w-6">
-            <AvatarImage src="https://github.com/shadcn.png" />
-            <AvatarFallback>IM</AvatarFallback>
-          </Avatar>
+          <Pencil className="cursor-pointer" />
         </div>
       </div>
       <div className="grid grid-cols-4 gap-16 rounded-lg border border-bolder px-4 py-8">
@@ -55,7 +53,10 @@ export default function ProblemPage() {
           </ResizablePanel>
           <ResizableHandle className="mx-6" />
           <ResizablePanel defaultSize={65}>
-            <div>Solution.java</div>
+            <div className="flex justify-between">
+              <div>Solution.java</div>
+              <Pencil className="cursor-pointer" />
+            </div>
             <hr className="my-6 border-bolder" />
             <div className="custom-scrollbar h-full max-h-[540px] overflow-y-auto">
               <SolvedCode code={code} />
@@ -63,25 +64,7 @@ export default function ProblemPage() {
           </ResizablePanel>
         </ResizablePanelGroup>
       </div>
-      <div className="flex flex-col">
-        <div className="text-base font-semibold">코멘트</div>
-        <div className="flex flex-col gap-4 p-6">
-          <div className="flex flex-row justify-between gap-16">
-            <div>
-              코멘트내용입니다.코멘트내용입니다.코멘트내용입니다.코멘트내용입니다.코멘트내용입니다.코멘트내용입니다.코멘트내용입니다.코멘트내용입니다.코멘트내용입니다.코멘트내용입니다.코멘트내용입니다.코멘트내용입니다.코멘트내용입니다.코멘트내용입니다.코멘트내용입니다.코멘트내용입니다.
-            </div>
-            <div className="flex flex-row gap-2">
-              <div>수정</div>
-              <div>삭제</div>
-            </div>
-          </div>
-          <div className="flex flex-row gap-4">
-            <div>유저명</div>
-            <div>2025.01.22 15:77</div>
-          </div>
-        </div>
-        <Textarea />
-      </div>
+      <CommentContent />
     </div>
   );
 }

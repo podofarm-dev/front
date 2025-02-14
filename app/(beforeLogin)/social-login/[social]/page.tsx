@@ -3,11 +3,10 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 
 import sessionStore from '@/app/_store/useSession';
-import userStore from '@/app/_store/userStore';
-import { useUserInfoQuery } from '@/app/_hooks/api/useUserInfoQuery';
 import postAccessToken from '@/app/_api/user/postAccessToken';
 import { useEffect } from 'react';
 import { PATH } from '@/app/_constants/path';
+import getUserInfo from '@/app/_api/user/getUserInfo';
 
 const SocialLoginPage = () => {
   const searchParams = useSearchParams();
@@ -35,23 +34,30 @@ const SocialLoginPage = () => {
 
         if (!token) {
           router.push(PATH.ROOT);
+          return;
         }
 
         // 3. 사용자 정보 가져오기
-        const { userInfoData } = useUserInfoQuery();
+        const userInfoData = await getUserInfo();
 
         console.log('가져오기');
+
+        if (!userInfoData) {
+          router.push(PATH.ROOT);
+          return;
+        }
 
         // 4. Study ID 확인 및 리다이렉트
         const studyId = userInfoData?.studyId || '';
         if (studyId) {
           console.log('스터디 있음');
           router.replace(PATH.STUDY_DASHBOARD(studyId));
+          return;
         } else {
           console.log('스터디 없음');
-          router.push(PATH.ROOT);
+          router.push(PATH.DASHBOARD);
+          return;
         }
-        router.push(PATH.DASHBOARD);
       } catch (error) {
         console.error('Error during login:', error);
         router.push(PATH.ROOT); // 에러 발생 시 홈으로 리다이렉트

@@ -11,3 +11,6 @@ export const PATH = {
   STUDY_PROBLEM_LIST: (studyId: string) => `/study/${studyId}/problem-list`,
   SETTING: (studyId: string) => `/study/${studyId}/setting`,
 } as const;
+
+export const EXTENSION_PATH =
+  'https://chromewebstore.google.com/detail/밀도mildo/kmleenknngfkjncchnbfenfamoighddf';

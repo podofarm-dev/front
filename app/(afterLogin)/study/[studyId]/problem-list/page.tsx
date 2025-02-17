@@ -3,7 +3,15 @@ import { Suspense } from 'react';
 import ProblemListContent from '@/app/_components/problem/ProblemListContent';
 import Loader from '@/app/_components/common/Loader';
 
-export default async function ProblemListPage() {
+interface ProblemListPageProps {
+  params: {
+    studyId: string;
+  };
+}
+
+export default async function ProblemListPage({ params }: ProblemListPageProps) {
+  const { studyId } = params;
+
   return (
     <div className="flex flex-col">
       <div className="flex flex-col gap-2">
@@ -13,7 +21,7 @@ export default async function ProblemListPage() {
         </span>
       </div>
       <Suspense fallback={<Loader />}>
-        <ProblemListContent />
+        <ProblemListContent studyId={studyId} />
       </Suspense>
     </div>
   );

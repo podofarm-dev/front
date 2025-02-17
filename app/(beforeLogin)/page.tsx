@@ -1,15 +1,14 @@
-import Link from 'next/link';
 import Image from 'next/image';
 
 import { Button } from '@/components/ui/button';
-import { PATH } from '@/app/_constants/path';
 import Download from '@/app/_svg/downlaod.svg';
 import Password from '@/app/_svg/password.svg';
 import Users from '@/app/_svg/users.svg';
+import LandingHeader from '@/app/_components/layout/LandingHeader';
 
 export default function LandingPage() {
   return (
-    <div className="relative min-h-screen bg-gradient-to-b from-[#0F111D] to-[#262B3E] px-20 pb-56 pt-5 text-white">
+    <div className="relative min-h-screen bg-gradient-to-b from-[#0F111D] to-[#262B3E] px-32 pb-56 pt-12 text-white">
       <div
         className="absolute inset-0 z-0"
         style={{
@@ -24,12 +23,7 @@ export default function LandingPage() {
       />
       <div className="min-h-screen bg-[url('/star.png')] bg-top bg-no-repeat">
         {/* 헤더 */}
-        <header className="flex justify-between p-6">
-          <h1 className="text-2xl font-bold">PodoFarm</h1>
-          <button className="text-gray-300 hover:text-white">
-            <Link href={PATH.LOGIN}>Sign In</Link>
-          </button>
-        </header>
+        <LandingHeader />
 
         {/* Hero Section */}
         <section className="py-16 text-center">
@@ -50,7 +44,13 @@ export default function LandingPage() {
           <div className="flex flex-col gap-56">
             {/* 대시보드 UI */}
             <section className="relative flex justify-center">
-              <Image src={'/landing-demo.png'} width={1200} height={800} alt="데모 사진" />
+              <Image
+                src={'/landing-demo.png'}
+                width={1200}
+                height={800}
+                alt="데모 사진"
+                className="animate-fade-in opacity-0"
+              />
             </section>
 
             {/* How to Use */}

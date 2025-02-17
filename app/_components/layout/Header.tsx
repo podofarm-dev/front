@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 import { PATH } from '@/app/_constants/path';
 import {
@@ -12,22 +13,21 @@ import {
 import LogoutButton from '@/app/_components/common/LogoutButton';
 import { useUserInfoQuery } from '@/app/_hooks/api/useUserInfoQuery';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { usePathname } from 'next/navigation';
-import { splitPathname } from '@/app/_utils/splitPathname';
+import HeaderName from '@/app/_components/layout/HeaderName';
+import Logo from '@/app/_components/common/Logo';
 
 const Header = () => {
   const pathname = usePathname();
-  const headerName = splitPathname(pathname);
   const { userInfoData } = useUserInfoQuery();
 
   return (
     <header className="flex h-14 w-full items-center justify-between bg-primary px-8 max-sm:max-h-16">
-      <Link href={PATH.ROOT}>
-        <div className="flex w-full items-center gap-2">
-          <div>로고</div>
-          <span>{headerName}</span>
-        </div>
-      </Link>
+      <div className="flex w-full items-center gap-2">
+        <Link href={PATH.ROOT}>
+          <Logo />
+        </Link>
+        <HeaderName pathname={pathname} />
+      </div>
       <DropdownMenu>
         <DropdownMenuTrigger>
           <Avatar>

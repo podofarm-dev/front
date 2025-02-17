@@ -27,7 +27,7 @@ const DebouncedInput = ({
   }, [value]);
 
   return (
-    <div className="flex flex-row items-center rounded border border-secondary-foreground bg-transparent p-2 focus-within:border-accent-foreground focus-within:ring-1 focus-within:ring-ring">
+    <div className="flex w-full max-w-xl flex-row items-center justify-between rounded border border-secondary-foreground bg-transparent p-2 focus-within:border-accent-foreground focus-within:ring-1 focus-within:ring-ring">
       <input
         {...props}
         value={value}

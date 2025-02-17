@@ -2,15 +2,24 @@
 
 import UserCard from '@/app/_components/common/UserCard';
 import { useUserInfoQuery } from '@/app/_hooks/api/useUserInfoQuery';
-import { useUserSolvedCountQuery } from '@/app/_hooks/api/useUserSolvedCountQuery';
 import SolvedList from '@/app/_components/solved/SolvedList';
 import UserSolvedList from '@/app/_components/solved/UserSolvedList';
+import { useSolvedRankingQuery } from '@/app/_hooks/api/useSolvedRankingQuery';
+import { useSolvedListQuery } from '@/app/_hooks/api/useSolvedListQuery';
+import { useStudyMemberQuery } from '@/app/_hooks/api/useStudyMemberQuery';
 
-const SolvedContent = () => {
+interface SolvedContentProps {
+  studyId: string;
+}
+
+const SolvedContent = ({ studyId }: SolvedContentProps) => {
   const { userInfoData } = useUserInfoQuery();
-  const { userSolvedCountData } = useUserSolvedCountQuery(String(userInfoData?.memberId));
+  const memberId = userInfoData?.memberId ?? '';
+  const { studyMemberData } = useStudyMemberQuery(studyId);
+  const { solvedRankingData } = useSolvedRankingQuery(studyId, memberId);
+  const { solvedListData } = useSolvedListQuery({ memberId });
 
-  if (!userInfoData || !userSolvedCountData) {
+  if (!userInfoData || !solvedRankingData) {
     return null;
   }
 
@@ -21,15 +30,20 @@ const SolvedContent = () => {
       </div>
       <div className="flex w-2/12">
         <div className="flex flex-col gap-10">
-          <UserCard
-            src={userSolvedCountData?.imgUrl}
-            name={userSolvedCountData?.name}
-            memberId={userSolvedCountData?.memberId}
-            solved={userSolvedCountData?.solvedCount}
-          />
+          {solvedRankingData && (
+            <UserCard
+              name={solvedRankingData.name}
+              src={solvedRankingData.imgUrl}
+              memberId={solvedRankingData.memberId}
+              title="총 누적 현재 랭킹"
+              content={`${solvedRankingData.rank}위`}
+            />
+          )}
           <div className="flex flex-col">
-            <UserSolvedList isUser={true} name="유저명" memberId="SDWDX" />
-            <UserSolvedList name="유저명" memberId="SDWDX" />
+            {studyMemberData &&
+              studyMemberData.memberDetails.map((item) => (
+                <UserSolvedList name={item.name} memberId={item.id} />
+              ))}
           </div>
         </div>
       </div>

@@ -96,8 +96,8 @@ export function StudyModal({ title, studyLabel, buttonLabel, onClose }: StudyMod
 
   return (
     <Dialog open={true} onOpenChange={onClose}>
-      <DialogContent className="rounded-lg bg-secondary sm:max-w-[425px]">
-        <DialogHeader className="relative before:absolute before:-bottom-4 before:-left-6 before:w-[calc(100%+3rem)] before:border-b before:border-secondary-foreground">
+      <DialogContent className="rounded-lg border-0 bg-tertiary sm:max-w-[425px]">
+        <DialogHeader className="relative before:absolute before:-bottom-4 before:-left-6 before:w-[calc(100%+3rem)] before:border-b before:border-bolder">
           <DialogTitle className="text-left text-xl">{title}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -111,7 +111,7 @@ export function StudyModal({ title, studyLabel, buttonLabel, onClose }: StudyMod
                   <Input
                     id="studyTitle"
                     placeholder={`${studyLabel}을 입력해 주세요`}
-                    className="col-span-3 border-secondary-foreground py-5"
+                    className="col-span-3 border-bolder py-5"
                     {...register('studyTitle')}
                   />
                   {errors.studyTitle && (
@@ -127,7 +127,7 @@ export function StudyModal({ title, studyLabel, buttonLabel, onClose }: StudyMod
                   <Input
                     id="studyCode"
                     placeholder={`${studyLabel}를 입력해 주세요`}
-                    className="col-span-3 border-secondary-foreground py-5"
+                    className="col-span-3 border-bolder py-5"
                     {...register('studyCode')}
                   />
                   {errors.studyCode && (
@@ -144,7 +144,7 @@ export function StudyModal({ title, studyLabel, buttonLabel, onClose }: StudyMod
                 id="password"
                 type="password"
                 placeholder="참여 비밀번호를 입력해 주세요."
-                className="col-span-3 border-secondary-foreground py-5"
+                className="col-span-3 border-bolder py-5"
                 {...register('password')}
               />
               {errors.password && <p className="text-sm text-red-500">{errors.password.message}</p>}

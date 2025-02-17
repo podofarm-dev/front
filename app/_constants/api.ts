@@ -1,19 +1,28 @@
 export const AXIOS_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const END_POINTS = {
-  TOKEN_INFO: '/tokens',
-  TOKEN_REFRESH: '/tokens/refresh',
-  TEST: '/test',
-  LOGOUT: '/logout',
+  TOKEN_INFO: '/member/tokens',
+  TOKEN_REFRESH: '/member/tokens/refresh',
+  LOGOUT: '/member/logout',
   STUDY_CREATE: '/study',
   STUDY_ENTER: '/study/enter-study',
   USER_INFO: '/member/info',
-  DELETE_USER: (memberId: string) => `/${memberId}/info`,
-  PROFILE_UPLOAD: (memberId: string) => `/${memberId}/upload`,
-  USER_SOLVED_COUNT: (memberId: string) => `/problem/${memberId}`,
+  DELETE_USER: (memberId: string) => `/member/${memberId}/info`,
+  PROFILE_UPLOAD: (memberId: string) => `/member/${memberId}/upload`,
+  RECENT_LOGS: (studyId: string) => `/study/${studyId}/logs`,
+  USER_SOLVED_COUNT: (memberId: string) => `/member/problem/${memberId}`,
   STUDY_MEMBER_LIST: (studyId: string) => `/study/${studyId}/member-list`,
-  STUDY_STATISTIC: (studyId: string, yearMonth: string) =>
+  GRASS_STATISTIC: (studyId: string, yearMonth: string) =>
     `/study/${studyId}/grass?yearMonth=${yearMonth}`,
+  SOLVED_STATISTIC: (studyId: string, yearMonth: string) =>
+    `/study/${studyId}/solved-problems?yearMonth=${yearMonth}`,
+  DAILY_GRASS: (studyId: string, date: string, memberId: string) =>
+    `/study/${studyId}/daily-solved?date=${date}&member=${memberId}`,
+  SOLVED_RANKING: (studyId: string, memberId: string) => `/member/${studyId}/solved/${memberId}`,
+  SOLVED_LIST: (memberId: string) => `/member/${memberId}/solved/problem`,
+  PROBLEM_LIST: (studyId: string) => `/problem/${studyId}/problem-list`,
+  COMMENT: (codeId: string) => `/code/${codeId}/comment`,
+  DELETE_COMMENT: (codeId: string, commentId: string) => `/code/${codeId}/comment/${commentId}`,
 };
 
 export const NETWORK = {

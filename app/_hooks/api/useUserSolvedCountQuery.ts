@@ -8,6 +8,7 @@ export const useUserSolvedCountQuery = (memberId: string) => {
   const { data: userSolvedCountData } = useQuery<UserSolvedData, AxiosError>({
     queryKey: ['user', memberId, 'count'],
     queryFn: () => getUserSolvedCount(memberId),
+    enabled: !!memberId,
   });
 
   return { userSolvedCountData };

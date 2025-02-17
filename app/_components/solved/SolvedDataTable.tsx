@@ -70,7 +70,6 @@ export function SolvedDataTable<TData, TValue>({
           placeholder="문제 제목을 입력해주세요"
           type="text"
           value={titleFilter}
-          className="w-full max-w-lg"
         />
       </div>
       <div>

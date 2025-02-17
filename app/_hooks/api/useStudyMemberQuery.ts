@@ -2,7 +2,7 @@ import { AxiosError } from 'axios';
 import { useQuery } from '@tanstack/react-query';
 
 import { StudyMemberData } from '@/app/_types/study';
-import getStudyMember from '@/app/_api/study/getStudyMember';
+import getStudyMember from '@/app/_api/dashboard/getStudyMember';
 
 export const useStudyMemberQuery = (studyId: string) => {
   const { data: studyMemberData } = useQuery<StudyMemberData, AxiosError>({

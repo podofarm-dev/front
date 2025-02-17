@@ -2,7 +2,7 @@ import { AxiosError } from 'axios';
 import { useQuery } from '@tanstack/react-query';
 
 import { StudyMemberGrassData } from '@/app/_types/study';
-import getStudyStatistic from '@/app/_api/study/getStudyStatistic';
+import getStudyStatistic from '@/app/_api/dashboard/getStudyStatistic';
 
 export const useStudyStatisticQuery = (studyId: string, yearMonth: string) => {
   const { data: studyStatisticData } = useQuery<StudyMemberGrassData[], AxiosError>({

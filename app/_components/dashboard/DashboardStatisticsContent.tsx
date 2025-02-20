@@ -12,7 +12,10 @@ const DashboardStatisticsContent = ({ memberStatisticData }: DashboardStatistics
   return (
     <div className="relative flex flex-col gap-2 overflow-x-auto py-4">
       {memberStatisticData.map((item, indexItem) => (
-        <div className="relative flex min-w-fit flex-row items-center gap-10">
+        <div
+          key={item.memberDetail?.id}
+          className="relative flex min-w-fit flex-row items-center gap-10"
+        >
           <Avatar>
             <AvatarImage src={item.memberDetail?.imgUrl} />
             <AvatarFallback>{item.memberDetail?.name}</AvatarFallback>
@@ -26,10 +29,20 @@ const DashboardStatisticsContent = ({ memberStatisticData }: DashboardStatistics
                       {Math.ceil(stack.date / 7)}
                     </p>
                   )}
-                  <SquareStack value={stack.value} />
+                  <SquareStack
+                    value={stack.value}
+                    date={stack.date}
+                    memberId={item.memberDetail?.id}
+                    className="cursor-pointer"
+                  />
                 </div>
               ) : (
-                <SquareStack value={stack.value} />
+                <SquareStack
+                  value={stack.value}
+                  date={stack.date}
+                  className="cursor-pointer"
+                  memberId={item.memberDetail?.id}
+                />
               );
             })}
           </div>

@@ -10,6 +10,7 @@ import ImageUpload from '@/app/_components/Setting/ImageUpload';
 import DeleteButton from '@/app/_components/Setting/DeleteButton';
 import { useUsernameMutation } from '@/app/_hooks/api/useUsernameMutation';
 import { useProfileUploadMutation } from '@/app/_hooks/api/useProfileUploadMutation';
+import OutStudyButton from '@/app/_components/Setting/OutStudyButton';
 
 interface FormValues {
   name?: string;
@@ -89,6 +90,14 @@ const UserSetting = ({ memberId, name, email, imgUrl }: UserSettingProps) => {
           </div>
         </div>
       </form>
+      <hr className="border-bolder" />
+      <div className="flex flex-col gap-8">
+        <span className="text-xl font-semibold">스터디 나가기</span>
+        <span className="text-base">
+          한번 계정을 삭제하면 다시 전으로 돌아갈 수 없습니다. 반드시 확인하세요.
+        </span>
+        <OutStudyButton />
+      </div>
       <hr className="border-bolder" />
       <div className="flex flex-col gap-8">
         <span className="text-xl font-semibold">계정탈퇴</span>

@@ -4,9 +4,10 @@ export const PATH = {
   ROOT: '/',
   DASHBOARD: '/dashboard',
   LOGIN: `${AXIOS_BASE_URL}/dev-login`,
-  STUDY_SOLVED: (studyId: string) => `/study/${studyId}/solved`,
-  STUDY_SOLVED_DETAIL: (studyId: string, problemId: string) =>
-    `/study/${studyId}/solved/${problemId}`,
+  STUDY_SOLVED: (studyId: string, memberId?: string) =>
+    `/study/${studyId}/solved?memberId=${memberId}`,
+  STUDY_SOLVED_DETAIL: (studyId: string, problemId: number, memberId: string) =>
+    `/study/${studyId}/solved/${problemId}/member/${memberId}`,
   STUDY_DASHBOARD: (studyId: string) => `/study/${studyId}/dashboard`,
   STUDY_PROBLEM_LIST: (studyId: string) => `/study/${studyId}/problem-list`,
   SETTING: (studyId: string) => `/study/${studyId}/setting`,

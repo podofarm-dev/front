@@ -12,6 +12,7 @@ import {
   SelectContent,
   SelectItem,
 } from '@/components/ui/select';
+import StudyParticipant from '@/app/_components/Setting/StudyParticipant';
 
 interface StudySettingProps {
   username: string;
@@ -23,8 +24,8 @@ interface StudySettingProps {
 const StudySetting = ({ username, studyId, studyName, memberDetails }: StudySettingProps) => {
   return (
     <div className="flex flex-col gap-8">
-      <span className="text-xl font-semibold">스터디 정보</span>
-      <div className="flex flex-row gap-20">
+      <span className="text-xl font-semibold">스터디 관리</span>
+      <div className="flex flex-col">
         <div className="flex w-full flex-col gap-8 md:w-5/12">
           <div className="flex flex-col gap-4">
             <Label htmlFor="studyTitle" className="text-base">
@@ -47,26 +48,28 @@ const StudySetting = ({ username, studyId, studyName, memberDetails }: StudySett
               className="col-span-3 w-full border-bolder bg-bolder py-5 text-secondary-foreground"
               disabled
             />
+            <Button className="mt-12 max-w-28 border border-bolder bg-accent">변경사항 저장</Button>
           </div>
+        </div>
+        <hr className="my-12 border-bolder" />
+        <div className="flex flex-col gap-7">
+          <span className="text-xl font-semibold">참여자 관리</span>
           <div className="flex flex-col gap-4">
-            <span className="text-base">스터디장 위임</span>
-            <Select>
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder={username} />
-              </SelectTrigger>
-              <SelectContent className="bg-tertiary text-primary-foreground">
-                {memberDetails.map((item) => (
-                  <SelectItem key={item.id} value={item.name}>
-                    {item.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <span className="text-base font-normal">참여자 목록</span>
+            <div className="flex flex-col rounded-lg border border-bolder md:w-5/12">
+              {memberDetails.map((item) => (
+                <StudyParticipant
+                  key={item.id}
+                  id={item.id}
+                  name={item.name}
+                  isLeader={item.isLeader}
+                />
+              ))}
+            </div>
           </div>
-          <Button className="my-8 max-w-28 border border-bolder bg-accent">변경사항 저장</Button>
         </div>
       </div>
-      <hr className="border-bolder" />
+      <hr className="my-12 border-bolder" />
       <div className="flex flex-col gap-8">
         <span className="text-xl font-semibold">스터디 영구 삭제</span>
         <span className="text-base">

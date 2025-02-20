@@ -3,13 +3,15 @@ import { create } from 'zustand';
 
 interface YearMonthStore {
   currentYearMonth: string;
+  currentYearMonthDay: string;
   prevMonth: () => void;
   nextMonth: () => void;
-  setMonth: (newMonth: string) => void;
+  setYearMonthDay: (newMonth: string) => void;
 }
 
 export const useYearMonthStore = create<YearMonthStore>((set) => ({
   currentYearMonth: dayjs().format('YYYY-MM'),
+  currentYearMonthDay: dayjs().format('YYYY-MM-DD'),
   prevMonth: () =>
     set((state) => ({
       currentYearMonth: dayjs(state.currentYearMonth).subtract(1, 'month').format('YYYY-MM'),
@@ -18,5 +20,8 @@ export const useYearMonthStore = create<YearMonthStore>((set) => ({
     set((state) => ({
       currentYearMonth: dayjs(state.currentYearMonth).add(1, 'month').format('YYYY-MM'),
     })),
-  setMonth: (newMonth) => set({ currentYearMonth: newMonth }),
+  setYearMonthDay: (newYearMonthDay) =>
+    set((state) => ({
+      currentYearMonthDay: `${state.currentYearMonth}-${newYearMonthDay.padStart(2, '0')}`,
+    })),
 }));

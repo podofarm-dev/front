@@ -1,7 +1,5 @@
 'use client';
 
-import dayjs from 'dayjs';
-
 import { StudyMemberListDetail } from '@/app/_types/study';
 import { useStudyStatisticQuery } from '@/app/_hooks/api/useStudyStatisticQuery';
 import { useYearMonthStore } from '@/app/_store/useYearMonthStore';

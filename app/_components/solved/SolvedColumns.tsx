@@ -2,68 +2,78 @@
 
 import { ColumnDef } from '@tanstack/react-table';
 
-export type Solved = {
-  id: string;
-  number: number;
-  title: string;
-  category: string;
-  difficulty: string;
-  time: string;
-  date: string;
-};
+import { SolvedData } from '@/app/_types/solved';
+import convertSolvedDate from '@/app/_utils/convertSolvedDate';
+import Link from 'next/link';
+import { PATH } from '@/app/_constants/path';
 
-export const columns: ColumnDef<Solved>[] = [
+export const getColumns = (studyId: string, memberId: string): ColumnDef<SolvedData>[] => [
   {
-    accessorKey: 'number',
-    header: () => <div className="text-center">번호</div>,
+    accessorKey: 'problemNo',
+    header: () => <div className="my-6 text-center text-secondary-foreground">번호</div>,
     cell: ({ row }) => {
-      const number = row.getValue('number') as number;
-      return <div className="text-center text-secondary-foreground">No.{number}</div>;
+      const problemNo = row.getValue('problemNo') as number;
+      return <div className="text-center text-secondary-foreground">{problemNo}</div>;
     },
     size: 100,
   },
   {
-    accessorKey: 'title',
-    header: () => <div className="text-center">제목</div>,
+    accessorKey: 'problemTitle',
+    header: () => <div className="my-6 text-center text-secondary-foreground">제목</div>,
     cell: ({ row }) => {
-      const title = row.getValue('title') as string;
-      return <div className="text-center">{title}</div>;
+      const problemTitle = row.getValue('problemTitle') as string;
+      const problemId = row.original.problemId;
+
+      return (
+        <div className="text-left">
+          <Link
+            href={PATH.STUDY_SOLVED_DETAIL(studyId, problemId, memberId)}
+            className="hover:underline"
+          >
+            {problemTitle}
+          </Link>
+        </div>
+      );
     },
     size: 300,
   },
   {
-    accessorKey: 'category',
-    header: () => <div className="text-center">유형</div>,
+    accessorKey: 'problemType',
+    header: () => <div className="my-6 text-center text-secondary-foreground">유형</div>,
     cell: ({ row }) => {
-      const category = row.getValue('category') as string;
-      return <div className="text-center">{category}</div>;
+      const problemType = row.getValue('problemType') as string;
+      return <div className="text-center">{problemType}</div>;
     },
     size: 100,
   },
   {
-    accessorKey: 'difficulty',
-    header: () => <div className="text-center">난이도</div>,
+    accessorKey: 'problemLevel',
+    header: () => <div className="my-6 text-center text-secondary-foreground">난이도</div>,
     cell: ({ row }) => {
-      const difficulty = row.getValue('difficulty') as string;
-      return <div className="text-center">{difficulty}</div>;
+      const problemLevel = row.getValue('problemLevel') as string;
+      return <div className="text-center">{problemLevel}</div>;
     },
     size: 100,
   },
   {
-    accessorKey: 'time',
-    header: () => <div className="text-center">소요 시간</div>,
+    accessorKey: 'codeTime',
+    header: () => <div className="my-6 text-center text-secondary-foreground">소요 시간</div>,
     cell: ({ row }) => {
-      const time = row.getValue('time') as string;
-      return <div className="text-center">{time}</div>;
+      const codeTime = row.getValue('codeTime') as string;
+      return <div className="text-center text-secondary-foreground">{codeTime}</div>;
     },
     size: 100,
   },
   {
-    accessorKey: 'date',
-    header: () => <div className="text-center">푼 날짜</div>,
+    accessorKey: 'codeSolvedDate',
+    header: () => <div className="my-6 text-center text-secondary-foreground">푼 날짜</div>,
     cell: ({ row }) => {
-      const date = row.getValue('date') as string;
-      return <div className="text-center">{date}</div>;
+      const codeSolvedDate = row.getValue('codeSolvedDate') as string;
+      return (
+        <div className="text-center text-secondary-foreground">
+          {convertSolvedDate(codeSolvedDate)}
+        </div>
+      );
     },
     size: 100,
   },

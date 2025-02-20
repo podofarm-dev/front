@@ -8,6 +8,7 @@ import Algo from '@/app/_svg/algo.svg';
 import Setting from '@/app/_svg/setting.svg';
 import Solved from '@/app/_svg/solved.svg';
 import { PATH } from '@/app/_constants/path';
+import { useUserInfoQuery } from '@/app/_hooks/api/useUserInfoQuery';
 
 const navigationItem = [
   { icon: <Home />, href: PATH.STUDY_DASHBOARD, title: '대시보드' },
@@ -18,6 +19,7 @@ const navigationItem = [
 
 const Navigation = () => {
   const { studyId } = useParams();
+  const { userInfoData } = useUserInfoQuery();
 
   return (
     <nav className="flex h-12 items-center gap-4 border-b border-bolder bg-primary px-8">
@@ -25,7 +27,7 @@ const Navigation = () => {
         <Link
           key={index}
           className="flex cursor-pointer flex-row items-center gap-2"
-          href={item.href(String(studyId))}
+          href={item.href(String(studyId), String(userInfoData?.memberId))}
         >
           <div>{item.icon}</div>
           <div>{item.title}</div>

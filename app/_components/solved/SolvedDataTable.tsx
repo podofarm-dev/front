@@ -1,6 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { AxiosError } from 'axios';
+import { useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
+import {
+  FetchNextPageOptions,
+  InfiniteData,
+  InfiniteQueryObserverResult,
+} from '@tanstack/react-query';
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -19,20 +26,35 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import DebouncedInput from '@/app/_components/common/DebouncedInput';
+import { ProblemListQueryString } from '@/app/_types/problem';
+import { SolvedListData } from '@/app/_types/solved';
+import Loader from '@/app/_components/common/Loader';
+import { Ellipsis } from 'lucide-react';
 
 interface SolvedDataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
-  data: TData[];
+  data?: TData[];
+  pageInfo?: ProblemListQueryString;
+  isFetchingNextPage: boolean;
+  hasNextPage: boolean;
+  fetchNextPage: (
+    options?: FetchNextPageOptions | undefined,
+  ) => Promise<
+    InfiniteQueryObserverResult<InfiniteData<SolvedListData, unknown>, AxiosError<unknown, any>>
+  >;
 }
 
 export function SolvedDataTable<TData, TValue>({
   columns,
-  data,
+  data = [],
+  pageInfo = { totalElements: 0, totalPages: 0, currentPage: 0, size: 0 },
+  isFetchingNextPage,
+  hasNextPage,
+  fetchNextPage,
 }: SolvedDataTableProps<TData, TValue>) {
+  const { ref, inView } = useInView();
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnSizing, setColumnSizing] = useState({});
-  const [titleFilter, setTitleFilter] = useState('');
 
   const table = useReactTable({
     data,
@@ -40,12 +62,13 @@ export function SolvedDataTable<TData, TValue>({
     state: {
       columnFilters,
       columnSizing,
-    },
-    initialState: {
       pagination: {
-        pageSize: 20,
+        pageIndex: 0,
+        pageSize: pageInfo.size,
       },
     },
+    manualPagination: true,
+    pageCount: pageInfo.totalPages,
     onColumnFiltersChange: setColumnFilters,
     onColumnSizingChange: setColumnSizing,
     getFilteredRowModel: getFilteredRowModel(),
@@ -53,28 +76,17 @@ export function SolvedDataTable<TData, TValue>({
     getPaginationRowModel: getPaginationRowModel(),
   });
 
-  const handleTitleFilterChange = (value: string) => {
-    setTitleFilter(value);
-    setColumnFilters((prev) => [
-      ...prev.filter((filter) => filter.id !== 'title'),
-      ...(value ? [{ id: 'title', value }] : []),
-    ]);
-  };
+  useEffect(() => {
+    if (inView && hasNextPage) {
+      fetchNextPage();
+    }
+  }, [inView, hasNextPage, fetchNextPage]);
 
   return (
     <div>
-      <div className="mb-6 flex flex-row items-center justify-between gap-6">
-        <span className="text-xl font-semibold">{data.length}문제</span>
-        <DebouncedInput
-          onChange={handleTitleFilterChange}
-          placeholder="문제 제목을 입력해주세요"
-          type="text"
-          value={titleFilter}
-        />
-      </div>
       <div>
         <Table>
-          <TableHeader className="rounded bg-tertiary text-secondary-foreground">
+          <TableHeader className="border border-bolder">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id} className="border-none hover:bg-transparent">
                 {headerGroup.headers.map((header) => {
@@ -134,50 +146,8 @@ export function SolvedDataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-center gap-2">
-        <button
-          className="rounded border p-1"
-          onClick={() => table.setPageIndex(0)}
-          disabled={!table.getCanPreviousPage()}
-        >
-          {'<<'}
-        </button>
-        <button
-          className="rounded border p-1"
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        >
-          {'<'}
-        </button>
-        {Array.from({ length: table.getPageCount() }, (_, i) => i + 1).map((page) => {
-          const { pageIndex } = table.getState().pagination;
-          const isPageInRange = page >= pageIndex - 3 && page <= pageIndex + 6;
-          return (
-            <button
-              key={page}
-              className={`rounded border p-1 ${
-                pageIndex + 1 === page ? 'border-none' : ''
-              } ${isPageInRange ? '' : 'hidden'}`}
-              onClick={() => table.setPageIndex(page - 1)}
-            >
-              {page}
-            </button>
-          );
-        })}
-        <button
-          className="rounded border p-1"
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-        >
-          {'>'}
-        </button>
-        <button
-          className="rounded border p-1"
-          onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-          disabled={!table.getCanNextPage()}
-        >
-          {'>>'}
-        </button>
+      <div className="flex flex-row justify-center" ref={ref}>
+        {isFetchingNextPage ? <Loader /> : hasNextPage ? <Ellipsis /> : <div />}
       </div>
     </div>
   );

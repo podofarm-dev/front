@@ -9,7 +9,7 @@ interface ProblemListPageProps {
   };
 }
 
-export default async function ProblemListPage({ params }: ProblemListPageProps) {
+export default function ProblemListPage({ params }: ProblemListPageProps) {
   const { studyId } = params;
 
   return (

@@ -1,12 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   ColumnDef,
   ColumnFiltersState,
   flexRender,
   getCoreRowModel,
-  getPaginationRowModel,
   useReactTable,
   getFilteredRowModel,
 } from '@tanstack/react-table';
@@ -19,24 +18,27 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import DebouncedInput from '@/app/_components/common/DebouncedInput';
-import SolvedButton from '@/app/_components/problem/SolvedButton';
-import { SOLVED_STATUS } from '@/app/_constants/status';
+
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ProblemListQueryString } from '@/app/_types/problem';
 
 interface ProblemDataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
-  data: TData[];
+  data?: TData[];
+  page: number;
+  setPage: (value: number) => void;
+  pageInfo?: ProblemListQueryString;
 }
 
 export function ProblemDataTable<TData, TValue>({
   columns,
-  data,
+  data = [],
+  page,
+  setPage,
+  pageInfo = { totalElements: 0, totalPages: 0, currentPage: 0, size: 0 },
 }: ProblemDataTableProps<TData, TValue>) {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnSizing, setColumnSizing] = useState({});
-  const [titleFilter, setTitleFilter] = useState('');
-  const [statusFilter, setStatusFilter] = useState('');
 
   const table = useReactTable({
     data,
@@ -44,57 +46,31 @@ export function ProblemDataTable<TData, TValue>({
     state: {
       columnFilters,
       columnSizing,
-    },
-    initialState: {
       pagination: {
-        pageSize: 20,
+        pageIndex: page,
+        pageSize: pageInfo.size,
       },
     },
+    manualPagination: true,
+    pageCount: pageInfo.totalPages,
     onColumnFiltersChange: setColumnFilters,
     onColumnSizingChange: setColumnSizing,
     getFilteredRowModel: getFilteredRowModel(),
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
   });
 
-  const handleTitleFilterChange = (value: string) => {
-    setTitleFilter(value);
-    setColumnFilters((prev) => [
-      ...prev.filter((filter) => filter.id !== 'title'),
-      ...(value ? [{ id: 'title', value }] : []),
-    ]);
-  };
-
-  const handleStatusFilterChange = (value: string) => {
-    setStatusFilter(value);
-    setColumnFilters((prev) => [
-      ...prev.filter((filter) => filter.id !== 'status'),
-      ...(value === SOLVED_STATUS.COMPLETE
-        ? [{ id: 'status', value: true }]
-        : value === SOLVED_STATUS.INCOMPLETE
-          ? [{ id: 'status', value: false }]
-          : []),
-    ]);
-  };
+  useEffect(() => {
+    const { pageIndex } = table.getState().pagination;
+    if (pageIndex !== page) {
+      setPage(pageIndex);
+    }
+  }, [table.getState().pagination.pageIndex, page, setPage]);
 
   return (
     <div>
-      <div className="mb-6 flex flex-row items-center justify-between gap-6">
-        <div className="flex flex-row items-center gap-6">
-          <span className="text-xl font-semibold">{data.length}문제</span>
-          <SolvedButton onChange={handleStatusFilterChange} value={statusFilter} />
-        </div>
-        <DebouncedInput
-          onChange={handleTitleFilterChange}
-          placeholder="문제 제목을 입력해주세요"
-          type="text"
-          value={titleFilter}
-          className="w-full max-w-lg"
-        />
-      </div>
       <div>
         <Table>
-          <TableHeader className="rounded bg-tertiary text-secondary-foreground">
+          <TableHeader className="border border-bolder">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id} className="border-none hover:bg-transparent">
                 {headerGroup.headers.map((header) => {
@@ -155,32 +131,26 @@ export function ProblemDataTable<TData, TValue>({
         </Table>
       </div>
       <div className="my-10 flex items-center justify-center gap-6">
-        <button
-          className="cursor-pointer"
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        >
+        <button className="cursor-pointer" onClick={() => setPage(page - 1)} disabled={page === 0}>
           <ChevronLeft />
         </button>
-        {Array.from({ length: table.getPageCount() }, (_, i) => i + 1).map((page) => {
-          const { pageIndex } = table.getState().pagination;
-          const isPageInRange = page >= pageIndex - 3 && page <= pageIndex + 6;
+        {Array.from({ length: pageInfo.totalPages }, (_, i) => i + 1).map((pageIndex) => {
           return (
             <button
               key={page}
               className={`text-md ${
-                pageIndex + 1 === page ? 'drop-shadow-[0_0_5px_rgba(255,255,255,0.6)]' : ''
-              } ${isPageInRange ? '' : 'hidden'}`}
-              onClick={() => table.setPageIndex(page - 1)}
+                pageIndex - 1 === page ? 'drop-shadow-[0_0_5px_rgba(255,255,255,0.6)]' : ''
+              }`}
+              onClick={() => setPage(pageIndex - 1)}
             >
-              {page}
+              {pageIndex}
             </button>
           );
         })}
         <button
           className="cursor-pointer"
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
+          onClick={() => setPage(page + 1)}
+          disabled={page === pageInfo.totalPages - 1}
         >
           <ChevronRight />
         </button>

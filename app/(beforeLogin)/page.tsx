@@ -1,10 +1,12 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
 import Download from '@/app/_svg/downlaod.svg';
 import Password from '@/app/_svg/password.svg';
 import Users from '@/app/_svg/users.svg';
 import LandingHeader from '@/app/_components/layout/LandingHeader';
+import { EXTENSION_PATH } from '@/app/_constants/path';
 
 export default function LandingPage() {
   return (
@@ -34,9 +36,11 @@ export default function LandingPage() {
             프로그래머스 코딩테스트 기반의 포도팜에서 <br /> 스터디 관리 서비스를 이용해보세요!
           </p>
           <div className="mt-6 flex justify-center space-x-4">
-            <Button className="rounded-lg bg-accent-foreground px-4 py-5">
-              Download Extension
-            </Button>
+            <Link href={EXTENSION_PATH} target="_blank" rel="noopener noreferrer">
+              <Button className="rounded-lg bg-accent-foreground px-4 py-5">
+                Download Extension
+              </Button>
+            </Link>
           </div>
         </section>
 

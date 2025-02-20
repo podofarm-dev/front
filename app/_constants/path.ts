@@ -14,4 +14,4 @@ export const PATH = {
 } as const;
 
 export const EXTENSION_PATH =
-  'https://chromewebstore.google.com/detail/밀도mildo/kmleenknngfkjncchnbfenfamoighddf';
+  'https://chromewebstore.google.com/detail/%ED%8F%AC%EB%8F%84%ED%8C%9Cpodofarm/bcbabakaolnokikhllajhgchlgeiihld?hl=ko';

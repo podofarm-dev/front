@@ -9,3 +9,7 @@ export interface CommentType {
   memberId: string;
   codeNo: number;
 }
+
+export interface PostCommentBody {
+  commentContent: string;
+}

@@ -10,6 +10,6 @@ export interface CommentType {
   codeNo: number;
 }
 
-export interface PostCommentBody {
+export interface CommentRequestBody {
   commentContent: string;
 }

@@ -23,3 +23,18 @@ export interface SolvedData {
   codeSolvedDate: string;
   codeTime?: string;
 }
+
+export interface SolvedSummary {
+  codeSource: string;
+  codeSolvedDate: string;
+  codeStatus: boolean;
+  codeTime: string;
+  codePerformance: string;
+  codeAccuracy: string;
+  problemType: string;
+}
+
+export interface SolvedContent {
+  readme: string;
+  title: string;
+}

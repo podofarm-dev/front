@@ -6,9 +6,10 @@ interface StudyParticipantProps {
   id: string;
   name: string;
   isLeader: boolean;
+  studyId: string;
 }
 
-const StudyParticipant = ({ id, name, isLeader }: StudyParticipantProps) => {
+const StudyParticipant = ({ id, name, isLeader, studyId }: StudyParticipantProps) => {
   return (
     <div className="flex flex-row justify-between px-6 py-5">
       {isLeader ? (
@@ -18,7 +19,7 @@ const StudyParticipant = ({ id, name, isLeader }: StudyParticipantProps) => {
       ) : (
         <>
           <span>{name}</span>
-          <StudyParticipantButton id={id} name={name} />
+          <StudyParticipantButton id={id} name={name} studyId={studyId} />
         </>
       )}
     </div>

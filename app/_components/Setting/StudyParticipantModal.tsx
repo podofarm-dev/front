@@ -15,21 +15,14 @@ interface StudyModalProps {
   id: string;
   name: string;
   onClose: () => void;
+  onHandle: () => void;
 }
 
-export function StudyParticipantModal({ title, id, name, onClose }: StudyModalProps) {
-  const handleMandate = () => {
-    console.log('스터디장 위임');
-  };
-
-  const handleKick = () => {
-    console.log('내보내기');
-  };
-
+export function StudyParticipantModal({ title, id, name, onClose, onHandle }: StudyModalProps) {
   return (
     <Dialog open={true} onOpenChange={onClose}>
-      <DialogContent className="rounded-lg bg-secondary sm:max-w-[425px]">
-        <DialogHeader className="relative before:absolute before:-bottom-4 before:-left-6 before:w-[calc(100%+3rem)] before:border-b before:border-secondary-foreground">
+      <DialogContent className="rounded-lg sm:max-w-[425px] [&>button]:hidden">
+        <DialogHeader className="relative before:absolute before:-bottom-4 before:-left-6 before:w-[calc(100%+3rem)] before:border-b before:border-bolder">
           <DialogTitle className="text-left text-xl">{title}</DialogTitle>
         </DialogHeader>
         {title === '스터디장 위임' && (
@@ -55,12 +48,12 @@ export function StudyParticipantModal({ title, id, name, onClose }: StudyModalPr
             취소
           </Button>
           {title === '스터디장 위임' && (
-            <Button className="bg-accent-foreground" onClick={handleMandate}>
+            <Button className="bg-accent-foreground" onClick={onHandle}>
               위임하기
             </Button>
           )}
           {title === '내보내기' && (
-            <Button className="bg-warning" onClick={handleKick}>
+            <Button className="bg-warning" onClick={onHandle}>
               강퇴하기
             </Button>
           )}

@@ -15,17 +15,20 @@ import { Input } from '@/components/ui/input';
 import { useDeleteUserMutation } from '@/app/_hooks/api/useDeleteUserMutation';
 import { useUserInfoQuery } from '@/app/_hooks/api/useUserInfoQuery';
 import { toast } from 'react-toastify';
+import { useDeleteStudyRoomMutation } from '@/app/_hooks/api/useDeleteStudyRoomMutation';
 
 interface DeleteModalProps {
   title: string;
   label: string;
+  studyId: string;
   onClose: () => void;
 }
 
-const DeleteModal = ({ title, label, onClose }: DeleteModalProps) => {
+const DeleteModal = ({ title, label, studyId, onClose }: DeleteModalProps) => {
   const [inputValue, setInputValue] = useState('');
   const { userInfoData } = useUserInfoQuery();
   const deleteUserMutation = useDeleteUserMutation();
+  const deleteStudyRoomMutation = useDeleteStudyRoomMutation();
 
   const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -42,18 +45,18 @@ const DeleteModal = ({ title, label, onClose }: DeleteModalProps) => {
     }
 
     if (label === '계정') {
-      deleteUserMutation.mutate({ memberId: userInfoData.memberId });
+      deleteUserMutation.mutate({ memberId: userInfoData.memberId }, { onSuccess: onClose });
     }
 
     if (label === '스터디') {
-      console.log('스터디 삭제');
+      deleteStudyRoomMutation.mutate(studyId, { onSuccess: onClose });
     }
   };
 
   return (
     <Dialog open={true} onOpenChange={onClose}>
-      <DialogContent className="rounded-lg bg-secondary sm:max-w-[425px]">
-        <DialogHeader className="relative before:absolute before:-bottom-4 before:-left-6 before:w-[calc(100%+3rem)] before:border-b before:border-secondary-foreground">
+      <DialogContent className="rounded-lg sm:max-w-[425px] [&>button]:hidden">
+        <DialogHeader className="relative before:absolute before:-bottom-4 before:-left-6 before:w-[calc(100%+3rem)] before:border-b before:border-bolder">
           <DialogTitle className="text-left text-xl">{title}</DialogTitle>
         </DialogHeader>
 

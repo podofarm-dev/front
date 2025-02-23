@@ -1,27 +1,40 @@
 'use client';
 
+import { ChangeEvent, useState } from 'react';
+
 import DeleteButton from '@/app/_components/Setting/DeleteButton';
-import { StudyMemberListDetail } from '@/app/_types/study';
+import { StudyMemberDetail } from '@/app/_types/study';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-} from '@/components/ui/select';
 import StudyParticipant from '@/app/_components/Setting/StudyParticipant';
+import { useUpdateStudyNameMutation } from '@/app/_hooks/api/useUpdateStudyNameMutation';
 
 interface StudySettingProps {
   username: string;
   studyId: string;
   studyName: string;
-  memberDetails: StudyMemberListDetail[];
+  memberDetails: StudyMemberDetail[];
 }
 
 const StudySetting = ({ username, studyId, studyName, memberDetails }: StudySettingProps) => {
+  const [currentStudy, SetCurrentStudy] = useState(studyName);
+  const updateStudyNameMutation = useUpdateStudyNameMutation();
+
+  const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    SetCurrentStudy(value);
+  };
+
+  const handlePatchStudyName = () => {
+    if (currentStudy !== studyName) {
+      updateStudyNameMutation.mutate({
+        studyId: studyId,
+        studyNameData: { name: currentStudy },
+      });
+    }
+  };
+
   return (
     <div className="flex flex-col gap-8">
       <span className="text-xl font-semibold">스터디 관리</span>
@@ -33,7 +46,8 @@ const StudySetting = ({ username, studyId, studyName, memberDetails }: StudySett
             </Label>
             <Input
               id="studyTitle"
-              defaultValue={studyName}
+              value={currentStudy}
+              onChange={handleChangeInput}
               className="col-span-3 w-full border-bolder py-5"
             />
           </div>
@@ -48,7 +62,12 @@ const StudySetting = ({ username, studyId, studyName, memberDetails }: StudySett
               className="col-span-3 w-full border-bolder bg-bolder py-5 text-secondary-foreground"
               disabled
             />
-            <Button className="mt-12 max-w-28 border border-bolder bg-accent">변경사항 저장</Button>
+            <Button
+              className="mt-12 max-w-28 border border-bolder bg-accent"
+              onClick={handlePatchStudyName}
+            >
+              변경사항 저장
+            </Button>
           </div>
         </div>
         <hr className="my-12 border-bolder" />
@@ -63,6 +82,7 @@ const StudySetting = ({ username, studyId, studyName, memberDetails }: StudySett
                   id={item.id}
                   name={item.name}
                   isLeader={item.isLeader}
+                  studyId={studyId}
                 />
               ))}
             </div>
@@ -75,7 +95,7 @@ const StudySetting = ({ username, studyId, studyName, memberDetails }: StudySett
         <span className="text-base">
           한번 스터디를 삭제하면 다시 전으로 돌아갈 수 없습니다. 반드시 확인하세요.
         </span>
-        <DeleteButton isUser={false} />
+        <DeleteButton isUser={false} studyId={studyId} />
       </div>
     </div>
   );

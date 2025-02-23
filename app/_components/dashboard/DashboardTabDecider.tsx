@@ -15,11 +15,11 @@ const DashboardTabDecider = ({ studyId, memberDetails }: DashboardTabDeciderProp
   const { tab } = useDashboardTabStore();
 
   if (tab === 'solved') {
-    return <DashboardSolved />;
+    return <DashboardSolved studyId={studyId} memberDetails={memberDetails} />;
   }
 
   if (tab === 'cumulative') {
-    return <DashboardCumulative />;
+    return <DashboardCumulative studyId={studyId} memberDetails={memberDetails} />;
   }
 
   return <DashboardStatistics studyId={studyId} memberDetails={memberDetails} />;

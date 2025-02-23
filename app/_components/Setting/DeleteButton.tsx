@@ -7,9 +7,10 @@ import DeleteModal from '@/app/_components/Setting/DeleteModal';
 
 interface DeleteButtonProps {
   isUser: boolean;
+  studyId: string;
 }
 
-const DeleteButton = ({ isUser }: DeleteButtonProps) => {
+const DeleteButton = ({ isUser, studyId }: DeleteButtonProps) => {
   const [openModal, setOpenModal] = useState<string | null>(null);
 
   return (
@@ -25,10 +26,20 @@ const DeleteButton = ({ isUser }: DeleteButtonProps) => {
       )}
 
       {openModal === 'user' && (
-        <DeleteModal title="계정 삭제하기" label="계정" onClose={() => setOpenModal(null)} />
+        <DeleteModal
+          title="계정 삭제하기"
+          label="계정"
+          onClose={() => setOpenModal(null)}
+          studyId={studyId}
+        />
       )}
       {openModal === 'study' && (
-        <DeleteModal title="스터디 삭제하기" label="스터디" onClose={() => setOpenModal(null)} />
+        <DeleteModal
+          title="스터디 삭제하기"
+          label="스터디"
+          onClose={() => setOpenModal(null)}
+          studyId={studyId}
+        />
       )}
     </>
   );

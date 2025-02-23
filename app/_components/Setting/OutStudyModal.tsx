@@ -9,31 +9,39 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
-import { useUserInfoQuery } from '@/app/_hooks/api/useUserInfoQuery';
-import { toast } from 'react-toastify';
+import { useDeleteStudyOutMutation } from '@/app/_hooks/api/useDeleteStudyOutMutation';
 
-interface DeleteModalProps {
+interface OutStudyModalProps {
   title: string;
   label: string;
+  studyId: string;
+  isStudyLeader: boolean;
+  onStudySetting: () => void;
   onClose: () => void;
 }
 
-const OutStudyModal = ({ title, label, onClose }: DeleteModalProps) => {
-  const { userInfoData } = useUserInfoQuery();
+const OutStudyModal = ({
+  title,
+  label,
+  studyId,
+  isStudyLeader,
+  onStudySetting,
+  onClose,
+}: OutStudyModalProps) => {
+  const deleteStudyOutMutation = useDeleteStudyOutMutation();
 
   const handleDelete = () => {
-    if (!userInfoData?.memberId) {
-      return;
+    if (isStudyLeader) {
+      return onStudySetting();
     }
 
-    toast.success('스터디 나가기');
-    onClose();
+    deleteStudyOutMutation.mutate(studyId, { onSuccess: onClose });
   };
 
   return (
     <Dialog open={true} onOpenChange={onClose}>
-      <DialogContent className="rounded-lg bg-secondary sm:max-w-[425px]">
-        <DialogHeader className="relative before:absolute before:-bottom-4 before:-left-6 before:w-[calc(100%+3rem)] before:border-b before:border-secondary-foreground">
+      <DialogContent className="rounded-lg sm:max-w-[425px] [&>button]:hidden">
+        <DialogHeader className="relative before:absolute before:-bottom-4 before:-left-6 before:w-[calc(100%+3rem)] before:border-b before:border-bolder">
           <DialogTitle className="text-left text-xl">{title}</DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-6">
@@ -47,11 +55,11 @@ const OutStudyModal = ({ title, label, onClose }: DeleteModalProps) => {
           </div>
         </div>
         <DialogFooter className="flex flex-row justify-end sm:flex sm:flex-row sm:justify-end">
-          <Button type="submit" className="bg-secondary-foreground text-bolder" onClick={onClose}>
+          <Button className="bg-secondary-foreground text-bolder" onClick={onClose}>
             취소
           </Button>
-          <Button type="submit" className="bg-warning" onClick={handleDelete}>
-            삭제하기
+          <Button className="bg-warning" onClick={handleDelete}>
+            나가기
           </Button>
         </DialogFooter>
       </DialogContent>

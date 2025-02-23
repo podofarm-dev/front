@@ -96,7 +96,7 @@ export function StudyModal({ title, studyLabel, buttonLabel, onClose }: StudyMod
 
   return (
     <Dialog open={true} onOpenChange={onClose}>
-      <DialogContent className="rounded-lg border-0 bg-tertiary sm:max-w-[425px]">
+      <DialogContent className="rounded-lg border-0 sm:max-w-[425px]">
         <DialogHeader className="relative before:absolute before:-bottom-4 before:-left-6 before:w-[calc(100%+3rem)] before:border-b before:border-bolder">
           <DialogTitle className="text-left text-xl">{title}</DialogTitle>
         </DialogHeader>

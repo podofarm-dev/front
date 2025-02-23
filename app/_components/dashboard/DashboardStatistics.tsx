@@ -3,9 +3,10 @@
 import { StudyMemberListDetail } from '@/app/_types/study';
 import { useStudyStatisticQuery } from '@/app/_hooks/api/useStudyStatisticQuery';
 import { useYearMonthStore } from '@/app/_store/useYearMonthStore';
-import { matchMember } from '@/app/_utils/matchMember';
+import { matchMemberStatistic } from '@/app/_utils/matchMemberStatistic';
 import DashboardMonthNavigator from '@/app/_components/dashboard/DashboardMonthNavigator';
 import DashboardStatisticsContent from '@/app/_components/dashboard/DashboardStatisticsContent';
+import Loader from '@/app/_components/common/Loader';
 
 interface DashboardStatisticsProps {
   studyId: string;
@@ -17,10 +18,10 @@ const DashboardStatistics = ({ studyId, memberDetails }: DashboardStatisticsProp
   const { studyStatisticData } = useStudyStatisticQuery(studyId, currentYearMonth);
 
   if (!studyStatisticData) {
-    return null;
+    return <Loader />;
   }
 
-  const memberStatisticData = matchMember(studyStatisticData, memberDetails);
+  const memberStatisticData = matchMemberStatistic(studyStatisticData, memberDetails);
 
   return (
     <div className="flex flex-col gap-4">

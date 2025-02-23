@@ -10,14 +10,33 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { StudyParticipantModal } from '@/app/_components/Setting/StudyParticipantModal';
+import { useDeleteStudyOutMutation } from '@/app/_hooks/api/useDeleteStudyOutMutation';
+import { useUpdateStudyLeaderMutation } from '@/app/_hooks/api/useUpdateStudyLeaderMutation';
 
 interface StudyParticipantButtonProps {
   id: string;
   name: string;
+  studyId: string;
 }
 
-const StudyParticipantButton = ({ id, name }: StudyParticipantButtonProps) => {
+const StudyParticipantButton = ({ id, name, studyId }: StudyParticipantButtonProps) => {
   const [openModal, setOpenModal] = useState<string | null>(null);
+  const deleteStudyOutMutation = useDeleteStudyOutMutation();
+  const updateStudyLeaderMutation = useUpdateStudyLeaderMutation();
+
+  const handleMandate = () => {
+    updateStudyLeaderMutation.mutate(
+      {
+        studyId: studyId,
+        studyLeaderData: { leaderId: id },
+      },
+      { onSuccess: () => setOpenModal(null) },
+    );
+  };
+
+  const handleKick = () => {
+    deleteStudyOutMutation.mutate(studyId, { onSuccess: () => setOpenModal(null) });
+  };
 
   return (
     <>
@@ -47,6 +66,7 @@ const StudyParticipantButton = ({ id, name }: StudyParticipantButtonProps) => {
           id={id}
           name={name}
           onClose={() => setOpenModal(null)}
+          onHandle={handleMandate}
         />
       )}
       {openModal === 'kick' && (
@@ -55,6 +75,7 @@ const StudyParticipantButton = ({ id, name }: StudyParticipantButtonProps) => {
           id={id}
           name={name}
           onClose={() => setOpenModal(null)}
+          onHandle={handleKick}
         />
       )}
     </>

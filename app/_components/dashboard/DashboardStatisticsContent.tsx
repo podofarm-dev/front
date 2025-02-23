@@ -3,6 +3,7 @@
 import { memberStatisticData } from '@/app/_types/study';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import SquareStack from '@/app/_components/common/SquareStack';
+import ProfileIcon from '@/app/_components/common/ProfileIcon';
 
 interface DashboardStatisticsContentProps {
   memberStatisticData: memberStatisticData[];
@@ -16,10 +17,11 @@ const DashboardStatisticsContent = ({ memberStatisticData }: DashboardStatistics
           key={item.memberDetail?.id}
           className="relative flex min-w-fit flex-row items-center gap-10"
         >
-          <Avatar>
-            <AvatarImage src={item.memberDetail?.imgUrl} />
-            <AvatarFallback>{item.memberDetail?.name}</AvatarFallback>
-          </Avatar>
+          <ProfileIcon
+            id={item.memberDetail?.id}
+            name={item.memberDetail?.name}
+            imgUrl={item.memberDetail?.imgUrl}
+          />
           <div className="relative flex w-full flex-row gap-1">
             {item.grass.map((stack) => {
               return indexItem === 0 ? (

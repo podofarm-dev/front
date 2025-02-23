@@ -1,12 +1,13 @@
 'use client';
 
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-import { PATH } from '@/app/_constants/path';
+import LoginModal from '@/app/_components/common/LoginModal';
+import Logo from '@/app/_components/common/Logo';
 
 const LandingHeader = () => {
   const [bgColor, setBgColor] = useState('bg-transparent');
+  const [openModal, setOpenModal] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,14 +23,20 @@ const LandingHeader = () => {
   }, []);
 
   return (
-    <header
-      className={`fixed top-0 z-50 flex w-full justify-between px-36 py-4 transition-all duration-300 ${bgColor} left-0`}
-    >
-      <h1 className="text-2xl font-bold">PodoFarm</h1>
-      <button className="text-gray-300 hover:text-white">
-        <Link href={PATH.LOGIN}>로그인</Link>
-      </button>
-    </header>
+    <>
+      <header
+        className={`fixed top-0 z-50 flex w-full justify-between px-36 py-4 transition-all duration-300 ${bgColor} left-0`}
+      >
+        <div className="flex flex-row items-center gap-2">
+          <Logo />
+          <h1 className="text-2xl font-bold">PodoFarm</h1>
+        </div>
+        <button className="text-gray-300 hover:text-white" onClick={() => setOpenModal('login')}>
+          로그인
+        </button>
+      </header>
+      {openModal === 'login' && <LoginModal onClose={() => setOpenModal(null)} />}
+    </>
   );
 };
 

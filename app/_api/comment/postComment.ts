@@ -1,10 +1,10 @@
 import { axiosInstance } from '@/app/_api/axiosInstance';
 import { END_POINTS } from '@/app/_constants/api';
-import { CommentType, PostCommentBody } from '@/app/_types/comment';
+import { CommentRequestBody, CommentType } from '@/app/_types/comment';
 
 export interface PostCommentParams {
   codeId: string;
-  commentData: PostCommentBody;
+  commentData: CommentRequestBody;
 }
 
 const postComment = async ({ codeId, commentData }: PostCommentParams) => {

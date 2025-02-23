@@ -19,12 +19,21 @@ interface FormValues {
 
 interface UserSettingProps {
   memberId: string;
+  studyId: string;
   name: string;
   email: string;
   imgUrl: string;
+  isStudyLeader: boolean;
 }
 
-const UserSetting = ({ memberId, name, email, imgUrl }: UserSettingProps) => {
+const UserSetting = ({
+  memberId,
+  name,
+  studyId,
+  email,
+  imgUrl,
+  isStudyLeader,
+}: UserSettingProps) => {
   const usernameMutation = useUsernameMutation();
   const profileUploadMutation = useProfileUploadMutation();
   const { register, handleSubmit, setValue, watch } = useForm<FormValues>();
@@ -96,7 +105,7 @@ const UserSetting = ({ memberId, name, email, imgUrl }: UserSettingProps) => {
         <span className="text-base">
           한번 계정을 삭제하면 다시 전으로 돌아갈 수 없습니다. 반드시 확인하세요.
         </span>
-        <OutStudyButton />
+        <OutStudyButton studyId={studyId} isStudyLeader={isStudyLeader} />
       </div>
       <hr className="border-bolder" />
       <div className="flex flex-col gap-8">
@@ -104,7 +113,7 @@ const UserSetting = ({ memberId, name, email, imgUrl }: UserSettingProps) => {
         <span className="text-base">
           한번 계정을 삭제하면 다시 전으로 돌아갈 수 없습니다. 반드시 확인하세요.
         </span>
-        <DeleteButton isUser={true} />
+        <DeleteButton isUser={true} studyId={studyId} />
       </div>
     </div>
   );

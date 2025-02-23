@@ -53,10 +53,13 @@ export interface StudyMemberData {
   memberDetails: StudyMemberListDetail[];
 }
 
-export interface StudyMemberListDetail {
+export interface StudyMemberListDetail extends StudyMemberDetail {
+  imgUrl: string;
+}
+
+export interface StudyMemberDetail {
   id: string;
   name: string;
-  imgUrl: string;
   isLeader: boolean;
 }
 
@@ -77,4 +80,23 @@ export interface MemberGrassData {
 export interface memberStatisticData {
   memberDetail?: StudyMemberListDetail;
   grass: MemberGrassData[];
+}
+
+export interface StudyInfoData {
+  studyId: string;
+  studyName: string;
+  members: StudyMemberDetail[];
+}
+
+export interface StudyNameRequestBody {
+  name: string;
+}
+
+export interface StudyLeaderRequestBody {
+  leaderId: string;
+}
+
+export interface memberSolvedData {
+  memberDetail?: StudyMemberListDetail;
+  solved: number;
 }

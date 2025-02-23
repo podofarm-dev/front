@@ -3,8 +3,9 @@
 import SettingTabDecider from '@/app/_components/Setting/SettingTabDecider';
 import SettingTab from '@/app/_components/Setting/SettingTab';
 import { useUserInfoQuery } from '@/app/_hooks/api/useUserInfoQuery';
-import { useStudyMemberQuery } from '@/app/_hooks/api/useStudyMemberQuery';
 import { judgeStudyLeader } from '@/app/_utils/judgeStudyLeader';
+import { useStudyInfoQuery } from '@/app/_hooks/api/useStudyInfoQuery';
+import Loader from '@/app/_components/common/Loader';
 
 interface SettingContentProps {
   studyId: string;
@@ -12,18 +13,22 @@ interface SettingContentProps {
 
 const SettingContent = ({ studyId }: SettingContentProps) => {
   const { userInfoData } = useUserInfoQuery();
-  const { studyMemberData } = useStudyMemberQuery(studyId);
+  const { studyInfoData } = useStudyInfoQuery(studyId);
 
-  if (!userInfoData || !studyMemberData) {
-    return null;
+  if (!userInfoData || !studyInfoData) {
+    return <Loader />;
   }
 
-  const isStudyLeader = judgeStudyLeader(studyMemberData.memberDetails, userInfoData.memberId);
+  const isStudyLeader = judgeStudyLeader(studyInfoData.members, userInfoData.memberId);
 
   return (
     <>
       {isStudyLeader && <SettingTab />}
-      <SettingTabDecider userInfoData={userInfoData} studyMemberData={studyMemberData} />
+      <SettingTabDecider
+        userInfoData={userInfoData}
+        studyMemberData={studyInfoData}
+        isStudyLeader={isStudyLeader}
+      />
     </>
   );
 };

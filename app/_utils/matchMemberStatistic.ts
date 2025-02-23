@@ -1,6 +1,6 @@
 import { StudyMemberGrassData, StudyMemberListDetail } from '@/app/_types/study';
 
-export const matchMember = (
+export const matchMemberStatistic = (
   studyStatisticData: StudyMemberGrassData[],
   memberDetails: StudyMemberListDetail[],
 ) => {

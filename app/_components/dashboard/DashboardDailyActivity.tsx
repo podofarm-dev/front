@@ -1,6 +1,6 @@
 import { useUserStore } from '@/app/_store/useUserStore';
 import { StudyMemberListDetail } from '@/app/_types/study';
-import { filterMember } from '@/app/_utils/filterMemberName';
+import { filterMember } from '@/app/_utils/filterMember';
 
 interface DashboardDailyActivityProps {
   title: string;

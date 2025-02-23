@@ -7,5 +7,5 @@ interface DeleteCommentParams {
 }
 
 export const deleteComment = ({ codeId, commentId }: DeleteCommentParams) => {
-  return axiosInstance.delete(END_POINTS.DELETE_COMMENT(codeId, commentId));
+  return axiosInstance.delete(END_POINTS.COMMENT_DETAIL(codeId, commentId));
 };

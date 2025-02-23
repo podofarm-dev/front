@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
-import Download from '@/app/_svg/downlaod.svg';
+import Download from '@/app/_svg/download.svg';
 import Password from '@/app/_svg/password.svg';
 import Users from '@/app/_svg/users.svg';
 import LandingHeader from '@/app/_components/layout/LandingHeader';
@@ -68,9 +68,11 @@ export default function LandingPage() {
               <div className="flex justify-center gap-6">
                 <div className="relative w-80 rounded-2xl bg-gradient-to-tr from-[#A55EFF] to-[#7BE1FF] p-[1px]">
                   <div className="h-full rounded-2xl bg-gradient-to-tr from-[#1d213a] from-20% to-[#4F525E] px-5 pb-32 pt-14">
-                    <div className="flex flex-col items-start gap-3">
-                      <Download className="h-8 w-8 text-white/70" />
-                      <h3 className="text-lg font-bold">Download Chrome Extension</h3>
+                    <div className="flex flex-col items-start gap-5">
+                      <div className="flex flex-col">
+                        <Download className="h-8 w-8 text-white/70" />
+                        <h3 className="text-lg font-bold">Download Chrome Extension</h3>
+                      </div>
                       <p className="text-start text-lg font-normal leading-7 text-secondary-foreground">
                         크롬 확장 프로그램 밀도를 설치하세요
                         <br />
@@ -83,9 +85,11 @@ export default function LandingPage() {
                 </div>
                 <div className="relative w-80 rounded-2xl bg-gradient-to-tr from-[#A55EFF] to-[#7BE1FF] p-[1px]">
                   <div className="h-full rounded-2xl bg-gradient-to-tr from-[#1d213a] from-20% to-[#4F525E] px-5 pb-32 pt-14">
-                    <div className="flex flex-col items-start gap-3">
-                      <Password className="h-8 w-8 text-white/70" />
-                      <h3 className="text-lg font-bold">Social Login</h3>
+                    <div className="flex flex-col items-start gap-5">
+                      <div className="flex flex-col">
+                        <Password className="h-8 w-8 text-white/70" />
+                        <h3 className="text-lg font-bold">Social Login</h3>
+                      </div>
                       <p className="text-start text-lg font-normal leading-7 text-secondary-foreground">
                         프로그래머스와 동일한
                         <br />
@@ -98,9 +102,11 @@ export default function LandingPage() {
                 </div>
                 <div className="relative w-80 rounded-2xl bg-gradient-to-tr from-[#A55EFF] to-[#7BE1FF] p-[1px]">
                   <div className="h-full rounded-2xl bg-gradient-to-tr from-[#1d213a] from-20% to-[#4F525E] px-5 pb-32 pt-14">
-                    <div className="flex flex-col items-start gap-3">
-                      <Users className="h-8 w-8 text-white/70" />
-                      <h3 className="text-lg font-bold">Make Study group</h3>
+                    <div className="flex flex-col items-start gap-5">
+                      <div className="flex flex-col">
+                        <Users className="h-8 w-8 text-white/70" />
+                        <h3 className="text-lg font-bold">Make Study group</h3>
+                      </div>
                       <p className="text-start text-lg font-normal leading-7 text-secondary-foreground">
                         새 스터디를 생성하거나
                         <br />
@@ -127,7 +133,7 @@ export default function LandingPage() {
                   {/* 195 문제 섹션 */}
                   <div className="border-b-2 border-r-2 border-main-3 p-8">
                     <h2 className="mb-4 text-4xl font-semibold text-main-1">
-                      195 <span className="text-2xl">문제</span>
+                      198 <span className="text-2xl">문제</span>
                     </h2>
                     <p className="mb-1 text-lg text-purple-100">알고리즘 코테를 위한 문제 선정</p>
                     <p className="text-sm text-secondary-foreground">

@@ -41,7 +41,7 @@ const SolvedDetailContent = ({ studyId, problemId, memberId }: SolvedDetailConte
           codeSource={item.codeSource}
           problemType={item.problemType}
           codePerformance={item.codePerformance}
-          codeStatus={item.codeStatus}
+          codeAccuracy={item.codeAccuracy}
           isUser={userInfoData?.memberId === memberId}
         />
       ))}

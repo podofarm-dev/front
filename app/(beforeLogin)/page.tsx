@@ -7,6 +7,7 @@ import Password from '@/app/_svg/password.svg';
 import Users from '@/app/_svg/users.svg';
 import LandingHeader from '@/app/_components/layout/LandingHeader';
 import { EXTENSION_PATH } from '@/app/_constants/path';
+import Logo from '@/app/_components/common/Logo';
 
 export default function LandingPage() {
   return (
@@ -129,7 +130,7 @@ export default function LandingPage() {
                 </p>
               </div>
               <div className="p-8">
-                <div className="mx-auto grid max-w-4xl grid-cols-2">
+                <div className="mx-auto grid max-h-[398px] max-w-[960px] grid-cols-2">
                   {/* 195 문제 섹션 */}
                   <div className="border-b-2 border-r-2 border-main-3 p-8">
                     <h2 className="mb-4 text-4xl font-semibold text-main-1">
@@ -167,20 +168,29 @@ export default function LandingPage() {
               </div>
             </section>
 
-            <section className="flex flex-col gap-32 text-center">
-              <div className="flex flex-col gap-4">
-                <h3 className="text-4xl font-bold">Introduction of our brand</h3>
-                <p className="text-base text-secondary-foreground">Let me introduce our product</p>
-              </div>
-              <div className="flex items-center justify-center gap-8">
-                <p className="max-w-2xl">
-                  포도팜은 취업을 준비하는 JAVA 국비지원생들을 위한 알고리즘 스터디 플랫폼입니다.
-                  포도팜은 취업을 준비하는 JAVA 국비지원생들을 위한 알고리즘 스터디 플랫폼입니다.
-                  포도팜은 취업을 준비하는 JAVA 국비지원생들을 위한 알고리즘 스터디 플랫폼입니다.
-                  포도팜은 취업을 준비하는 JAVA 국비지원생들을 위한 알고리즘 스터디 플랫폼입니다.
-                  포도팜은 취업을 준비하는 JAVA 국비지원생들을 위한 알고리즘 스터디 플랫폼입니다.
+            <section className="flex flex-col items-center gap-8 text-center">
+              <div className="flex flex-col items-center gap-4">
+                <h3 className="text-4xl font-bold">Introduction of our service</h3>
+                <p className="text-base text-secondary-foreground">
+                  포도팜과 함께 더 효율적으로 공부하고, 개발 실력을 꾸준히 쌓아보세요!
                 </p>
-                <div>로고</div>
+              </div>
+              <div className="flex max-w-3xl flex-row items-center justify-center gap-8">
+                <p className="text-start text-sm font-normal leading-tight">
+                  포도팜은 Java 언어를 기반으로 프로그래밍 학습과 문제 해결을 보다 효율적으로
+                  만들어주는 플랫폼입니다. 프로그래머스에서 문제를 풀면 확장 프로그램을 통해 문제와
+                  정답 데이터를 자동으로 업로드하여, 따로 정리할 필요 없이 풀이 기록을 체계적으로
+                  관리할 수 있습니다. <br />
+                  <br />
+                  또한, 푼 문제를 정리하고 복습할 수 있어 시간이 지나도 다시 보았을 때 쉽게 이해할
+                  수 있습니다. 단순히 문제를 푸는 것에서 그치지 않고, 다른 개발자들의 코드도 함께
+                  살펴보며 다양한 풀이 방식을 익힐 수 있어 실력 향상에 큰 도움이 됩니다. <br />
+                  <br />
+                  포도팜은 스터디 공간을 제공하여 개발자들이 함께 학습할 수 있도록 지원하며, 포도
+                  심기 기능을 통해 동기부여를 얻을 수 있습니다. 문제 풀이 과정을 기록하고 복습하여
+                  학습 효과를 극대화 시켜 보세요!
+                </p>
+                <Logo className="h-96 w-96" />
               </div>
             </section>
           </div>

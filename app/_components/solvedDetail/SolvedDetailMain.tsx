@@ -1,12 +1,17 @@
 'use client';
 
+import { useState } from 'react';
+
 import { Badge } from '@/components/ui/badge';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
 import SolvedDescription from '@/app/_components/solved/SolvedDescription';
 import SolvedCode from '@/app/_components/solved/SolvedCode';
 import { Pencil } from 'lucide-react';
+import { useUpdateCodeMutation } from '@/app/_hooks/api/useUpdateCodeMutation';
 
 interface SolvedDetailMainProps {
+  problemId: string;
+  memberId: string;
   title: string;
   name?: string;
   description: string;
@@ -16,9 +21,12 @@ interface SolvedDetailMainProps {
   problemType: string;
   codePerformance: string;
   codeStatus: boolean;
+  isUser: boolean;
 }
 
 const SolvedDetailMain = ({
+  problemId,
+  memberId,
   title,
   name,
   description,
@@ -28,7 +36,17 @@ const SolvedDetailMain = ({
   problemType,
   codePerformance,
   codeStatus,
+  isUser,
 }: SolvedDetailMainProps) => {
+  const [solvedCode, setSolvedCode] = useState(codeSource);
+  const updateCodeMutation = useUpdateCodeMutation();
+
+  const handleCode = () => {
+    if (solvedCode !== codeSource) {
+      updateCodeMutation.mutate({ codeData: { memberId, problemId, code: solvedCode } });
+    }
+  };
+
   return (
     <>
       <div className="flex flex-row justify-between">
@@ -38,7 +56,7 @@ const SolvedDetailMain = ({
         </div>
         <div className="flex flex-row items-center gap-4">
           <div className="text-lg">걸린시간 : {codeTime}</div>
-          <Pencil className="cursor-pointer" />
+          {/* <Pencil className="cursor-pointer" /> */}
         </div>
       </div>
       <div className="grid grid-cols-4 gap-16 rounded-lg border border-bolder px-4 py-8">
@@ -59,7 +77,7 @@ const SolvedDetailMain = ({
           <div>{codeSolvedDate}</div>
         </div>
       </div>
-      <div className="relative h-[668px] rounded-lg border border-bolder bg-accent p-6">
+      <div className="relative h-[668px] rounded-lg border border-bolder bg-tertiary p-6">
         <ResizablePanelGroup direction="horizontal">
           <ResizablePanel defaultSize={35}>
             <div>문제</div>
@@ -68,15 +86,15 @@ const SolvedDetailMain = ({
               <SolvedDescription description={description} />
             </div>
           </ResizablePanel>
-          <ResizableHandle className="mx-6" />
+          <ResizableHandle className="mx-6 bg-bolder" withHandle />
           <ResizablePanel defaultSize={65}>
             <div className="flex justify-between">
               <div>Solution.java</div>
-              <Pencil className="cursor-pointer" />
+              {isUser && <Pencil className="cursor-pointer" onClick={handleCode} />}
             </div>
             <hr className="my-6 border-bolder" />
             <div className="custom-scrollbar h-full max-h-[540px] overflow-y-auto">
-              <SolvedCode code={codeSource} />
+              <SolvedCode solvedCode={solvedCode} setSolvedCode={setSolvedCode} />
             </div>
           </ResizablePanel>
         </ResizablePanelGroup>

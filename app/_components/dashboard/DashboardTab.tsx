@@ -24,19 +24,19 @@ const DashboardTab = () => {
         onClick={onClickStatistics}
         className={`w-24 rounded-r-none bg-tertiary py-5 text-bolder hover:bg-accent-foreground hover:text-primary-foreground ${tab === 'statistics' && 'bg-accent-foreground text-primary-foreground'}`}
       >
-        일별 통계
+        월간 스터디
       </Button>
       <Button
         onClick={onClickSolved}
         className={`w-24 rounded-none bg-tertiary py-5 text-bolder hover:bg-accent-foreground hover:text-primary-foreground ${tab === 'solved' && 'bg-accent-foreground text-primary-foreground'}`}
       >
-        월별 푼문제
+        월간 추이
       </Button>
       <Button
         onClick={onClickCumulative}
         className={`w-24 rounded-l-none bg-tertiary py-5 text-bolder hover:bg-accent-foreground hover:text-primary-foreground ${tab === 'cumulative' && 'bg-accent-foreground text-primary-foreground'}`}
       >
-        총 누적
+        풀이 현황
       </Button>
     </>
   );

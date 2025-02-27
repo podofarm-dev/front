@@ -27,7 +27,7 @@ const DeleteButton = ({ isUser, studyId }: DeleteButtonProps) => {
 
       {openModal === 'user' && (
         <DeleteModal
-          title="계정 삭제하기"
+          title="계정 탈퇴"
           label="계정"
           onClose={() => setOpenModal(null)}
           studyId={studyId}

@@ -44,7 +44,7 @@ export function StudyParticipantModal({ title, id, name, onClose, onHandle }: St
           </div>
         )}
         <DialogFooter className="flex flex-row justify-end sm:flex sm:flex-row sm:justify-end">
-          <Button type="submit" className="bg-secondary-foreground text-bolder" onClick={onClose}>
+          <Button className="border border-bolder bg-accent" onClick={onClose}>
             취소
           </Button>
           {title === '스터디장 위임' && (

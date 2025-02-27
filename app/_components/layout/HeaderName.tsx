@@ -3,7 +3,8 @@
 import { ChevronRight } from 'lucide-react';
 
 import { splitPathname } from '@/app/_utils/splitPathname';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
+import { useSolvedContentQuery } from '@/app/_hooks/api/useSolvedContentQuery';
 
 interface HeaderNameProps {
   pathname: string;
@@ -13,6 +14,11 @@ const HeaderName = ({ pathname }: HeaderNameProps) => {
   const router = useRouter();
   const headerName = splitPathname(pathname);
 
+  const { problemId } = useParams();
+  const id = Array.isArray(problemId) ? problemId[0] : problemId;
+
+  const { solvedContentData } = useSolvedContentQuery(id);
+
   if (headerName === '문제 상세 화면') {
     return (
       <div className="flex flex-row">
@@ -20,7 +26,7 @@ const HeaderName = ({ pathname }: HeaderNameProps) => {
           푼 문제
         </span>
         <ChevronRight />
-        <span>문제 상세 화면</span>
+        <span>{solvedContentData?.title ?? '불러오는 중...'}</span>
       </div>
     );
   }

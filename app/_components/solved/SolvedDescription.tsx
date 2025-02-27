@@ -3,10 +3,6 @@
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
-import CodeMirror from '@uiw/react-codemirror';
-import { java } from '@codemirror/lang-java';
-import { vscodeDark } from '@uiw/codemirror-theme-vscode';
-
 interface SolvedDescriptionProps {
   description: string;
 }
@@ -34,11 +30,9 @@ const SolvedDescription = ({ description }: SolvedDescriptionProps) => {
           const isInline = (props as any).inline ?? false;
           const match = /language-(\w+)/.exec(className || '');
           return !isInline && match ? (
-            <CodeMirror
-              value={String(children).replace(/\n$/, '')}
-              theme={vscodeDark}
-              extensions={[java()]}
-            />
+            <code className={className} {...props}>
+              {children}
+            </code>
           ) : (
             <code className={className} {...props}>
               {children}

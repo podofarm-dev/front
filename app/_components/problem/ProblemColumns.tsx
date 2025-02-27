@@ -4,9 +4,9 @@ import Link from 'next/link';
 import { ColumnDef } from '@tanstack/react-table';
 
 import Check from '@/app/_svg/check.svg';
-import { ProblemListData } from '@/app/_types/problem';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { ProblemListData, ProblemListImgData } from '@/app/_types/problem';
 import { X } from 'lucide-react';
+import ProfileIcon from '@/app/_components/common/ProfileIcon';
 
 export const columns: ColumnDef<ProblemListData>[] = [
   {
@@ -78,14 +78,17 @@ export const columns: ColumnDef<ProblemListData>[] = [
     accessorKey: 'img',
     header: () => <div className="my-6 text-center text-secondary-foreground">푼 사람</div>,
     cell: ({ row }) => {
-      const img = row.getValue('img') as string[];
+      const img = row.getValue('img') as ProblemListImgData[];
+
       return (
         <div className="flex flex-row gap-2">
-          {img.map((item) => (
-            <Avatar className="h-6 w-6">
-              <AvatarImage src={item} />
-              <AvatarFallback>{item}</AvatarFallback>
-            </Avatar>
+          {img.map((item, index) => (
+            <ProfileIcon
+              key={item.name + String(index)}
+              name={item.name}
+              imgUrl={item.imgUrl}
+              className="h-7 w-7"
+            />
           ))}
         </div>
       );

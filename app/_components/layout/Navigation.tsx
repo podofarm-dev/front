@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
+import { useParams, usePathname } from 'next/navigation';
 
 import Home from '@/app/_svg/home.svg';
 import Algo from '@/app/_svg/algo.svg';
@@ -9,6 +9,7 @@ import Setting from '@/app/_svg/setting.svg';
 import Solved from '@/app/_svg/solved.svg';
 import { PATH } from '@/app/_constants/path';
 import { useUserInfoQuery } from '@/app/_hooks/api/useUserInfoQuery';
+import { activateNav } from '@/app/_utils/activateNav';
 
 const navigationItem = [
   { icon: <Home />, href: PATH.STUDY_DASHBOARD, title: '대시보드' },
@@ -18,6 +19,7 @@ const navigationItem = [
 ];
 
 const Navigation = () => {
+  const pathname = usePathname();
   const { studyId } = useParams();
   const { userInfoData } = useUserInfoQuery();
 
@@ -26,7 +28,7 @@ const Navigation = () => {
       {navigationItem.map((item, index) => (
         <Link
           key={index}
-          className="flex cursor-pointer flex-row items-center gap-2"
+          className={`relative flex cursor-pointer flex-row items-center gap-2 py-3 before:absolute before:-left-2 before:bottom-0 before:h-0.5 before:w-[calc(100%+16px)] before:bg-accent-foreground before:transition-all ${activateNav(pathname) === item.title ? 'before:scale-100' : 'before:scale-0'}`}
           href={item.href(String(studyId), String(userInfoData?.memberId))}
         >
           <div>{item.icon}</div>

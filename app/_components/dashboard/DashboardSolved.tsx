@@ -2,7 +2,6 @@
 
 import { useYearMonthStore } from '@/app/_store/useYearMonthStore';
 import { useSolvedStatisticQuery } from '@/app/_hooks/api/useSolvedStatisticQuery';
-import DashboardMonthNavigator from '@/app/_components/dashboard/DashboardMonthNavigator';
 import { StudyMemberListDetail } from '@/app/_types/study';
 import { matchMemberSolved } from '@/app/_utils/matchMemberSolved';
 import Loader from '@/app/_components/common/Loader';
@@ -23,12 +22,7 @@ const DashboardSolved = ({ studyId, memberDetails }: DashboardSolvedProps) => {
 
   const memberSolvedData = matchMemberSolved(solvedStatisticData, memberDetails);
 
-  return (
-    <div className="flex flex-col gap-4">
-      <DashboardMonthNavigator />
-      <DashboardSolvedContent memberSolvedData={memberSolvedData} />
-    </div>
-  );
+  return <DashboardSolvedContent memberSolvedData={memberSolvedData} />;
 };
 
 export default DashboardSolved;

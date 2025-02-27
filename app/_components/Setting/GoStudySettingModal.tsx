@@ -38,7 +38,7 @@ export function GoStudySettingModal({ onClose, onHandle }: StudyModalProps) {
           </div>
         </div>
         <DialogFooter className="flex flex-row justify-end sm:flex sm:flex-row sm:justify-end">
-          <Button className="bg-secondary-foreground text-bolder" onClick={onClose}>
+          <Button className="border border-bolder bg-accent" onClick={onClose}>
             취소
           </Button>
           <Button className="bg-accent-foreground" onClick={goStudySetting}>

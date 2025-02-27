@@ -8,6 +8,7 @@ export const useUpdateStudyNameMutation = () => {
   const updateStudyNameMutation = useMutation({
     mutationFn: patchStudyName,
     onSuccess: (_, { studyId }) => {
+      queryClient.invalidateQueries({ queryKey: ['study', studyId] });
       queryClient.invalidateQueries({ queryKey: ['study-info', studyId] });
       toast.success('스터디명이 수정되었습니다!');
     },

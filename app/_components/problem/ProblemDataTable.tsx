@@ -137,7 +137,7 @@ export function ProblemDataTable<TData, TValue>({
         {Array.from({ length: pageInfo.totalPages }, (_, i) => i + 1).map((pageIndex) => {
           return (
             <button
-              key={page}
+              key={pageIndex}
               className={`text-md ${
                 pageIndex - 1 === page ? 'drop-shadow-[0_0_5px_rgba(255,255,255,0.6)]' : ''
               }`}

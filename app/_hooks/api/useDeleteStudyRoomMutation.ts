@@ -12,7 +12,7 @@ export const useDeleteStudyRoomMutation = () => {
     mutationFn: deleteStudyRoom,
     onSuccess: () => {
       toast.success('스터디가 삭제되었습니다!');
-      router.push(PATH.DASHBOARD);
+      router.replace(PATH.ROOT);
     },
     onError: (error) => {
       console.error(error);

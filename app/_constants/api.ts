@@ -7,6 +7,7 @@ export const END_POINTS = {
   STUDY_CREATE: '/study',
   STUDY_ENTER: '/study/enter-study',
   USER_INFO: '/member/info',
+  UPDATE_CODE: '/member/edit-code',
   DELETE_USER: (memberId: string) => `/member/${memberId}/info`,
   PROFILE_UPLOAD: (memberId: string) => `/member/${memberId}/upload`,
   RECENT_LOGS: (studyId: string) => `/study/${studyId}/logs`,

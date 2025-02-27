@@ -4,7 +4,6 @@ import { useSolvedStatisticQuery } from '@/app/_hooks/api/useSolvedStatisticQuer
 import Loader from '@/app/_components/common/Loader';
 import { StudyMemberListDetail } from '@/app/_types/study';
 import { matchMemberSolved } from '@/app/_utils/matchMemberSolved';
-import DashboardMonthNavigator from '@/app/_components/dashboard/DashboardMonthNavigator';
 import DashboardCumulativeContent from './DashboardCumulativeContent';
 
 interface DashboardCumulativeProps {
@@ -21,11 +20,7 @@ const DashboardCumulative = ({ studyId, memberDetails }: DashboardCumulativeProp
 
   const memberCumulativeData = matchMemberSolved(solvedStatisticData, memberDetails);
 
-  return (
-    <div className="flex flex-col gap-4">
-      <DashboardCumulativeContent memberCumulativeData={memberCumulativeData} />
-    </div>
-  );
+  return <DashboardCumulativeContent memberCumulativeData={memberCumulativeData} />;
 };
 
 export default DashboardCumulative;

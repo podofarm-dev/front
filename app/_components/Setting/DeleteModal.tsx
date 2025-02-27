@@ -65,8 +65,8 @@ const DeleteModal = ({ title, label, studyId, onClose }: DeleteModalProps) => {
             {label === '계정' && (
               <>
                 <Label htmlFor="user" className="text-left text-base">
-                  한번 {label}을 삭제하면 다시 전으로 돌아갈 수 없습니다.
-                  <br /> 반드시 확인하세요.
+                  한번 {label}을 삭제하면 다시 전으로 돌아갈 수 없으며, 이전까지 푼 문제는 모두
+                  삭제됩니다. 반드시 확인하세요.
                   <br />
                   <br />
                   {label}을 삭제하기 희망하시면 아래 "삭제합니다"를 작성해주세요.
@@ -82,8 +82,8 @@ const DeleteModal = ({ title, label, studyId, onClose }: DeleteModalProps) => {
             {label === '스터디' && (
               <>
                 <Label htmlFor="study" className="text-left text-base">
-                  한번 {label}를 삭제하면 다시 전으로 돌아갈 수 없습니다.
-                  <br /> 반드시 확인하세요.
+                  {label}를 삭제하면 모든 정보가 영구적으로 삭제되며 복구할 수 없습니다. 반드시
+                  확인하세요.
                   <br />
                   <br />
                   {label}그룹을 삭제하기 희망하시면 아래 "삭제합니다"를 작성해주세요.
@@ -99,12 +99,12 @@ const DeleteModal = ({ title, label, studyId, onClose }: DeleteModalProps) => {
           </div>
         </div>
         <DialogFooter className="flex flex-row justify-end sm:flex sm:flex-row sm:justify-end">
-          <Button type="submit" className="bg-secondary-foreground text-bolder" onClick={onClose}>
+          <Button type="submit" className="border border-bolder bg-accent" onClick={onClose}>
             취소
           </Button>
           <Button
             type="submit"
-            className="bg-warning"
+            className="bg-warning disabled:bg-secondary-foreground disabled:text-bolder disabled:opacity-100"
             disabled={!inputValue}
             onClick={handleDelete}
           >

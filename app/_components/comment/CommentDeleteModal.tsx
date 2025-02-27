@@ -25,7 +25,7 @@ const CommentDeleteModal = ({ onHandleDelete, onClose }: CommentDeleteModalProps
           <span className="text-left text-base">코멘트를 완전히 삭제하시겠습니까?</span>
         </div>
         <DialogFooter className="flex flex-row justify-end sm:flex sm:flex-row sm:justify-end">
-          <Button className="bg-secondary-foreground text-bolder" onClick={onClose}>
+          <Button className="border border-bolder bg-accent" onClick={onClose}>
             취소
           </Button>
           <Button className="bg-warning" onClick={onHandleDelete}>

@@ -8,6 +8,7 @@ export const useUpdateStudyLeaderMutation = () => {
   const updateStudyLeaderMutation = useMutation({
     mutationFn: patchStudyLeader,
     onSuccess: (_, { studyId }) => {
+      queryClient.invalidateQueries({ queryKey: ['study', studyId] });
       queryClient.invalidateQueries({ queryKey: ['study-info', studyId] });
       toast.success('스터디 리더가 변경되었습니다!');
     },

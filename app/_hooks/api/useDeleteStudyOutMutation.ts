@@ -12,7 +12,7 @@ export const useDeleteStudyOutMutation = () => {
     mutationFn: deleteStudyOut,
     onSuccess: () => {
       toast.success('스터디방에 나가졌습니다!');
-      router.push(PATH.DASHBOARD);
+      router.push(PATH.ROOT);
     },
     onError: (error) => {
       console.error(error);

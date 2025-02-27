@@ -14,7 +14,12 @@ export interface ProblemListData {
   problemLevel: string;
   problemLink: string;
   status?: string;
-  img: string[];
+  img: ProblemListImgData[];
+}
+
+export interface ProblemListImgData {
+  imgUrl: string;
+  name: string;
 }
 
 export interface ProblemListQueryString {

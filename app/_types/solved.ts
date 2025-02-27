@@ -25,6 +25,7 @@ export interface SolvedData {
 }
 
 export interface SolvedSummary {
+  codeNo: number;
   codeSource: string;
   codeSolvedDate: string;
   codeStatus: boolean;
@@ -37,4 +38,10 @@ export interface SolvedSummary {
 export interface SolvedContent {
   readme: string;
   title: string;
+}
+
+export interface CodeRequestBody {
+  memberId: string;
+  problemId: string;
+  code: string;
 }

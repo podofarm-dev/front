@@ -2,15 +2,18 @@
 
 import { memberSolvedData } from '@/app/_types/study';
 import ProfileIcon from '@/app/_components/common/ProfileIcon';
+import DashboardBar from '@/app/_components/dashboard/DashboardBar';
 
 interface DashboardSolvedContentProps {
   memberCumulativeData: memberSolvedData[];
 }
 
 const DashboardCumulativeContent = ({ memberCumulativeData }: DashboardSolvedContentProps) => {
+  const maxSolved = Math.max(1, memberCumulativeData[0]?.solved || 1);
+
   return (
     <div className="relative flex flex-col gap-2 overflow-x-auto py-4">
-      {memberCumulativeData.map((item, indexItem) => (
+      {memberCumulativeData.map((item) => (
         <div
           key={item.memberDetail?.id}
           className="relative flex min-w-fit flex-row items-center gap-10"
@@ -20,10 +23,7 @@ const DashboardCumulativeContent = ({ memberCumulativeData }: DashboardSolvedCon
             name={item.memberDetail?.name}
             imgUrl={item.memberDetail?.imgUrl}
           />
-          <div
-            className="h-6 bg-gradient-to-r from-purple-900 to-purple-300"
-            style={{ width: `${(item.solved / 5) * 100}%` }}
-          />
+          <DashboardBar solved={item.solved} maxSolved={maxSolved} />
         </div>
       ))}
     </div>

@@ -10,6 +10,14 @@ interface DashboardStatisticsContentProps {
 }
 
 const DashboardStatisticsContent = ({ memberStatisticData }: DashboardStatisticsContentProps) => {
+  if (memberStatisticData.length === 0) {
+    return (
+      <p className="text-center text-secondary-foreground">
+        해당 월에는 스터디가 존재하지 않았습니다 ㅠ
+      </p>
+    );
+  }
+
   return (
     <div className="relative flex flex-col gap-2 overflow-x-auto py-4">
       {memberStatisticData.map((item, indexItem) => (

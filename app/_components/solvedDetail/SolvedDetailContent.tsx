@@ -9,6 +9,7 @@ import { filterMember } from '@/app/_utils/filterMember';
 import Loader from '@/app/_components/common/Loader';
 import SolvedDetailMain from './SolvedDetailMain';
 import convertSolvedDate from '@/app/_utils/convertSolvedDate';
+import { useUserInfoQuery } from '@/app/_hooks/api/useUserInfoQuery';
 
 interface SolvedDetailContentProps {
   studyId: string;
@@ -16,45 +17,8 @@ interface SolvedDetailContentProps {
   memberId: string;
 }
 
-const commentListData = [
-  {
-    commentNo: 13,
-    commentContent: '좋은 풀이입니다!',
-    commentDate: '2025-02-15T20:00:39.255+00:00',
-    memberId: 'GKPGDV',
-    codeNo: 66,
-  },
-  {
-    commentNo: 14,
-    commentContent: '이 부분을 개선할 수 있을 것 같습니다.',
-    commentDate: '2025-02-15T20:00:39.255+00:00',
-    memberId: 'GKPGDV',
-    codeNo: 66,
-  },
-  {
-    commentNo: 17,
-    commentContent: '홍길동임다ㅁㅁㅁ',
-    commentDate: '2025-02-16T06:38:07.182+00:00',
-    memberId: 'DDDDDD',
-    codeNo: 66,
-  },
-  {
-    commentNo: 18,
-    commentContent: '홍길동임다ㅁ22ㅁㅁ',
-    commentDate: '2025-02-16T07:01:27.144+00:00',
-    memberId: 'GKPGDV',
-    codeNo: 66,
-  },
-  {
-    commentNo: 19,
-    commentContent: '홍길동임다ㅁ22ㅁㅁ',
-    commentDate: '2025-02-16T10:01:33.057+00:00',
-    memberId: 'RTT123',
-    codeNo: 66,
-  },
-];
-
 const SolvedDetailContent = ({ studyId, problemId, memberId }: SolvedDetailContentProps) => {
+  const { userInfoData } = useUserInfoQuery();
   const { solvedContentData } = useSolvedContentQuery(problemId);
   const { solvedSummaryData } = useSolvedSummaryQuery(memberId, problemId);
   const { studyMemberData } = useStudyMemberQuery(studyId);
@@ -67,6 +31,8 @@ const SolvedDetailContent = ({ studyId, problemId, memberId }: SolvedDetailConte
     <div className="flex flex-col gap-8 py-8">
       {solvedSummaryData.map((item) => (
         <SolvedDetailMain
+          problemId={problemId}
+          memberId={memberId}
           title={solvedContentData.title}
           name={filterMember(studyMemberData.memberDetails, memberId)?.name}
           description={solvedContentData.readme}
@@ -76,9 +42,14 @@ const SolvedDetailContent = ({ studyId, problemId, memberId }: SolvedDetailConte
           problemType={item.problemType}
           codePerformance={item.codePerformance}
           codeStatus={item.codeStatus}
+          isUser={userInfoData?.memberId === memberId}
         />
       ))}
-      <CommentContent memberDetail={studyMemberData.memberDetails} commentList={commentListData} />
+      <hr className="border-bolder" />
+      <CommentContent
+        memberDetail={studyMemberData.memberDetails}
+        codeNo={solvedSummaryData[0].codeNo}
+      />
     </div>
   );
 };

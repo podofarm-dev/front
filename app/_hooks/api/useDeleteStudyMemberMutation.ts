@@ -11,6 +11,7 @@ export const useDeleteStudyMemberMutation = () => {
     onSuccess: (_, { studyId }) => {
       queryClient.invalidateQueries({ queryKey: ['study', studyId] });
       queryClient.invalidateQueries({ queryKey: ['study-list', studyId] });
+      queryClient.invalidateQueries({ queryKey: ['study-info', studyId] });
       toast.success('스터디원을 퇴출하였습니다!');
     },
     onError: (error) => {

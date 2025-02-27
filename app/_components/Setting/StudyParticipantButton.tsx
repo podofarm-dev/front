@@ -10,8 +10,8 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { StudyParticipantModal } from '@/app/_components/Setting/StudyParticipantModal';
-import { useDeleteStudyOutMutation } from '@/app/_hooks/api/useDeleteStudyOutMutation';
 import { useUpdateStudyLeaderMutation } from '@/app/_hooks/api/useUpdateStudyLeaderMutation';
+import { useDeleteStudyMemberMutation } from '@/app/_hooks/api/useDeleteStudyMemberMutation';
 
 interface StudyParticipantButtonProps {
   id: string;
@@ -21,7 +21,7 @@ interface StudyParticipantButtonProps {
 
 const StudyParticipantButton = ({ id, name, studyId }: StudyParticipantButtonProps) => {
   const [openModal, setOpenModal] = useState<string | null>(null);
-  const deleteStudyOutMutation = useDeleteStudyOutMutation();
+  const deleteStudyMemberMutation = useDeleteStudyMemberMutation();
   const updateStudyLeaderMutation = useUpdateStudyLeaderMutation();
 
   const handleMandate = () => {
@@ -35,7 +35,10 @@ const StudyParticipantButton = ({ id, name, studyId }: StudyParticipantButtonPro
   };
 
   const handleKick = () => {
-    deleteStudyOutMutation.mutate(studyId, { onSuccess: () => setOpenModal(null) });
+    deleteStudyMemberMutation.mutate(
+      { studyId, memberId: id },
+      { onSuccess: () => setOpenModal(null) },
+    );
   };
 
   return (

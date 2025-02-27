@@ -6,23 +6,23 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import CommentDetail from '@/app/_components/comment/CommentDetail';
 import { StudyMemberListDetail } from '@/app/_types/study';
-import { CommentType } from '@/app/_types/comment';
 import { filterMember } from '@/app/_utils/filterMember';
 import { useCommentMutation } from '@/app/_hooks/api/useCommentMutation';
+import { useCommentListQuery } from '@/app/_hooks/api/useCommentListQuery';
 
 interface CommentContentProps {
+  codeNo: number;
   memberDetail: StudyMemberListDetail[];
-  commentList: CommentType[];
 }
 
-const CommentContent = ({ memberDetail, commentList }: CommentContentProps) => {
+const CommentContent = ({ codeNo, memberDetail }: CommentContentProps) => {
   const [comment, setComment] = useState('');
+  const { commentListData } = useCommentListQuery(String(codeNo));
   const commentMutation = useCommentMutation();
 
   const onHandleComment = () => {
-    //이거 codeId가 아직 결정 안되서 코드 완성 못함
     commentMutation.mutate(
-      { codeId: '2', commentData: { commentContent: comment } },
+      { codeId: String(codeNo), commentData: { commentContent: comment } },
       { onSuccess: () => setComment('') },
     );
   };
@@ -31,7 +31,7 @@ const CommentContent = ({ memberDetail, commentList }: CommentContentProps) => {
     <div className="flex flex-col">
       <div className="text-2xl font-semibold">코멘트</div>
       <div className="mb-14 mt-4 flex flex-col gap-14">
-        {commentList?.map((item) => (
+        {commentListData?.map((item) => (
           <CommentDetail
             key={item.codeNo}
             codeNo={item.codeNo}

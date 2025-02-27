@@ -47,15 +47,15 @@ const OutStudyModal = ({
         <div className="grid gap-4 py-6">
           <div className="flex flex-col items-start gap-4">
             <Label htmlFor="study" className="text-left text-base">
-              한번 {label}를 나가면 다시 전으로 돌아갈 수 없습니다.
+              {label}에서 나가면 이전에 푼 문제와 기존 정보가 모두 삭제됩니다
               <br />
               <br />
-              반드시 확인하세요.
+              계속 진행하시겠습니까?
             </Label>
           </div>
         </div>
         <DialogFooter className="flex flex-row justify-end sm:flex sm:flex-row sm:justify-end">
-          <Button className="bg-secondary-foreground text-bolder" onClick={onClose}>
+          <Button className="border border-bolder bg-accent" onClick={onClose}>
             취소
           </Button>
           <Button className="bg-warning" onClick={handleDelete}>

@@ -5,6 +5,7 @@ import DashboardStatistics from '@/app/_components/dashboard/DashboardStatistics
 import DashboardSolved from '@/app/_components/dashboard/DashboardSolved';
 import DashboardCumulative from '@/app/_components/dashboard/DashboardCumulative';
 import { StudyMemberListDetail } from '@/app/_types/study';
+import DashboardMonthNavigator from '@/app/_components/dashboard/DashboardMonthNavigator';
 
 interface DashboardTabDeciderProps {
   studyId: string;
@@ -14,15 +15,23 @@ interface DashboardTabDeciderProps {
 const DashboardTabDecider = ({ studyId, memberDetails }: DashboardTabDeciderProps) => {
   const { tab } = useDashboardTabStore();
 
-  if (tab === 'solved') {
-    return <DashboardSolved studyId={studyId} memberDetails={memberDetails} />;
-  }
+  const tabComponents = {
+    solved: (
+      <>
+        <DashboardMonthNavigator />
+        <DashboardSolved studyId={studyId} memberDetails={memberDetails} />
+      </>
+    ),
+    cumulative: <DashboardCumulative studyId={studyId} memberDetails={memberDetails} />,
+    statistics: (
+      <>
+        <DashboardMonthNavigator />
+        <DashboardStatistics studyId={studyId} memberDetails={memberDetails} />
+      </>
+    ),
+  };
 
-  if (tab === 'cumulative') {
-    return <DashboardCumulative studyId={studyId} memberDetails={memberDetails} />;
-  }
-
-  return <DashboardStatistics studyId={studyId} memberDetails={memberDetails} />;
+  return <div className="flex flex-col gap-4">{tabComponents[tab]}</div>;
 };
 
 export default DashboardTabDecider;

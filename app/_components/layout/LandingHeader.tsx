@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 
 import LoginModal from '@/app/_components/common/LoginModal';
 import Logo from '@/app/_components/common/Logo';
+import Podofarm from '@/app/_svg/podofarm.svg';
 
 const LandingHeader = () => {
   const [bgColor, setBgColor] = useState('bg-transparent');
@@ -29,7 +30,7 @@ const LandingHeader = () => {
       >
         <div className="flex flex-row items-center gap-2">
           <Logo />
-          <h1 className="text-2xl font-bold">PodoFarm</h1>
+          <Podofarm />
         </div>
         <button className="text-gray-300 hover:text-white" onClick={() => setOpenModal('login')}>
           로그인

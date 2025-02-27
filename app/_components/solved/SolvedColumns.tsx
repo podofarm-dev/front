@@ -51,7 +51,7 @@ export const getColumns = (studyId: string, memberId: string): ColumnDef<SolvedD
     header: () => <div className="my-6 text-center text-secondary-foreground">난이도</div>,
     cell: ({ row }) => {
       const problemLevel = row.getValue('problemLevel') as string;
-      return <div className="text-center">{problemLevel}</div>;
+      return <div className="text-center">Lv. {problemLevel}</div>;
     },
     size: 100,
   },

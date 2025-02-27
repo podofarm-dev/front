@@ -55,7 +55,7 @@ const CommentDetail = ({ codeNo, commentNo, member, date, description }: Comment
       {isModify ? (
         <div className="flex flex-col items-end gap-6 pl-14">
           <Textarea
-            className="h-28 resize-none rounded-lg border border-bolder bg-bolder p-4 focus:border-accent-foreground"
+            className="h-28 resize-none rounded-lg border border-bolder bg-tertiary p-4 focus:border-accent-foreground"
             placeholder="코멘트를 남겨주세요"
             value={comment}
             onChange={(e) => setComment(e.target.value)}

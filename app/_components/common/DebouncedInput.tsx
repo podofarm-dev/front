@@ -1,6 +1,8 @@
+import { useEffect, useState } from 'react';
+
 import { cn } from '@/lib/utils';
 import { Search } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import CircleX from '@/app/_svg/circleX.svg';
 
 const DebouncedInput = ({
   value: initialValue,
@@ -33,11 +35,14 @@ const DebouncedInput = ({
         value={value}
         onChange={(e) => setValue(e.target.value)}
         className={cn(
-          `font-lg border-block cn rounded border-0 bg-transparent shadow focus:outline-none`,
+          `font-lg border-block cn w-full rounded border-0 bg-transparent shadow focus:outline-none`,
           className,
         )}
       />
-      <Search className="cursor-pointer" />
+      <div className="flex flex-row items-center gap-2">
+        {value && <CircleX className="cursor-pointer" onClick={() => setValue('')} />}
+        <Search className="cursor-pointer text-secondary-foreground" />
+      </div>
     </div>
   );
 };

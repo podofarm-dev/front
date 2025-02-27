@@ -93,7 +93,8 @@ const StudySetting = ({ username, studyId, studyName, memberDetails }: StudySett
       <div className="flex flex-col gap-8">
         <span className="text-xl font-semibold">스터디 영구 삭제</span>
         <span className="text-base">
-          한번 스터디를 삭제하면 다시 전으로 돌아갈 수 없습니다. 반드시 확인하세요.
+          스터디를 더 이상 유지하지 않으신다면 삭제할 수 있습니다. 삭제 후에는 모든 정보가
+          사라집니다.
         </span>
         <DeleteButton isUser={false} studyId={studyId} />
       </div>

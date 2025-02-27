@@ -7,14 +7,15 @@ interface ProfileIconProps {
   id?: string;
   name?: string;
   imgUrl?: string;
+  className?: string;
 }
 
-const ProfileIcon = ({ id, name, imgUrl }: ProfileIconProps) => {
+const ProfileIcon = ({ id, name, imgUrl, className }: ProfileIconProps) => {
   return (
     <TooltipProvider delayDuration={500}>
       <Tooltip>
         <TooltipTrigger asChild>
-          <Avatar>
+          <Avatar className={className}>
             <AvatarImage src={imgUrl} />
             <AvatarFallback>{name}</AvatarFallback>
           </Avatar>

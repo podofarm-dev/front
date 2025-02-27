@@ -12,7 +12,7 @@ export const getColumns = (studyId: string, memberId: string): ColumnDef<SolvedD
     accessorKey: 'problemNo',
     header: () => <div className="my-6 text-center text-secondary-foreground">번호</div>,
     cell: ({ row }) => {
-      const problemNo = row.getValue('problemNo') as number;
+      const problemNo = row.index + 1;
       return <div className="text-center text-secondary-foreground">{problemNo}</div>;
     },
     size: 100,

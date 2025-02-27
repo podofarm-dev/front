@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
+import { ToastContainer } from 'react-toastify';
 
 import RQProvider from '@/app/_components/common/RQProvider';
 
@@ -25,7 +26,8 @@ export default function RootLayout({
   return (
     <html lang="kr" className={`${pretendard.variable}`}>
       <body className={`${pretendard.className} bg-secondary text-primary-foreground antialiased`}>
-        {children}
+        <RQProvider>{children}</RQProvider>
+        <ToastContainer position="top-center" />
       </body>
     </html>
   );

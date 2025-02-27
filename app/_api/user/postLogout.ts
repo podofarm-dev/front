@@ -3,12 +3,12 @@ import { END_POINTS } from '@/app/_constants/api';
 import { TokenData } from '@/app/_types/token';
 import { TokenRequestBody } from '@/app/_types/user';
 
-export interface GetAccessTokenParams {
+export interface PostLogoutParams {
   memberData: TokenRequestBody;
 }
 
-const postLogout = async () => {
-  const { data } = await axiosInstance.post(END_POINTS.LOGOUT);
+const postLogout = async ({ memberData }: PostLogoutParams) => {
+  const { data } = await axiosInstance.post<string>(END_POINTS.LOGOUT, memberData);
 
   return data;
 };

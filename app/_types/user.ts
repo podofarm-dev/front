@@ -15,3 +15,23 @@ export interface UserState {
 export interface TokenRequestBody {
   memberId: string;
 }
+
+export interface UserData {
+  memberId: string;
+  name: string;
+  email: string;
+  studyId: string;
+  imgUrl: string;
+}
+
+export interface UserSolvedData {
+  name: string;
+  memberId: string;
+  imgUrl: string;
+  solvedCount: number;
+}
+
+export interface UsernameRequestBody {
+  memberId: string;
+  name: string;
+}

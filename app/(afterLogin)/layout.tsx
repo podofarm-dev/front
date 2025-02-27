@@ -1,16 +1,17 @@
 import { ReactNode } from 'react';
 
-import RQProvider from '@/app/_components/common/RQProvider';
 import Header from '@/app/_components/layout/Header';
+import RedirectLogin from '@/app/_components/common/RedirectLogin';
 
 type Props = { children: ReactNode };
 
 const AfterLoginLayout = ({ children }: Props) => {
   return (
-    <RQProvider>
+    <>
       <Header />
+      <RedirectLogin />
       {children}
-    </RQProvider>
+    </>
   );
 };
 

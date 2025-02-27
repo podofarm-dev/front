@@ -3,10 +3,10 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 
 import sessionStore from '@/app/_store/useSession';
-import userStore from '@/app/_store/userStore';
-import { useUserInfoQuery } from '@/app/_hooks/useUserInfoQuery';
 import postAccessToken from '@/app/_api/user/postAccessToken';
 import { useEffect } from 'react';
+import { PATH } from '@/app/_constants/path';
+import getUserInfo from '@/app/_api/user/getUserInfo';
 
 const SocialLoginPage = () => {
   const searchParams = useSearchParams();
@@ -33,32 +33,34 @@ const SocialLoginPage = () => {
         const token = accessToken || '';
 
         if (!token) {
-          router.push('/');
+          router.push(PATH.ROOT);
+          return;
         }
 
-        router.push('/');
-
         // 3. 사용자 정보 가져오기
-        // const { UserInfoData } = useUserInfoQuery(memberId);
+        const userInfoData = await getUserInfo();
 
-        // if (!!UserInfoData?.userId) {
-        //   userStore.setState({
-        //     ...UserInfoData,
-        //   });
-        // }
+        console.log('가져오기');
 
-        // // 4. Study ID 확인 및 리다이렉트
-        // const studyId = UserInfoData?.studyId || '';
-        // if (studyId) {
-        //   console.log('스터디 있음');
-        //   // router.push(`/study/${studyId}/dashboard`);
-        // } else {
-        //   console.log('스터디 없음');
-        //   // router.push('/study/search');
-        // }
+        if (!userInfoData) {
+          router.push(PATH.ROOT);
+          return;
+        }
+
+        // 4. Study ID 확인 및 리다이렉트
+        const studyId = userInfoData?.studyId || '';
+        if (studyId) {
+          console.log('스터디 있음');
+          router.replace(PATH.STUDY_DASHBOARD(studyId));
+          return;
+        } else {
+          console.log('스터디 없음');
+          router.push(PATH.DASHBOARD);
+          return;
+        }
       } catch (error) {
         console.error('Error during login:', error);
-        // router.push('/'); // 에러 발생 시 홈으로 리다이렉트
+        router.push(PATH.ROOT); // 에러 발생 시 홈으로 리다이렉트
       }
     };
 

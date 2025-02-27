@@ -8,9 +8,16 @@ interface SquareStackProps {
   value?: number;
   date?: number;
   memberId?: string;
+  showTooltip?: boolean;
 }
 
-const SquareStack = ({ className, value, date, memberId }: SquareStackProps) => {
+const SquareStack = ({
+  className,
+  value,
+  date,
+  memberId,
+  showTooltip = true,
+}: SquareStackProps) => {
   let colorClass = 'bg-tertiary';
   const { setYearMonthDay } = useYearMonthStore();
   const { memberId: userMemberId, setMemberId } = useUserStore();
@@ -31,16 +38,22 @@ const SquareStack = ({ className, value, date, memberId }: SquareStackProps) => 
   };
 
   return (
-    <TooltipProvider delayDuration={500}>
-      <Tooltip>
-        <TooltipTrigger asChild onClick={onChangeDailyStack}>
-          <div className={cn('h-5 w-5 rounded', colorClass, className)} />
-        </TooltipTrigger>
-        <TooltipContent>
-          <p>푼 문제: {value ?? 'N/A'}</p>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+    <>
+      {showTooltip ? (
+        <TooltipProvider delayDuration={500}>
+          <Tooltip>
+            <TooltipTrigger asChild onClick={onChangeDailyStack}>
+              <div className={cn('h-5 w-5 rounded', colorClass, className)} />
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>푼 문제: {value ?? 'N/A'}</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      ) : (
+        <div className={cn('h-5 w-5 rounded', colorClass, className)} />
+      )}
+    </>
   );
 };
 

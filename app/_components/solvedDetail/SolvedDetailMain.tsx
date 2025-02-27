@@ -20,7 +20,7 @@ interface SolvedDetailMainProps {
   codeSource: string;
   problemType: string;
   codePerformance: string;
-  codeStatus: boolean;
+  codeAccuracy: string;
   isUser: boolean;
 }
 
@@ -35,7 +35,7 @@ const SolvedDetailMain = ({
   codeSource,
   problemType,
   codePerformance,
-  codeStatus,
+  codeAccuracy,
   isUser,
 }: SolvedDetailMainProps) => {
   const [solvedCode, setSolvedCode] = useState(codeSource);
@@ -70,7 +70,7 @@ const SolvedDetailMain = ({
         </div>
         <div className="flex flex-col items-center">
           <div>채점결과</div>
-          <div>{codeStatus}</div>
+          <div>{codeAccuracy}</div>
         </div>
         <div className="flex flex-col items-center">
           <div>제출 일자</div>

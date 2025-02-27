@@ -14,7 +14,7 @@ const pretendard = localFont({
 });
 
 export const metadata: Metadata = {
-  title: '포도팜',
+  title: 'Podofarm',
   description: '우리들의 알고리즘 스터디',
 };
 

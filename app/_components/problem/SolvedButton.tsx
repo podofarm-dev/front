@@ -38,7 +38,7 @@ const SolvedButton = ({ onChange, value }: SolvedButtonProps) => {
             className="cursor-pointer px-10 text-lg"
             value={SOLVED_STATUS.INCOMPLETE}
           >
-            안 푼 문제
+            틀린 문제
           </DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>

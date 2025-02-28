@@ -11,7 +11,7 @@ import Logo from '@/app/_components/common/Logo';
 
 export default function LandingPage() {
   return (
-    <div className="relative min-h-screen bg-gradient-to-b from-[#0F111D] to-[#262B3E] px-32 pb-56 pt-12 text-white">
+    <div className="relative min-h-screen bg-gradient-to-b from-[#0F111D] to-[#262B3E] px-32 pb-56 pt-12 text-white max-md:px-16">
       <div
         className="absolute inset-0 z-0"
         style={{
@@ -31,7 +31,7 @@ export default function LandingPage() {
         {/* Hero Section */}
         <section className="py-16 text-center">
           <h2 className="bg-gradient-to-b from-primary-foreground to-secondary-foreground bg-clip-text text-6xl font-bold text-transparent">
-            Welcome to Podo Farm
+            Welcome to Podofarm
           </h2>
           <p className="mt-4 text-lg font-normal">
             프로그래머스 코딩테스트 기반의 포도팜에서 <br /> 스터디 관리 서비스를 이용해보세요!
@@ -66,7 +66,7 @@ export default function LandingPage() {
                   스터디 관리를 위한 기본 환경 세팅입니다
                 </p>
               </div>
-              <div className="flex justify-center gap-6">
+              <div className="flex justify-center gap-6 max-md:flex-col max-md:items-center">
                 <div className="relative w-80 rounded-2xl bg-gradient-to-tr from-[#A55EFF] to-[#7BE1FF] p-[1px]">
                   <div className="h-full rounded-2xl bg-gradient-to-tr from-[#1d213a] from-20% to-[#4F525E] px-5 pb-32 pt-14">
                     <div className="flex flex-col items-start gap-5">

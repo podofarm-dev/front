@@ -1,6 +1,6 @@
 'use client';
 
-import { Dispatch, SetStateAction, useCallback, useState } from 'react';
+import { Dispatch, SetStateAction, useCallback } from 'react';
 import Editor, { Monaco } from '@monaco-editor/react';
 
 // 테마 옵션 설정
@@ -10,6 +10,9 @@ const options = {
   scrollBeyondLastLine: false,
   lineNumbers: 'on',
   automaticLayout: true,
+  stickyScroll: {
+    enabled: false,
+  },
 };
 
 interface SolvedCodeProps {

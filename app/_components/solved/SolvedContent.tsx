@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useState } from 'react';
 
 import UserCard from '@/app/_components/common/UserCard';
 import { useUserInfoQuery } from '@/app/_hooks/api/useUserInfoQuery';

@@ -1,10 +1,10 @@
 'use client';
 
+import Link from 'next/link';
 import { ColumnDef } from '@tanstack/react-table';
 
 import { SolvedData } from '@/app/_types/solved';
 import convertSolvedDate from '@/app/_utils/convertSolvedDate';
-import Link from 'next/link';
 import { PATH } from '@/app/_constants/path';
 
 export const getColumns = (studyId: string, memberId: string): ColumnDef<SolvedData>[] => [

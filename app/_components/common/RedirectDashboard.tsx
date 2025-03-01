@@ -13,7 +13,6 @@ const RedirectDashboard = () => {
     const authStorage = localStorage.getItem(ACCESS_TOKEN_KEY);
 
     if (!authStorage) {
-      router.replace(PATH.ROOT);
       return;
     }
 
@@ -21,7 +20,6 @@ const RedirectDashboard = () => {
     const accessToken = state?.access_token;
 
     if (!accessToken) {
-      router.replace(PATH.ROOT);
       return;
     }
 

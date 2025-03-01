@@ -13,14 +13,14 @@ const RedirectDashboard = () => {
     const authStorage = localStorage.getItem(ACCESS_TOKEN_KEY);
 
     if (!authStorage) {
-      return null;
+      return;
     }
 
     const { state } = JSON.parse(authStorage);
     const accessToken = state?.access_token;
 
     if (!accessToken) {
-      return null;
+      return;
     }
 
     router.replace(PATH.DASHBOARD);

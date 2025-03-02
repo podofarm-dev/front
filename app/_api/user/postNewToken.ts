@@ -8,7 +8,7 @@ export interface GetAccessTokenParams {
 }
 
 const postNewToken = async () => {
-  const { data } = await axiosInstance.post<TokenData>(END_POINTS.TOKEN_REFRESH);
+  const { data } = await axiosInstance.post(END_POINTS.TOKEN_REFRESH);
 
   return data;
 };

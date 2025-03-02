@@ -49,9 +49,11 @@ export const handleTokenError = async (error: AxiosError<ErrorResponseData>) => 
 
   const { data, status } = error.response;
 
+  console.log(data, status);
+
   // 엑세스 토큰이 만료된 경우
   if (status === HTTP_STATUS_CODE.UNAUTHORIZED) {
-    if (typeof data === 'string' && data === 'Faill - Login Again') {
+    if (typeof data === 'string' && data === '재 로그인 요청 바랍니다.') {
       localStorage.removeItem(ACCESS_TOKEN_KEY);
       window.location.href = PATH.ROOT;
       throw new Error('재로그인 해주세요!');
@@ -60,6 +62,11 @@ export const handleTokenError = async (error: AxiosError<ErrorResponseData>) => 
     try {
       // 새로운 토큰을 요청
       const newAccessToken = await postNewToken();
+
+      if (newAccessToken === 'Cookie is missing') {
+        localStorage.removeItem(ACCESS_TOKEN_KEY);
+        window.location.href = PATH.ROOT;
+      }
 
       // 기존 localStorage 데이터 불러오기
       const existingTokenData = JSON.parse(localStorage.getItem(ACCESS_TOKEN_KEY) as string);

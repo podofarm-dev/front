@@ -70,7 +70,7 @@ const SolvedDetailMain = ({
         </div>
         <div className="flex flex-col items-center">
           <div>채점결과</div>
-          <div>{codeAccuracy}</div>
+          <div dangerouslySetInnerHTML={{ __html: codeAccuracy }} />
         </div>
         <div className="flex flex-col items-center">
           <div>제출 일자</div>

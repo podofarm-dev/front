@@ -9,7 +9,7 @@ interface DashboardBarProps {
 
 const DashboardBar = ({ solved, maxSolved }: DashboardBarProps) => {
   return (
-    <TooltipProvider delayDuration={500}>
+    <TooltipProvider delayDuration={100}>
       <Tooltip>
         <TooltipTrigger asChild>
           <div

@@ -15,7 +15,7 @@ export const studySchema = yup.object().shape({
     then: (schema) =>
       schema
         .required('스터디 코드를 입력해 주세요.')
-        .max(6, '스터디 코드는 최대 6자까지 입력 가능합니다.'),
+        .max(5, '스터디 코드는 최대 5자까지 입력 가능합니다.'),
     otherwise: (schema) => schema.optional(),
   }),
 

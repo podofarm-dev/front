@@ -12,7 +12,7 @@ interface ProfileIconProps {
 
 const ProfileIcon = ({ id, name, imgUrl, className }: ProfileIconProps) => {
   return (
-    <TooltipProvider delayDuration={500}>
+    <TooltipProvider delayDuration={100}>
       <Tooltip>
         <TooltipTrigger asChild>
           <Avatar className={className}>

@@ -1,14 +1,19 @@
 'use client';
 
+import { PATH } from '@/app/_constants/path';
 import { convertSolvedBefore } from '@/app/_utils/convertSolvedBefore';
+import Link from 'next/link';
 
 interface TimeLineProps {
   time: string;
   name: string;
   title: string;
+  studyId: string;
+  memberId: string;
+  problemId: number;
 }
 
-const TimeLine = ({ time, name, title }: TimeLineProps) => {
+const TimeLine = ({ time, name, title, studyId, memberId, problemId }: TimeLineProps) => {
   return (
     <div className="relative pb-6 pl-6">
       {/* 타임라인 원형 아이콘 */}
@@ -19,7 +24,11 @@ const TimeLine = ({ time, name, title }: TimeLineProps) => {
 
       {/* 내용 */}
       <p className="text-sm text-primary-foreground">
-        <span className="font-semibold">{name}</span>님이 {title}문제를 풀었습니다.
+        <span className="font-semibold">{name}</span>님이{' '}
+        <Link href={PATH.STUDY_SOLVED_DETAIL(studyId, problemId, memberId)} className="underline">
+          {title}
+        </Link>
+        문제를 풀었습니다.
       </p>
     </div>
   );

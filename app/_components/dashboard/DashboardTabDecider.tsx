@@ -10,22 +10,23 @@ import DashboardMonthNavigator from '@/app/_components/dashboard/DashboardMonthN
 interface DashboardTabDeciderProps {
   studyId: string;
   memberDetails: StudyMemberListDetail[];
+  days: number;
 }
 
-const DashboardTabDecider = ({ studyId, memberDetails }: DashboardTabDeciderProps) => {
+const DashboardTabDecider = ({ studyId, memberDetails, days }: DashboardTabDeciderProps) => {
   const { tab } = useDashboardTabStore();
 
   const tabComponents = {
     solved: (
       <>
-        <DashboardMonthNavigator />
+        <DashboardMonthNavigator days={days} />
         <DashboardSolved studyId={studyId} memberDetails={memberDetails} />
       </>
     ),
     cumulative: <DashboardCumulative studyId={studyId} memberDetails={memberDetails} />,
     statistics: (
       <>
-        <DashboardMonthNavigator />
+        <DashboardMonthNavigator days={days} />
         <DashboardStatistics studyId={studyId} memberDetails={memberDetails} />
       </>
     ),

@@ -1,7 +1,4 @@
-import { Suspense } from 'react';
-
 import SolvedContent from '@/app/_components/solved/SolvedContent';
-import Loader from '@/app/_components/common/Loader';
 
 interface SolvedPageProps {
   params: {
@@ -20,9 +17,7 @@ export default function SolvedPage({ params }: SolvedPageProps) {
           프로그래머스에서 푼 문제를 확인할 수 있습니다
         </span>
       </div>
-      <Suspense fallback={<Loader />}>
-        <SolvedContent studyId={studyId} />
-      </Suspense>
+      <SolvedContent studyId={studyId} />
     </div>
   );
 }

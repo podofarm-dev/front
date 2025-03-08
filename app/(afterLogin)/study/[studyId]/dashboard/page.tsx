@@ -1,6 +1,3 @@
-import { Suspense } from 'react';
-
-import Loader from '@/app/_components/common/Loader';
 import DashboardContent from '@/app/_components/dashboard/DashboardContent';
 
 interface DashboardStudyPageProps {
@@ -14,9 +11,7 @@ export default function DashboardStudyPage({ params }: DashboardStudyPageProps) 
 
   return (
     <div className="flex flex-col gap-2">
-      <Suspense fallback={<Loader />}>
-        <DashboardContent studyId={studyId} />
-      </Suspense>
+      <DashboardContent studyId={studyId} />
     </div>
   );
 }

@@ -6,10 +6,10 @@ import { useSolvedContentQuery } from '@/app/_hooks/api/useSolvedContentQuery';
 import { useSolvedSummaryQuery } from '@/app/_hooks/api/useSolvedSummaryQuery';
 import { useStudyMemberQuery } from '@/app/_hooks/api/useStudyMemberQuery';
 import { filterMember } from '@/app/_utils/filterMember';
-import Loader from '@/app/_components/common/Loader';
 import SolvedDetailMain from './SolvedDetailMain';
 import convertSolvedDate from '@/app/_utils/convertSolvedDate';
 import { useUserInfoQuery } from '@/app/_hooks/api/useUserInfoQuery';
+import SolvedDetailContentSkeleton from '@/app/_components/solvedDetail/SolvedDetailContentSkeleton';
 
 interface SolvedDetailContentProps {
   studyId: string;
@@ -24,7 +24,7 @@ const SolvedDetailContent = ({ studyId, problemId, memberId }: SolvedDetailConte
   const { studyMemberData } = useStudyMemberQuery(studyId);
 
   if (!solvedContentData || !solvedSummaryData || !studyMemberData) {
-    return <Loader />;
+    return <SolvedDetailContentSkeleton />;
   }
 
   return (

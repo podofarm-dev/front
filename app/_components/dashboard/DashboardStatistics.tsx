@@ -5,7 +5,7 @@ import { useStudyStatisticQuery } from '@/app/_hooks/api/useStudyStatisticQuery'
 import { useYearMonthStore } from '@/app/_store/useYearMonthStore';
 import { matchMemberStatistic } from '@/app/_utils/matchMemberStatistic';
 import DashboardStatisticsContent from '@/app/_components/dashboard/DashboardStatisticsContent';
-import Loader from '@/app/_components/common/Loader';
+import DashboardTabDeciderSkeleton from '@/app/_components/dashboard/DashboardTabDeciderSkeleton';
 
 interface DashboardStatisticsProps {
   studyId: string;
@@ -17,7 +17,7 @@ const DashboardStatistics = ({ studyId, memberDetails }: DashboardStatisticsProp
   const { studyStatisticData } = useStudyStatisticQuery(studyId, currentYearMonth);
 
   if (!studyStatisticData) {
-    return <Loader />;
+    return <DashboardTabDeciderSkeleton />;
   }
 
   const memberStatisticData = matchMemberStatistic(studyStatisticData, memberDetails);

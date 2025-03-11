@@ -1,8 +1,7 @@
-import dayjs from 'dayjs';
-
+// dateString이 2025-03-12 06:05:41 이렇게 옴
 const convertSolvedDate = (dateString: string) => {
-  const date = dayjs(dateString);
-  const formattedDate = date.format('YY.MM.DD');
+  const date = dateString.split(' ')[0];
+  const formattedDate = date.replaceAll('-', '.');
 
   return formattedDate;
 };

@@ -41,7 +41,7 @@ const DeleteModal = ({ title, label, studyId, onClose }: DeleteModalProps) => {
     }
 
     if (inputValue !== '삭제합니다') {
-      return toast.warn('삭제합니다를 입력해주세요!');
+      return toast.error('삭제합니다를 입력해주세요!');
     }
 
     if (label === '계정') {

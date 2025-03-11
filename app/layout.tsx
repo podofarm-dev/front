@@ -27,7 +27,17 @@ export default function RootLayout({
     <html lang="kr" className={`${pretendard.variable}`}>
       <body className={`${pretendard.className} bg-secondary text-primary-foreground antialiased`}>
         <RQProvider>{children}</RQProvider>
-        <ToastContainer position="top-center" />
+        <ToastContainer
+          position="top-center"
+          autoClose={2500}
+          newestOnTop
+          closeButton={false}
+          hideProgressBar
+          closeOnClick
+          draggable={true}
+          theme="dark"
+          toastClassName="text-sm font-normal leading-tight bg-tertiary rounded-xl shadow-[0px_4px_8px_0px_rgba(0,0,0,0.15)] shadow-[0px_1px_3px_0px_rgba(0,0,0,0.30)]"
+        />
       </body>
     </html>
   );

@@ -3,6 +3,7 @@ import { AXIOS_BASE_URL } from '@/app/_constants/api';
 export const PATH = {
   ROOT: '/',
   DASHBOARD: '/dashboard',
+  BAD_GATEWAY: '/bad-gateway',
   LOGIN: `${AXIOS_BASE_URL}/dev-login`,
   STUDY_SOLVED: (studyId: string, memberId?: string) =>
     `/study/${studyId}/solved?memberId=${memberId}`,

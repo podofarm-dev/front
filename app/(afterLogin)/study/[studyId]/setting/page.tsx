@@ -1,7 +1,4 @@
-import { Suspense } from 'react';
-
 import SettingContent from '@/app/_components/Setting/SettingContent';
-import Loader from '@/app/_components/common/Loader';
 
 interface SettingPageProps {
   params: {
@@ -15,9 +12,7 @@ export default function SettingPage({ params }: SettingPageProps) {
   return (
     <div className="flex flex-col gap-8">
       <span className="text-2xl font-semibold">Settings</span>
-      <Suspense fallback={<Loader />}>
-        <SettingContent studyId={studyId} />
-      </Suspense>
+      <SettingContent studyId={studyId} />
     </div>
   );
 }

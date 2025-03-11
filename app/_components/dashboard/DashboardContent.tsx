@@ -8,6 +8,7 @@ import DashboardTabDecider from '@/app/_components/dashboard/DashboardTabDecider
 import { useStudyMemberQuery } from '@/app/_hooks/api/useStudyMemberQuery';
 import { useRecentLogsQuery } from '@/app/_hooks/api/useRecentLogsQuery';
 import DashboardSolvedAlgorithm from '@/app/_components/dashboard/DashboardSolvedAlgorithm';
+import DashboardContentSkeleton from '@/app/_components/dashboard/DashboardContentSkeleton';
 
 interface DashboardContentProps {
   studyId: string;
@@ -16,6 +17,10 @@ interface DashboardContentProps {
 const DashboardContent = ({ studyId }: DashboardContentProps) => {
   const { studyMemberData } = useStudyMemberQuery(studyId);
   const { recentLogsData } = useRecentLogsQuery(studyId);
+
+  if (!studyMemberData && !recentLogsData) {
+    return <DashboardContentSkeleton />;
+  }
 
   return (
     <>
@@ -37,6 +42,7 @@ const DashboardContent = ({ studyId }: DashboardContentProps) => {
                 <DashboardTabDecider
                   studyId={studyMemberData.studyId}
                   memberDetails={studyMemberData.memberDetails}
+                  days={studyMemberData.lapsedDate}
                 />
               )}
             </div>
@@ -63,6 +69,9 @@ const DashboardContent = ({ studyId }: DashboardContentProps) => {
                 time={item.solvedBefore}
                 name={item.memberName}
                 title={item.problemTitle}
+                studyId={studyId}
+                memberId={item.memberId}
+                problemId={item.problemId}
               />
             ))}
         </div>

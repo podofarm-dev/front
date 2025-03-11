@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useState } from 'react';
+import { useState } from 'react';
 
 import UserCard from '@/app/_components/common/UserCard';
 import { useUserInfoQuery } from '@/app/_hooks/api/useUserInfoQuery';
@@ -8,9 +8,9 @@ import SolvedList from '@/app/_components/solved/SolvedList';
 import UserSolvedList from '@/app/_components/solved/UserSolvedList';
 import { useSolvedRankingQuery } from '@/app/_hooks/api/useSolvedRankingQuery';
 import { useStudyMemberQuery } from '@/app/_hooks/api/useStudyMemberQuery';
-import Loader from '@/app/_components/common/Loader';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { PATH } from '@/app/_constants/path';
+import SolvedContentSkeleton from '@/app/_components/solved/SolvedContentSkeleton';
 
 interface SolvedContentProps {
   studyId: string;
@@ -35,15 +35,13 @@ const SolvedContent = ({ studyId }: SolvedContentProps) => {
   };
 
   if (!solvedRankingData) {
-    return <Loader />;
+    return <SolvedContentSkeleton />;
   }
 
   return (
     <div className="flex flex-row gap-6">
       <div className="flex w-10/12">
-        <Suspense fallback={<Loader />}>
-          <SolvedList memberId={currentMember} studyId={studyId} />
-        </Suspense>
+        <SolvedList memberId={currentMember} studyId={studyId} />
       </div>
       <div className="flex w-2/12">
         <div className="flex flex-col gap-10">

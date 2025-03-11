@@ -39,11 +39,11 @@ const SolvedContent = ({ studyId }: SolvedContentProps) => {
   }
 
   return (
-    <div className="flex flex-row gap-6">
-      <div className="flex w-10/12">
+    <div className="flex flex-col gap-6 md:flex-row">
+      <div className="order-2 flex w-full md:order-1 md:w-10/12">
         <SolvedList memberId={currentMember} studyId={studyId} />
       </div>
-      <div className="flex w-2/12">
+      <div className="order-1 flex w-full md:order-2 md:w-2/12">
         <div className="flex flex-col gap-10">
           {solvedRankingData && (
             <UserCard
@@ -54,7 +54,7 @@ const SolvedContent = ({ studyId }: SolvedContentProps) => {
               content={`${solvedRankingData.rank}위`}
             />
           )}
-          <div className="flex flex-col gap-1">
+          <div className="grid grid-cols-3 gap-1 md:flex md:flex-col">
             {studyMemberData &&
               studyMemberData.memberDetails.map((item) => (
                 <UserSolvedList

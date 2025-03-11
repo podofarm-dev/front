@@ -69,6 +69,7 @@ export const getColumns = (studyId: string, memberId: string): ColumnDef<SolvedD
     header: () => <div className="my-6 text-center text-secondary-foreground">푼 날짜</div>,
     cell: ({ row }) => {
       const codeSolvedDate = row.getValue('codeSolvedDate') as string;
+
       return (
         <div className="text-center text-secondary-foreground">
           {convertSolvedDate(codeSolvedDate)}

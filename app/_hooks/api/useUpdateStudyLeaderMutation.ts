@@ -14,7 +14,7 @@ export const useUpdateStudyLeaderMutation = () => {
     },
     onError: (error) => {
       toast(error.message);
-      toast.warn('스터디 리더 변경에 실패하였습니다 ㅠ');
+      toast.error('스터디 리더 변경에 실패하였습니다 ㅠ');
     },
   });
 

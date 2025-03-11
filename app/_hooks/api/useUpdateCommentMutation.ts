@@ -13,7 +13,7 @@ export const useUpdateCommentMutation = () => {
     },
     onError: (error) => {
       toast(error.message);
-      toast.warn('댓글 수정에 실패하였습니다 ㅠ');
+      toast.error('댓글 수정에 실패하였습니다 ㅠ');
     },
   });
 

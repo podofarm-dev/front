@@ -13,7 +13,7 @@ export const useUsernameMutation = () => {
       toast.success('닉네임이 변경되었습니다');
     },
     onError: (error) => {
-      toast.warn(error.message);
+      toast.error(error.message);
     },
   });
 

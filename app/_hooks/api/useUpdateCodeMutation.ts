@@ -13,7 +13,7 @@ export const useUpdateCodeMutation = () => {
     },
     onError: (error) => {
       toast(error.message);
-      toast.warn('코드 수정에 실패하였습니다 ㅠ');
+      toast.error('코드 수정에 실패하였습니다 ㅠ');
     },
   });
 

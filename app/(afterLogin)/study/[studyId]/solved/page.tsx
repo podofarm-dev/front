@@ -11,7 +11,7 @@ export default function SolvedPage({ params }: SolvedPageProps) {
 
   return (
     <div className="flex flex-col">
-      <div className="flex flex-col gap-2">
+      <div className="mb-8 flex flex-col gap-2 md:mb-0">
         <span className="text-2xl font-semibold">푼 문제</span>
         <span className="text-sm text-secondary-foreground">
           프로그래머스에서 푼 문제를 확인할 수 있습니다

@@ -13,7 +13,7 @@ export const useProfileUploadMutation = () => {
       toast.success('프로필 사진이 변경되었습니다');
     },
     onError: (error) => {
-      toast.warn(error.message);
+      toast.error(error.message);
     },
   });
 

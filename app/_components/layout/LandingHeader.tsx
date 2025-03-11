@@ -26,14 +26,14 @@ const LandingHeader = () => {
   return (
     <>
       <header
-        className={`fixed top-0 z-50 flex w-full justify-between px-36 py-4 transition-all duration-300 ${bgColor} left-0`}
+        className={`fixed top-0 z-50 flex w-full justify-between px-8 py-4 transition-all duration-300 ${bgColor} left-0 md:px-36`}
       >
         <div className="flex flex-row items-center gap-2">
           <Logo />
           <Podofarm />
         </div>
         <button className="text-gray-300 hover:text-white" onClick={() => setOpenModal('login')}>
-          로그인
+          Sign up
         </button>
       </header>
       {openModal === 'login' && <LoginModal onClose={() => setOpenModal(null)} />}

@@ -14,7 +14,7 @@ export const useDeleteCommentMutation = () => {
     },
     onError: (error) => {
       console.error(error);
-      toast.warn('댓글 삭제에 실패하였습니다 ㅠ');
+      toast.error('댓글 삭제에 실패하였습니다 ㅠ');
     },
   });
 

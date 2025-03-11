@@ -14,7 +14,7 @@ export const useUpdateStudyNameMutation = () => {
     },
     onError: (error) => {
       toast(error.message);
-      toast.warn('스터디명 수정에 실패하였습니다 ㅠ');
+      toast.error('스터디명 수정에 실패하였습니다 ㅠ');
     },
   });
 

@@ -16,7 +16,7 @@ export const useDeleteStudyMemberMutation = () => {
     },
     onError: (error) => {
       console.error(error);
-      toast.warn('스터디원을 퇴출시키는 도중 오류가 발생하였습니다!');
+      toast.error('스터디원을 퇴출시키는 도중 오류가 발생하였습니다!');
     },
   });
 

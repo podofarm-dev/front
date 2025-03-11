@@ -16,7 +16,7 @@ export const useDeleteStudyRoomMutation = () => {
     },
     onError: (error) => {
       console.error(error);
-      toast.warn('스터디 리더가 아니거나 스터디가 삭제되지 않았습니다!');
+      toast.error('스터디 리더가 아니거나 스터디가 삭제되지 않았습니다!');
     },
   });
 

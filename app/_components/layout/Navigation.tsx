@@ -28,7 +28,7 @@ const Navigation = () => {
       {navigationItem.map((item, index) => (
         <Link
           key={index}
-          className={`relative flex cursor-pointer flex-row items-center gap-2 py-3 before:absolute before:-left-2 before:bottom-0 before:h-0.5 before:w-[calc(100%+16px)] before:bg-accent-foreground before:transition-all ${activateNav(pathname) === item.title ? 'before:scale-100' : 'before:scale-0'}`}
+          className={`relative flex cursor-pointer flex-row items-center gap-2 py-3 text-base before:absolute before:-left-2 before:bottom-[12px] before:h-0.5 before:w-[calc(100%+16px)] before:bg-accent-foreground before:transition-all min-[466px]:before:bottom-0 ${activateNav(pathname) === item.title ? 'before:scale-100' : 'before:scale-0'}`}
           href={item.href(String(studyId), String(userInfoData?.memberId))}
         >
           <div>{item.icon}</div>

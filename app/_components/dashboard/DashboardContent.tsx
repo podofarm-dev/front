@@ -33,7 +33,7 @@ const DashboardContent = ({ studyId }: DashboardContentProps) => {
       )}
       <div className="flex w-full flex-col gap-6 py-4 md:flex-row">
         <div className="flex w-full flex-col gap-6 md:w-9/12">
-          <div className="flex flex-col rounded-lg border border-bolder px-11 py-8">
+          <div className="flex flex-col rounded-lg border border-bolder px-6 py-8">
             <div className="flex justify-center">
               <DashboardTab />
             </div>

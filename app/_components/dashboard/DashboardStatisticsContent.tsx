@@ -19,7 +19,7 @@ const DashboardStatisticsContent = ({ memberStatisticData }: DashboardStatistics
   }
 
   return (
-    <div className="relative flex flex-col gap-2 overflow-x-auto py-4">
+    <div className="custom-scrollbar relative flex flex-col gap-2 overflow-x-auto py-4">
       {memberStatisticData.map((item, indexItem) => (
         <div
           key={item.memberDetail?.id}

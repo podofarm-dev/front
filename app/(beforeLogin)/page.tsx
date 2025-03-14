@@ -9,7 +9,7 @@ import GetStartedButton from '@/app/_components/common/GetStartedButton';
 
 export default function LandingPage() {
   return (
-    <div className="relative min-h-screen bg-gradient-to-b from-[#0F111D] to-[#262B3E] px-32 pb-56 pt-12 text-primary-foreground max-lg:px-16">
+    <div className="relative min-h-screen bg-gradient-to-b from-[#0F111D] to-[#262B3E] px-8 pb-56 pt-12 text-primary-foreground sm:px-16 lg:px-32">
       <div
         className="absolute inset-0 z-0"
         style={{
@@ -28,7 +28,7 @@ export default function LandingPage() {
 
         <section className="z-10 w-full py-16 text-center">
           <div className="flex flex-col gap-16 lg:flex-row">
-            <div className="flex min-w-[510px] flex-col justify-center">
+            <div className="flex flex-col justify-center lg:min-w-[510px]">
               <h2 className="text-start text-5xl font-bold leading-[67.20px] text-primary-foreground">
                 Podofarm for <br />
                 Coding Test Study
@@ -37,7 +37,7 @@ export default function LandingPage() {
                 프로그래머스 기반의 코딩테스트 문제 풀고 <br /> 더 나은 풀이 방식을 고민하며,
                 스터디원들과 함께 성장을 도모해 보세요!
               </p>
-              <div className="mt-6 flex flex-row justify-start space-x-4">
+              <div className="mt-6 flex flex-col items-start justify-start gap-4 sm:flex-row">
                 <Link href={EXTENSION_PATH} target="_blank" rel="noopener noreferrer">
                   <Button className="rounded-lg bg-accent-foreground px-4 py-5">
                     Download Extension
@@ -101,7 +101,7 @@ export default function LandingPage() {
 
         <section className="relative flex flex-col gap-[100px] text-start lg:flex-row">
           <Image
-            src={'/landing-3.png'}
+            src={'/landing-2.png'}
             width={900}
             height={572}
             alt="데모 사진"
@@ -122,7 +122,7 @@ export default function LandingPage() {
 
         <section className="relative flex flex-col gap-[100px] text-start lg:flex-row">
           <Image
-            src={'/landing-2.png'}
+            src={'/landing-3.png'}
             width={900}
             height={572}
             alt="데모 사진"
@@ -143,7 +143,7 @@ export default function LandingPage() {
 
         <section className="relative flex flex-col gap-[100px] text-start lg:flex-row">
           <Image
-            src={'/landing-3.png'}
+            src={'/landing-4.png'}
             width={900}
             height={572}
             alt="데모 사진"

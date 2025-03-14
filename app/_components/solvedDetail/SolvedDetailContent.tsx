@@ -6,8 +6,7 @@ import { useSolvedContentQuery } from '@/app/_hooks/api/useSolvedContentQuery';
 import { useSolvedSummaryQuery } from '@/app/_hooks/api/useSolvedSummaryQuery';
 import { useStudyMemberQuery } from '@/app/_hooks/api/useStudyMemberQuery';
 import { filterMember } from '@/app/_utils/filterMember';
-import SolvedDetailMain from './SolvedDetailMain';
-import convertSolvedDate from '@/app/_utils/convertSolvedDate';
+import SolvedDetailMain from '@/app/_components/solvedDetail/SolvedDetailMain';
 import { useUserInfoQuery } from '@/app/_hooks/api/useUserInfoQuery';
 import SolvedDetailContentSkeleton from '@/app/_components/solvedDetail/SolvedDetailContentSkeleton';
 
@@ -37,7 +36,7 @@ const SolvedDetailContent = ({ studyId, problemId, memberId }: SolvedDetailConte
           name={filterMember(studyMemberData.memberDetails, memberId)?.name}
           description={solvedContentData.readme}
           codeTime={item.codeTime}
-          codeSolvedDate={convertSolvedDate(item.codeSolvedDate)}
+          codeSolvedDate={item.codeSolvedDate}
           codeSource={item.codeSource}
           problemType={item.problemType}
           codePerformance={item.codePerformance}

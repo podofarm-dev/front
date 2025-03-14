@@ -3,7 +3,6 @@
 import { useState } from 'react';
 
 import UserCard from '@/app/_components/common/UserCard';
-import { useUserInfoQuery } from '@/app/_hooks/api/useUserInfoQuery';
 import SolvedList from '@/app/_components/solved/SolvedList';
 import UserSolvedList from '@/app/_components/solved/UserSolvedList';
 import { useSolvedRankingQuery } from '@/app/_hooks/api/useSolvedRankingQuery';
@@ -23,9 +22,8 @@ const SolvedContent = ({ studyId }: SolvedContentProps) => {
   const memberId = searchParams.get('memberId') ?? '';
   const [currentMember, setCurrentMember] = useState(memberId);
 
-  const { userInfoData } = useUserInfoQuery();
   const { studyMemberData } = useStudyMemberQuery(studyId);
-  const { solvedRankingData } = useSolvedRankingQuery(studyId, String(userInfoData?.memberId));
+  const { solvedRankingData } = useSolvedRankingQuery(studyId, currentMember);
 
   const handleCurrentMember = (memberId: string) => {
     if (currentMember !== memberId) {

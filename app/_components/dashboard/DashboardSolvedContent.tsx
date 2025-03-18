@@ -30,6 +30,7 @@ const DashboardSolvedContent = ({ memberSolvedData }: DashboardSolvedContentProp
             id={item.memberDetail?.id}
             name={item.memberDetail?.name}
             imgUrl={item.memberDetail?.imgUrl}
+            className="h-6 w-6"
           />
           <DashboardBar solved={item.solved} maxSolved={maxSolved} />
         </div>

@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     siteName: 'Podofarm',
     images: [
       {
-        url: '/og-image.png', // 미리보기 이미지 URL
+        url: 'https://www.podofarm.xyz/og-image.png', // 미리보기 이미지 URL
         width: 1200,
         height: 630,
         alt: 'Podofarm 미리보기 이미지',

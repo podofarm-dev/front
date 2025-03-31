@@ -26,8 +26,9 @@ jobs:
 
       - name: Merge Changes from Original Repo
         run: |
-          git merge --no-ff origin/main
+          git fetch origin main  # 원본 레포지토리에서 최신 변경 사항 가져오기
+          git merge --no-ff origin/main  # 병합 수행
 
       - name: Push Changes to Forked Repo
         run: |
-          git push forked main
+          git push forked main  # 병합된 결과를 fork 레포지토리에 푸시

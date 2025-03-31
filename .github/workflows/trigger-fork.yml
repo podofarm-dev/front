@@ -7,6 +7,7 @@ on:
 
 jobs:
   notify-fork:
+    if: github.repository == 'podofarm-dev/front'  # fork된 레포지토리에서는 실행 안 됨
     runs-on: ubuntu-latest
     steps:
       - name: Send Webhook to Forked Repo

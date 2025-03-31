@@ -19,7 +19,15 @@ jobs:
           git config --global user.name "ncb6206"
           git config --global user.email "ncb6206@gmail.com"
 
-      - name: Add Forked Repo and Push Changes
+      - name: Fetch Forked Repo
         run: |
           git remote add forked https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/ncb6206/front.git
-          git push -f forked main  # force push로 최신 상태 유지
+          git fetch forked main
+
+      - name: Merge Changes from Original Repo
+        run: |
+          git merge --no-ff origin/main
+
+      - name: Push Changes to Forked Repo
+        run: |
+          git push forked main

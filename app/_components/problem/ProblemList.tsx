@@ -1,13 +1,12 @@
 'use client';
 
-import { Suspense, useState } from 'react';
+import { useState } from 'react';
 
 import { columns } from '@/app/_components/problem/ProblemColumns';
 import { ProblemDataTable } from '@/app/_components/problem/ProblemDataTable';
 import { useProblemListQuery } from '@/app/_hooks/api/useProblemListQuery';
 import DebouncedInput from '@/app/_components/common/DebouncedInput';
 import SolvedButton from '@/app/_components/problem/SolvedButton';
-import Loader from '@/app/_components/common/Loader';
 
 interface ProblemListProps {
   studyId: string;
@@ -57,15 +56,13 @@ const ProblemList = ({ studyId }: ProblemListProps) => {
           className="w-full max-w-lg"
         />
       </div>
-      <Suspense fallback={<Loader />}>
-        <ProblemDataTable
-          columns={columns}
-          data={problemListData?.problem}
-          page={page}
-          setPage={handlePageChange}
-          pageInfo={problemListData?.pageInfo}
-        />
-      </Suspense>
+      <ProblemDataTable
+        columns={columns}
+        data={problemListData?.problem}
+        page={page}
+        setPage={handlePageChange}
+        pageInfo={problemListData?.pageInfo}
+      />
     </div>
   );
 };

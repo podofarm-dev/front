@@ -43,12 +43,12 @@ const SolvedCode = ({ solvedCode, setSolvedCode }: SolvedCodeProps) => {
 
         // 타입 및 식별자
         { token: 'type', foreground: '8AAAFF' },
-        { token: 'identifier', foreground: 'f3f179' },
+        { token: 'identifier', foreground: 'ECFAFF' },
         { token: 'variable', foreground: 'ECFAFF' },
 
         // 클래스 및 함수
         { token: 'class', foreground: 'ffffff' },
-        { token: 'interface', foreground: 'F3F179' },
+        { token: 'interface', foreground: 'ECFAFF' },
         { token: 'function', foreground: 'EEB8FF' }, // 이거 안됨
         { token: 'method', foreground: 'EEB8FF' }, // 이거 안됨
 
@@ -64,7 +64,7 @@ const SolvedCode = ({ solvedCode, setSolvedCode }: SolvedCodeProps) => {
         { token: 'keyword.false', foreground: '76DB89' },
 
         // 타입 이름
-        { token: 'entity.name.type', foreground: 'F3F179' },
+        { token: 'entity.name.type', foreground: 'ECFAFF' },
       ],
       colors: {
         'editor.background': '#212830', // 배경색 (원래 투명 설정은 적용 안 됨)

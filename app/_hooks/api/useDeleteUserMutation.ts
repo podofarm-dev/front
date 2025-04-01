@@ -20,7 +20,7 @@ export const useDeleteUserMutation = () => {
     },
     onError: (error) => {
       console.error(error);
-      toast.warn('스터디 리더이거나 해당 ID의 회원이 존재하지 않습니다!');
+      toast.error('스터디 리더이거나 해당 ID의 회원이 존재하지 않습니다!');
     },
   });
 

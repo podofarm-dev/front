@@ -1,7 +1,6 @@
 'use client';
 
 import { memberStatisticData } from '@/app/_types/study';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import SquareStack from '@/app/_components/common/SquareStack';
 import ProfileIcon from '@/app/_components/common/ProfileIcon';
 
@@ -19,7 +18,7 @@ const DashboardStatisticsContent = ({ memberStatisticData }: DashboardStatistics
   }
 
   return (
-    <div className="relative flex flex-col gap-2 overflow-x-auto py-4">
+    <div className="custom-scrollbar relative flex flex-col gap-2 overflow-x-auto pb-2 pt-6">
       {memberStatisticData.map((item, indexItem) => (
         <div
           key={item.memberDetail?.id}
@@ -29,6 +28,7 @@ const DashboardStatisticsContent = ({ memberStatisticData }: DashboardStatistics
             id={item.memberDetail?.id}
             name={item.memberDetail?.name}
             imgUrl={item.memberDetail?.imgUrl}
+            className="h-6 w-6"
           />
           <div className="relative flex w-full flex-row gap-1">
             {item.grass.map((stack) => {

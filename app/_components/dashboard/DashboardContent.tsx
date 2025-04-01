@@ -8,6 +8,7 @@ import DashboardTabDecider from '@/app/_components/dashboard/DashboardTabDecider
 import { useStudyMemberQuery } from '@/app/_hooks/api/useStudyMemberQuery';
 import { useRecentLogsQuery } from '@/app/_hooks/api/useRecentLogsQuery';
 import DashboardSolvedAlgorithm from '@/app/_components/dashboard/DashboardSolvedAlgorithm';
+import DashboardContentSkeleton from '@/app/_components/dashboard/DashboardContentSkeleton';
 
 interface DashboardContentProps {
   studyId: string;
@@ -16,6 +17,10 @@ interface DashboardContentProps {
 const DashboardContent = ({ studyId }: DashboardContentProps) => {
   const { studyMemberData } = useStudyMemberQuery(studyId);
   const { recentLogsData } = useRecentLogsQuery(studyId);
+
+  if (!studyMemberData && !recentLogsData) {
+    return <DashboardContentSkeleton />;
+  }
 
   return (
     <>
@@ -26,8 +31,8 @@ const DashboardContent = ({ studyId }: DashboardContentProps) => {
           days={studyMemberData.lapsedDate}
         />
       )}
-      <div className="flex w-full flex-row gap-6 py-4">
-        <div className="relative flex w-9/12 flex-col gap-6">
+      <div className="flex w-full flex-col gap-6 py-4 md:flex-row">
+        <div className="flex w-full flex-col gap-6 md:w-9/12">
           <div className="flex flex-col rounded-lg border border-bolder px-11 py-8">
             <div className="flex justify-center">
               <DashboardTab />
@@ -37,6 +42,7 @@ const DashboardContent = ({ studyId }: DashboardContentProps) => {
                 <DashboardTabDecider
                   studyId={studyMemberData.studyId}
                   memberDetails={studyMemberData.memberDetails}
+                  days={studyMemberData.lapsedDate}
                 />
               )}
             </div>
@@ -54,7 +60,7 @@ const DashboardContent = ({ studyId }: DashboardContentProps) => {
             )}
           </div>
         </div>
-        <div className="relative flex w-3/12 flex-col gap-1 rounded-lg border border-bolder px-11 py-8">
+        <div className="flex h-fit w-full flex-col gap-1 rounded-lg border border-bolder px-11 py-8 md:w-3/12">
           <span className="mb-4 font-semibold">최근활동</span>
           {recentLogsData &&
             recentLogsData.map((item, index) => (
@@ -63,6 +69,9 @@ const DashboardContent = ({ studyId }: DashboardContentProps) => {
                 time={item.solvedBefore}
                 name={item.memberName}
                 title={item.problemTitle}
+                studyId={studyId}
+                memberId={item.memberId}
+                problemId={item.problemId}
               />
             ))}
         </div>

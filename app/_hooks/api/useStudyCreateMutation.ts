@@ -7,7 +7,7 @@ export const useStudyCreateMutation = () => {
   const studyCreateMutation = useMutation({
     mutationFn: postStudyCreate,
     onError: (error) => {
-      toast.warn(error.message);
+      toast.error(error.message);
     },
   });
 

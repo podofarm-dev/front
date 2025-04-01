@@ -40,7 +40,7 @@ const SquareStack = ({
   return (
     <>
       {showTooltip ? (
-        <TooltipProvider delayDuration={500}>
+        <TooltipProvider delayDuration={100}>
           <Tooltip>
             <TooltipTrigger asChild onClick={onChangeDailyStack}>
               <div className={cn('h-5 w-5 rounded', colorClass, className)} />

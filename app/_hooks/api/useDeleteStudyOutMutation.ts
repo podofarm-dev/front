@@ -16,7 +16,7 @@ export const useDeleteStudyOutMutation = () => {
     },
     onError: (error) => {
       console.error(error);
-      toast.warn('스터디 방을 나가는 도중 오류가 발생하였습니다!');
+      toast.error('스터디 방을 나가는 도중 오류가 발생하였습니다!');
     },
   });
 

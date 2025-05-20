@@ -34,6 +34,9 @@ export const metadata: Metadata = {
     ],
     locale: 'ko_KR',
   },
+  other: {
+    'google-site-verification': 'TEUpVDpl6HnPL3Xmp4ORnD_epeyRFct-eIkf8NjAD58',
+  },
 };
 
 export default function RootLayout({

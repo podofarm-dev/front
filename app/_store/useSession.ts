@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
+import { ACCESS_TOKEN_KEY } from '@/app/_constants/api';
 
 interface SessionState {
   access_token: string;
@@ -44,7 +45,7 @@ const sessionStore = create<SessionStore>()(
       },
     }),
     {
-      name: 'mildo-session',
+      name: ACCESS_TOKEN_KEY,
       storage: createJSONStorage(() => localStorage),
     },
   ),

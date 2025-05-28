@@ -1,4 +1,36 @@
+/**
+ * API 관련 상수 정의
+ */
+
+/** API 기본 URL */
 export const AXIOS_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+
+/** 액세스 토큰 로컬 스토리지 키 */
+export const ACCESS_TOKEN_KEY = 'podofarm-auth';
+
+/** 네트워크 설정 */
+export const NETWORK = {
+  /** 요청 타임아웃 (밀리초) */
+  TIMEOUT: 10000,
+};
+
+/** HTTP 상태 코드 */
+export const HTTP_STATUS_CODE = {
+  /** 성공 */
+  OK: 200,
+  /** 생성됨 */
+  CREATED: 201,
+  /** 잘못된 요청 */
+  BAD_REQUEST: 400,
+  /** 인증 필요 */
+  UNAUTHORIZED: 401,
+  /** 접근 금지 */
+  FORBIDDEN: 403,
+  /** 찾을 수 없음 */
+  NOT_FOUND: 404,
+  /** 서버 내부 오류 */
+  INTERNAL_SERVER_ERROR: 500,
+};
 
 export const END_POINTS = {
   TOKEN_INFO: '/member/tokens',
@@ -34,24 +66,5 @@ export const END_POINTS = {
   COMMENT: (codeId: string) => `/code/${codeId}/comment`,
   COMMENT_DETAIL: (codeId: string, commentId: string) => `/code/${codeId}/comment/${commentId}`,
 };
-
-export const NETWORK = {
-  RETRY_COUNT: 2,
-  TIMEOUT: 10000,
-} as const;
-
-export const HTTP_STATUS_CODE = {
-  SUCCESS: 200,
-  CREATED: 201,
-  NO_CONTENT: 204,
-  RESET_CONTENT: 205,
-  BAD_REQUEST: 400,
-  UNAUTHORIZED: 401,
-  NOT_FOUND: 404,
-  CONTENT_TOO_LARGE: 413,
-  INTERNAL_SERVER_ERROR: 500,
-} as const;
-
-export const ACCESS_TOKEN_KEY = 'mildo-session';
 
 export const REFRESH_TOKEN_KEY = 'RefreshToken';

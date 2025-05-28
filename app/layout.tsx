@@ -4,7 +4,6 @@ import { ToastContainer } from 'react-toastify';
 
 import RQProvider from '@/app/_components/common/RQProvider';
 import { LayoutProps } from '@/app/_types/layout';
-import { TOAST_AUTO_CLOSE_DURATION, TOAST_CLASS_NAME } from '@/app/_constants/layout';
 
 import './globals.css';
 
@@ -48,14 +47,14 @@ export default function RootLayout({ children }: Readonly<LayoutProps>) {
         <RQProvider>{children}</RQProvider>
         <ToastContainer
           position="top-center"
-          autoClose={TOAST_AUTO_CLOSE_DURATION}
+          autoClose={2500}
           newestOnTop
           closeButton={false}
           hideProgressBar
           closeOnClick
           draggable={true}
           theme="dark"
-          toastClassName={TOAST_CLASS_NAME}
+          className="'text-sm shadow-[0px_1px_3px_0px_rgba(0,0,0,0.30)]' rounded-xl bg-tertiary font-normal leading-tight shadow-[0px_4px_8px_0px_rgba(0,0,0,0.15)]"
         />
       </body>
     </html>

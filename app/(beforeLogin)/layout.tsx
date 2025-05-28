@@ -1,10 +1,9 @@
 import { ReactNode } from 'react';
 
 import LandingRedirectHandler from '@/app/_components/common/LandingRedirectHandler';
+import { LayoutProps } from '@/app/_types/layout';
 
-type Props = { children: ReactNode };
-
-const BeforeLoginLayout = ({ children }: Props) => {
+const BeforeLoginLayout = ({ children }: LayoutProps) => {
   return (
     <>
       {children}

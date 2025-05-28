@@ -2,10 +2,9 @@ import { ReactNode } from 'react';
 
 import Header from '@/app/_components/layout/Header';
 import RedirectLogin from '@/app/_components/common/RedirectLogin';
+import { LayoutProps } from '@/app/_types/layout';
 
-type Props = { children: ReactNode };
-
-const AfterLoginLayout = ({ children }: Props) => {
+const AfterLoginLayout = ({ children }: LayoutProps) => {
   return (
     <>
       <Header />

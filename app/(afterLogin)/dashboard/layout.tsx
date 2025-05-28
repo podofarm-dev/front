@@ -1,10 +1,9 @@
 import { ReactNode } from 'react';
 
 import RedirectStudy from '@/app/_components/common/RedirectStudy';
+import { LayoutProps } from '@/app/_types/layout';
 
-type Props = { children: ReactNode };
-
-const AfterLoginDashboardLayout = ({ children }: Props) => {
+const AfterLoginDashboardLayout = ({ children }: LayoutProps) => {
   return (
     <>
       <RedirectStudy />

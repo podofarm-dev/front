@@ -1,14 +1,12 @@
-import { ReactNode } from 'react';
-
 import Navigation from '@/app/_components/layout/Navigation';
+import { LayoutProps } from '@/app/_types/layout';
+import MainContentContainer from '@/app/_components/layout/MainContentContainer';
 
-type Props = { children: ReactNode };
-
-const StudyIdLayout = ({ children }: Props) => {
+const StudyIdLayout = ({ children }: LayoutProps) => {
   return (
     <>
       <Navigation />
-      <div className="mx-10 flex max-w-[1200px] flex-col py-12 sm:mx-16 xl:mx-auto">{children}</div>
+      <MainContentContainer>{children}</MainContentContainer>
     </>
   );
 };

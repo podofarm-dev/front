@@ -11,8 +11,9 @@ export const ACCESS_TOKEN_KEY = 'podofarm-auth';
 /** 네트워크 설정 */
 export const NETWORK = {
   /** 요청 타임아웃 (밀리초) */
+  RETRY_COUNT: 3,
   TIMEOUT: 10000,
-};
+} as const;
 
 /** HTTP 상태 코드 */
 export const HTTP_STATUS_CODE = {

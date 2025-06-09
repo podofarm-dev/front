@@ -19,7 +19,7 @@ export const checkAndSetToken = (config: InternalAxiosRequestConfig) => {
   }
 
   try {
-    // localStorage에서 액세스 토큰 가져옴
+    // 쿠키에서 액세스 토큰 가져옴
     const accessToken = tokenService.getAccessToken();
 
     // 토큰이 없으면 로그인 페이지로 리다이렉트

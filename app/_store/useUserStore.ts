@@ -1,4 +1,6 @@
 import { create } from 'zustand';
+import Cookies from 'js-cookie';
+
 import { ACCESS_TOKEN_KEY } from '@/app/_constants/api';
 
 interface UserStore {
@@ -9,7 +11,7 @@ interface UserStore {
 const getInitialMemberId = () => {
   if (typeof window === 'undefined') return '';
 
-  const authStorage = localStorage.getItem(ACCESS_TOKEN_KEY);
+  const authStorage = Cookies.get(ACCESS_TOKEN_KEY);
   if (!authStorage) return '';
 
   try {

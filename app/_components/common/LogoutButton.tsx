@@ -1,5 +1,7 @@
 'use client';
 
+import Cookies from 'js-cookie';
+
 import { ACCESS_TOKEN_KEY } from '@/app/_constants/api';
 import { useLogOutMutation } from '@/app/_hooks/api/useLogOutMutation';
 import { Button } from '@/components/ui/button';
@@ -14,7 +16,7 @@ const LogoutButton = ({ isButton }: LogoutButtonProps) => {
   const logoutMutation = useLogOutMutation();
 
   const logout = () => {
-    const authStorage = localStorage.getItem(ACCESS_TOKEN_KEY);
+    const authStorage = Cookies.get(ACCESS_TOKEN_KEY);
 
     if (authStorage) {
       const { state } = JSON.parse(authStorage);

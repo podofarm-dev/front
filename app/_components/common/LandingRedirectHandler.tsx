@@ -2,6 +2,7 @@
 
 import { useLayoutEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
 
 import getHealth from '@/app/_api/landing/getHealth';
 import { ACCESS_TOKEN_KEY } from '@/app/_constants/api';
@@ -23,7 +24,7 @@ const LandingRedirectHandler = () => {
       }
 
       // 2단계: 토큰 확인 및 대시보드 리다이렉트
-      const authStorage = localStorage.getItem(ACCESS_TOKEN_KEY);
+      const authStorage = Cookies.get(ACCESS_TOKEN_KEY);
 
       if (!authStorage) return;
 

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import Cookies from 'js-cookie';
 
 import sessionStore from '@/app/_store/useSession';
 import postAccessToken from '@/app/_api/user/postAccessToken';
@@ -32,16 +33,16 @@ const SocialLoginPage = () => {
       }
 
       // 2. 토큰 저장
-      sessionStore.setState({ access_token: accessToken, memberId: userId });
+      // sessionStore.setState({ access_token: accessToken, memberId: userId });
 
-      // 로컬 스토리지에도 저장 (인터셉터에서 사용)
+      // 쿠키에도 저장 (인터셉터에서 사용)
       const authData = {
         state: {
           access_token: accessToken,
           memberId: userId,
         },
       };
-      localStorage.setItem(ACCESS_TOKEN_KEY, JSON.stringify(authData));
+      Cookies.set(ACCESS_TOKEN_KEY, JSON.stringify(authData));
 
       // 3. 사용자 정보 가져오기
       const userInfo = await getUserInfo();

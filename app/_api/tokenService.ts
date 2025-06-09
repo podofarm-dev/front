@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 import { ACCESS_TOKEN_KEY } from '@/app/_constants/api';
 import { PATH } from '@/app/_constants/path';
 
@@ -6,12 +7,12 @@ import { PATH } from '@/app/_constants/path';
  */
 export const tokenService = {
   /**
-   * 로컬 스토리지에서 액세스 토큰을 가져옵니다.
+   * 쿠키에서 액세스 토큰을 가져옵니다.
    * @returns 액세스 토큰 또는 null
    */
   getAccessToken(): string | null {
     try {
-      const authStorage = localStorage.getItem(ACCESS_TOKEN_KEY);
+      const authStorage = Cookies.get(ACCESS_TOKEN_KEY);
       if (!authStorage) return null;
 
       const { state } = JSON.parse(authStorage);
@@ -29,12 +30,13 @@ export const tokenService = {
    */
   updateAccessToken(newAccessToken: string): boolean {
     try {
-      const authStorage = localStorage.getItem(ACCESS_TOKEN_KEY);
+      const authStorage = Cookies.get(ACCESS_TOKEN_KEY);
       if (!authStorage) return false;
 
       const tokenData = JSON.parse(authStorage);
       tokenData.state.access_token = newAccessToken;
-      localStorage.setItem(ACCESS_TOKEN_KEY, JSON.stringify(tokenData));
+
+      Cookies.set(ACCESS_TOKEN_KEY, JSON.stringify(tokenData));
       return true;
     } catch (error) {
       console.error('토큰 업데이트 중 오류 발생:', error);
@@ -46,7 +48,7 @@ export const tokenService = {
    * 토큰을 제거하고 로그아웃 처리합니다.
    */
   removeToken(): void {
-    localStorage.removeItem(ACCESS_TOKEN_KEY);
+    Cookies.remove(ACCESS_TOKEN_KEY);
   },
 
   /**

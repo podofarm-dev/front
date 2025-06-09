@@ -1,5 +1,6 @@
 import { useRouter } from 'next/navigation';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import Cookies from 'js-cookie';
 
 import postLogout from '@/app/_api/user/postLogout';
 import { ACCESS_TOKEN_KEY } from '@/app/_constants/api';
@@ -12,7 +13,7 @@ export const useLogOutMutation = () => {
   const logOutMutation = useMutation({
     mutationFn: postLogout,
     onSuccess: () => {
-      localStorage.removeItem(ACCESS_TOKEN_KEY);
+      Cookies.remove(ACCESS_TOKEN_KEY);
       queryClient.clear();
       router.push(PATH.ROOT);
     },

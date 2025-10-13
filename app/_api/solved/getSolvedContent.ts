@@ -8,7 +8,7 @@ export interface GetSolvedContentParams {
 
 const getSolvedContent = async ({ problemId }: GetSolvedContentParams) => {
   const { data } = await axiosInstance.get<SolvedContent>(
-    END_POINTS.SOLVED_PROBLEM_CONTENT(problemId),
+    END_POINTS.SOLVED_PROBLEM_CONTENT(problemId)
   );
 
   return data;

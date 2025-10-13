@@ -46,7 +46,7 @@ const sessionStore = create<SessionStore>()(
     {
       name: 'mildo-session',
       storage: createJSONStorage(() => localStorage),
-    },
-  ),
+    }
+  )
 );
 export default sessionStore;

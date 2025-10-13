@@ -38,10 +38,8 @@ interface SolvedDataTableProps<TData, TValue> {
   isFetchingNextPage: boolean;
   hasNextPage: boolean;
   fetchNextPage: (
-    options?: FetchNextPageOptions | undefined,
-  ) => Promise<
-    InfiniteQueryObserverResult<InfiniteData<SolvedListData, unknown>, AxiosError<unknown, any>>
-  >;
+    options?: FetchNextPageOptions | undefined
+  ) => Promise<InfiniteQueryObserverResult<InfiniteData<SolvedListData, unknown>, AxiosError>>;
 }
 
 export function SolvedDataTable<TData, TValue>({

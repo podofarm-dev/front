@@ -52,6 +52,7 @@ export default function LandingPage() {
               height={572}
               alt="데모 사진"
               className="animate-fade-in opacity-0"
+              style={{ width: 'auto', height: 'auto' }}
             />
           </div>
         </section>

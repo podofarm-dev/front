@@ -35,8 +35,8 @@ const DebouncedInput = ({
         value={value}
         onChange={(e) => setValue(e.target.value)}
         className={cn(
-          `font-lg border-block cn w-full rounded border-0 bg-transparent shadow focus:outline-none`,
-          className,
+          'font-lg border-block cn w-full rounded border-0 bg-transparent shadow focus:outline-none',
+          className
         )}
       />
       <div className="flex flex-row items-center gap-2">

@@ -26,6 +26,6 @@ export const studySchema = yup.object().shape({
     .max(6, '비밀번호는 6글자 이내여야 합니다')
     .matches(
       /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{1,6}$/,
-      '알파벳과 숫자를 최소 1개씩 포함해야 합니다',
+      '알파벳과 숫자를 최소 1개씩 포함해야 합니다'
     ),
 });

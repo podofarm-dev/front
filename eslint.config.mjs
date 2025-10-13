@@ -23,9 +23,59 @@ export default [
       'react-hooks': hooksPlugin,
     },
     rules: {
+      // React 관련
       'react/jsx-uses-react': 'off',
       'react/react-in-jsx-scope': 'off',
-      camelcase: 'off',
+      
+      // Google TypeScript Style Guide 규칙
+      // 변수 선언
+      'no-var': 'error',
+      'prefer-const': 'error',
+      
+      // 타입 관련
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/explicit-function-return-type': 'off',
+      '@typescript-eslint/explicit-module-boundary-types': 'off',
+      
+      // 명명 규칙
+      '@typescript-eslint/naming-convention': [
+        'error',
+        {
+          selector: 'variable',
+          format: ['camelCase', 'UPPER_CASE', 'PascalCase'],
+          leadingUnderscore: 'forbid',
+          trailingUnderscore: 'forbid',
+        },
+        {
+          selector: 'function',
+          format: ['camelCase', 'PascalCase'],
+        },
+        {
+          selector: 'typeLike',
+          format: ['PascalCase'],
+        },
+        {
+          selector: 'enumMember',
+          format: ['UPPER_CASE'],
+        },
+      ],
+      
+      // 코드 품질
+      'no-debugger': 'error',
+      'no-eval': 'error',
+      'no-implied-eval': 'error',
+      
+      // 비교 연산자
+      'eqeqeq': ['error', 'always', { null: 'ignore' }],
+      
+      // 세미콜론
+      'semi': ['error', 'always'],
+      
+      // 따옴표
+      'quotes': ['error', 'single', { avoidEscape: true }],
+      
+      // 기타
+      'camelcase': 'off',
       ...tseslint.configs.recommended.rules,
     },
     settings: {
@@ -35,6 +85,6 @@ export default [
     },
   },
   {
-    ignores: ['node_modules/**'],
+    ignores: ['node_modules/**', '.next/**', 'out/**'],
   },
 ];

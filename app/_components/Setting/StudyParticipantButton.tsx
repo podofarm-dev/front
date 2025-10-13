@@ -30,14 +30,14 @@ const StudyParticipantButton = ({ id, name, studyId }: StudyParticipantButtonPro
         studyId: studyId,
         studyLeaderData: { leaderId: id },
       },
-      { onSuccess: () => setOpenModal(null) },
+      { onSuccess: () => setOpenModal(null) }
     );
   };
 
   const handleKick = () => {
     deleteStudyMemberMutation.mutate(
       { studyId, memberId: id },
-      { onSuccess: () => setOpenModal(null) },
+      { onSuccess: () => setOpenModal(null) }
     );
   };
 

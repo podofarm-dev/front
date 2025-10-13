@@ -23,7 +23,7 @@ const CommentContent = ({ codeNo, memberDetail }: CommentContentProps) => {
   const onHandleComment = () => {
     commentMutation.mutate(
       { codeId: String(codeNo), commentData: { commentContent: comment } },
-      { onSuccess: () => setComment('') },
+      { onSuccess: () => setComment('') }
     );
   };
 

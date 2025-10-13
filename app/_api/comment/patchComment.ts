@@ -11,7 +11,7 @@ export interface PostCommentParams {
 const patchComment = async ({ codeId, commentId, commentData }: PostCommentParams) => {
   return await axiosInstance.patch<CommentType>(
     END_POINTS.COMMENT_DETAIL(codeId, commentId),
-    commentData,
+    commentData
   );
 };
 

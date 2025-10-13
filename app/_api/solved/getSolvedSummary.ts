@@ -9,7 +9,7 @@ export interface GetSolvedContentParams {
 
 const getSolvedSummary = async ({ memberId, problemId }: GetSolvedContentParams) => {
   const { data } = await axiosInstance.get<SolvedSummary[]>(
-    END_POINTS.SOLVED_PROBLEM_SUMMARY_CORRECT(memberId, problemId),
+    END_POINTS.SOLVED_PROBLEM_SUMMARY_CORRECT(memberId, problemId)
   );
 
   return data;

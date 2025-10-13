@@ -10,7 +10,7 @@ export interface GetDailySolvedParams {
 
 const getDailySolved = async ({ studyId, date, memberId }: GetDailySolvedParams) => {
   const { data } = await axiosInstance.get<DailySolvedList>(
-    END_POINTS.DAILY_GRASS(studyId, date, memberId),
+    END_POINTS.DAILY_GRASS(studyId, date, memberId)
   );
 
   return data.data;

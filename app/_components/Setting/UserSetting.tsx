@@ -58,7 +58,7 @@ const UserSetting = ({
           onSuccess: () => {
             if (data.file) setUploadedImage(data.file);
           },
-        },
+        }
       );
     }
   };

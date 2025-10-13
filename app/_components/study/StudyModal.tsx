@@ -70,7 +70,7 @@ export function StudyModal({ title, studyLabel, buttonLabel, onClose }: StudyMod
             router.replace(PATH.STUDY_DASHBOARD(studyCode));
             onClose();
           },
-        },
+        }
       );
     }
 
@@ -87,7 +87,7 @@ export function StudyModal({ title, studyLabel, buttonLabel, onClose }: StudyMod
             router.replace(PATH.STUDY_DASHBOARD(String(data.studyCode)));
             onClose();
           },
-        },
+        }
       );
     }
 

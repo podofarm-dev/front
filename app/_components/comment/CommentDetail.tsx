@@ -33,7 +33,7 @@ const CommentDetail = ({ codeNo, commentNo, member, date, description }: Comment
         commentId: String(commentNo),
         commentData: { commentContent: comment },
       },
-      { onSuccess: () => setIsModify(false) },
+      { onSuccess: () => setIsModify(false) }
     );
   };
 

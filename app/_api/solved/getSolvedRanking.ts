@@ -9,7 +9,7 @@ export interface GetSolvedRankingParams {
 
 const getSolvedRanking = async ({ studyId, memberId }: GetSolvedRankingParams) => {
   const { data } = await axiosInstance.get<SolvedRankingData>(
-    END_POINTS.SOLVED_RANKING(studyId, memberId),
+    END_POINTS.SOLVED_RANKING(studyId, memberId)
   );
 
   return data;

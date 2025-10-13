@@ -9,7 +9,7 @@ export interface GetSolvedStatisticParams {
 
 const getSolvedStatistic = async ({ studyId, yearMonth }: GetSolvedStatisticParams) => {
   const { data } = await axiosInstance.get<SolvedStatisticList>(
-    END_POINTS.SOLVED_STATISTIC(studyId, yearMonth),
+    END_POINTS.SOLVED_STATISTIC(studyId, yearMonth)
   );
 
   return data.data;
